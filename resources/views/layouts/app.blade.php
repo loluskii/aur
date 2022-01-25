@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/header-14.css') }}" />
@@ -19,17 +20,20 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon_io/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon_io/favicon-16x16.png') }}">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('go') }}">
     <style>
-        /* @font-face {
+        @font-face {
             font-family: 'Century Gothic';
-            src: url('../../public/font/gothic.woff');
-        } */
+            src: url("{{ asset('gothic/gothic.woff') }}");
+        }
         *{
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Century Gothic',Arial,sans-serif;
             line-height: 25px;
+            /* letter-spacing: .1rem; */
+            text-transform: uppercase;
+            color: #000;
+            font-size: 13px;
+            /* padding: 1.25rem; */
         }
         .card-body .product-name, .card-body p{
             font-size: 12px;

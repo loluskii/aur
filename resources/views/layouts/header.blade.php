@@ -3,7 +3,7 @@
     <div class="site-header__top">
         <div class="wrapper">
             <div class="site-header__middle text-center">
-                <a href="#" class="brand">
+                <a href="/" class="brand">
                     <img src="{{ asset('images/2611.png') }}" style="height: 30px" alt="" class="img-fluid">
                 </a>
             </div>
@@ -18,9 +18,9 @@
                         <i class="fa fa-bars "></i>
                     </button>
                     <ul class="nav__wrapper">
-                        <li class="nav__item fw-bold"><a href="{{ route('shop') }}">Shop</a></li>
-                        <li class="nav__item fw-bold"><a href="#">Sweatshirts</a></li>
-                        <li class="nav__item fw-bold"><a href="#">T-Shirts</a></li>
+                        <li class="nav__item"><a href="{{ route('shop') }}">Shop</a></li>
+                        <li class="nav__item"><a href="#">Sweatshirts</a></li>
+                        <li class="nav__item"><a href="#">T-Shirts</a></li>
                     </ul>
                 </nav>
             </div>
@@ -35,7 +35,7 @@
                         <input type="search" name="" id="search" placeholder="What's on your mind?" />
                     </form>
                 </div> --}}
-                <a href="#" class="cart">
+                {{-- <a href="#" class="cart">
                     <svg version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <g>
                             <title>Cart</title>
@@ -47,7 +47,7 @@
                                 d="m77 73.898c-5.6992 0-10.398 4.6992-10.398 10.398s4.6992 10.398 10.398 10.398 10.398-4.6992 10.398-10.398c-0.097657-5.6953-4.6992-10.398-10.398-10.398zm0 14.5c-2.3008 0-4.1016-1.8008-4.1016-4.1016s1.8008-4.1016 4.1016-4.1016 4.1016 1.8008 4.1016 4.1016c0 2.2031-1.9023 4.1016-4.1016 4.1016z" />
                         </g>
                     </svg>
-                </a>
+                </a> --}}
                 <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                     <svg version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <title>Profile</title>
@@ -70,7 +70,7 @@
     <div class="site-header__top">
         <div class="wrapper">
             <div class="site-header__middle text-center">
-                <a href="#" class="brand">
+                <a href="/" class="brand">
                     <img src="{{ asset('images/2611.png') }}" style="height: 30px" alt="" class="img-fluid">
                 </a>
             </div>
@@ -85,9 +85,9 @@
                         <i class="fa fa-bars "></i>
                     </button>
                     <ul class="nav__wrapper">
-                        <li class="nav__item fw-bold"><a href="{{ route('shop') }}">Shop</a></li>
-                        <li class="nav__item fw-bold"><a href="#">Sweatshirts</a></li>
-                        <li class="nav__item fw-bold"><a href="#">T-Shirts</a></li>
+                        <li class="nav__item"><a href="{{ route('shop') }}">Shop</a></li>
+                        <li class="nav__item"><a href="#">Sweatshirts</a></li>
+                        <li class="nav__item"><a href="#">T-Shirts</a></li>
                     </ul>
                 </nav>
             </div>

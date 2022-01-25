@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -15,9 +16,15 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        $cartTotalQuantity = \Cart::session(auth()->id())->getContent()->count();
-        $cartItems = \Cart::session(auth()->id())->getContent();
-        return view('products.index', compact('products','cartItems','cartTotalQuantity'));
+        
+        if(Auth::check()){
+            $cartTotalQuantity = \Cart::session(auth()->id())->getContent()->count();
+            $cartItems = \Cart::session(auth()->id())->getContent();
+            return view('products.index', compact('products','cartItems','cartTotalQuantity'));
+        }else{
+            return view('products.index', compact('products'));
+        }
+        
     }
 
     /**

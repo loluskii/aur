@@ -25,7 +25,7 @@
 @section('content')
 <div class="container mb-5">
     <div class="iframe-container placeholder-glow" id="atlanticlight">
-        <video width="1280" height="720" controls>
+        <video width="1220" height="520" controls>
             <source src="https://res.cloudinary.com/deumzc82y/video/upload/v1642159679/Untitled_gdenrn.mp4"
                 type="video/mp4">
             Your browser does not support the video tag.
@@ -73,46 +73,20 @@
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-3 col-6 mb-3 pe-2">
-            <a href="">
-                <div class="">
-                    <img class="card-img-top img-fluid shadow-sm" src="{{ asset('images/a1.jpg') }}" alt="">
-                    <div class="card-body px-0 d-flex justify-content-between">
-                        <h4 class="card-title">Sweatshirt</h4>
-                        <p class="card-text fw-bold">£248</p>
+    <div class="row g-4">
+        @foreach ($products as $product)
+            <div class="col-md-4 col-6 mb-5 pe-2">
+                <a href="{{ route('product.show',$product->id) }}">
+                    <div class="">
+                        <img class="card-img-top img-fluid" src="{{ $product->image }}" alt="">
+                        <div class="card-body px-0 d-flex justify-content-between align-items-center"">
+                            <h4 class="mb-0 card-title product-name">{{ $product->name }}</h4>
+                            <p class="card-text">£{{ $product->price }}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-3 col-6 mb-3 pe-2">
-            <div class="">
-                <img class="card-img-top img-fluid shadow-sm" src="{{ asset('images/b1.jpg') }}" alt="">
-                <div class="card-body px-0 d-flex justify-content-between">
-                    <h4 class="card-title">Sweatshirt</h4>
-                    <p class="card-text fw-bold">£244</p>
-                </div>
+                </a>
             </div>
-        </div>
-        <div class="col-md-3 col-6 mb-3 pe-2">
-            <div class="">
-                <img class="card-img-top img-fluid shadow-sm" src="{{ asset('images/c3.jpg') }}" alt="">
-                <div class="card-body px-0 d-flex justify-content-between">
-                    <h4 class="card-title">Sweatshirt</h4>
-                    <p class="card-text fw-bold">£298</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-6 mb-3 pe-2">
-            <div class="">
-                <img class="card-img-top img-fluid shadow-sm" src="{{ asset('images/a4.jpg') }}" alt="">
-                <div class="card-body px-0 d-flex justify-content-between">
-                    <h4 class="card-title">Sweatshirt</h4>
-                    <p class="card-text fw-bold">£248</p>
-                </div>
-            </div>
-        </div>
-
+        @endforeach
     </div>
 </div>
 <div class="subscribe">
