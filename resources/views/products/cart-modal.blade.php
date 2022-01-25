@@ -6,6 +6,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                @php
+                    $cartItems = \Cart::session(auth()->id())->getContent();
+                @endphp
                 @foreach ($cartItems as $item)
                 <div class="d-flex justify-content-between border-bottom  py-3">
                     <div class="d-flex w-100">

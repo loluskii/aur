@@ -17,8 +17,7 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    $cartItems = \Cart::session(auth()->id())->getContent();
-    return view('welcome',compact('cartItems'));
+    return view('welcome');
 })->name('home');
 
 Route::get('dashboard', [AuthController::class, 'dashboard']);
