@@ -2,10 +2,6 @@
 
 @section('styles')
 <style>
-*{
-    font-size: 13px;
-    font-weight: bold;
-}
 </style>
 @endsection
 
@@ -42,7 +38,7 @@
     </div>
 
     <div class="row my-5 pt-4">
-        <h4 class="pb-3">More Products like this one</h4>
+        <h5 class="pb-3">More Products like this one</h5>
         @foreach ($similar as $item)
             <div class="col-md-3 col-6 mb-3 pe-2">
                 <a href="{{ route('product.show',$item->id) }}">

@@ -27,13 +27,18 @@ Route::get('registration', [AuthController::class, 'registration'])->name('regis
 Route::post('register', [AuthController::class, 'register'])->name('register-user');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 
+Route::group(['prefix' => 'shop'], function () {
+    Route::get('/',[ProductController::class, 'index'])->name('shop');
+    Route::get('{id}', [ProductController::class, 'show'])->name('product.show');
 
-Route::get('shop',[ProductController::class, 'index'])->name('shop');
-Route::get('shop/{id}', [ProductController::class, 'show'])->name('product.show');
-Route::get('add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
-Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-Route::get('/cart/destroy/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
-Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::get('/cart/destroy/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+});
 
 
 

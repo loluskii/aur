@@ -58,9 +58,12 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $similar = Product::where('type', $product->type)->take(4)->get();
-        $cartTotalQuantity = \Cart::session(auth()->id())->getContent()->count();
-        $cartItems = \Cart::session(auth()->id())->getContent();
-        return view('products.show', compact('product', 'similar', 'cartItems','cartTotalQuantity'));
+        if(Auth::check()){
+            $cartTotalQuantity = \Cart::session(auth()->id())->getContent()->count();
+            $cartItems = \Cart::session(auth()->id())->getContent();
+            return view('products.show', compact('product', 'similar', 'cartItems','cartTotalQuantity'));
+        }
+        return view('products.show', compact('product', 'similar'));
     }
 
     /**

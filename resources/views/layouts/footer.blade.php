@@ -1,4 +1,4 @@
-<div id="shopify-section-footer" class="shopify-section">
+<div id="shopify-section-footer" class="shopify-section border-top">
     <footer class="site-footer" role="contentinfo">
         <div class="container">
             <div class="row justify-content-between py-3">

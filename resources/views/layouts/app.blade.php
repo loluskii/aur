@@ -49,7 +49,11 @@
 
 <body>
     <div id="wraps">
-        @include('layouts.header')
+        @if (Route::is('cart.checkout'))
+            
+        @else
+            @include('layouts.header')
+        @endif
 
         @yield('content')
 

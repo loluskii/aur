@@ -2,8 +2,11 @@
 
 @section('styles')
 <style>
+*{
+    text-transform: none;
+}
     .main {
-        padding-right: 40px;
+        padding: 40px;
 
     }
 
@@ -47,6 +50,7 @@
                 <div class="col-md-7 col-lg-7">
                     <div class="main">
                         <div class="header">
+                            <img src="{{ asset('images/2611.png') }}" class="img-fluid" style="height: 2em;" alt="">
                             <nav aria-label="breadcrumb" class="py-4">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item active" aria-current="page"><a href="#">Cart</a></li>
@@ -139,7 +143,7 @@
 
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-5 d-sm-none d-md-block border-start ps-4">
+                <div class="col-md-5 col-lg-5 d-sm-none d-md-block border-start ps-4 pt-5">
                     <div class="product border-bottom">
                         <table class="table table-borderless">
                             <tbody>
