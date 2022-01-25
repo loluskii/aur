@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="{{ asset('css/header-14.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/reset.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap-side-modals.css') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon_io/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon_io/favicon-16x16.png') }}">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;400&display=swap" rel="stylesheet">
