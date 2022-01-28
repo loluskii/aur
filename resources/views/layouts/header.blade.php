@@ -57,7 +57,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="{{ route('login') }}">Sign In</a></li>
-                    <li><a class="dropdown-item" href="{{ route('register-user') }}">Create Account</a></li>
+                    <li><a class="dropdown-item" href="{{ route('register') }}">Create Account</a></li>
                 </ul>
             </div>
         </div>

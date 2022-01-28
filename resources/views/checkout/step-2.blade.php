@@ -89,7 +89,7 @@
                                                     <span class="text-muted fw-bold">Ships to</span>
                                                 </div>
                                                 <div class="col-auto">
-                                                    <span class="">{{ $order->shipping_address }},{{ $order->shipping_zipcode }} {{ $order->shipping_state }}, {{ $order->shipping_zipcode }}</span>
+                                                    <span class="text-wrap">{{ $order->shipping_address }},{{ $order->shipping_zipcode }} {{ $order->shipping_state }}, {{ $order->shipping_zipcode }}</span>
                                                 </div>
                                             </div>
                                             <a href=""><small class="text-danger fw-bold">Change</small></a>

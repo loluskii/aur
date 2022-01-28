@@ -88,7 +88,7 @@
                                         </div>
                                         <hr style="width: auto">
                                         <div class="shipping d-flex justify-content-between align-items-center">
-                                            <div class="row">
+                                            <div class="">
                                                 <div class="col-auto">
                                                     <span class="text-muted fw-bold">Ships to</span>
                                                 </div>
@@ -122,50 +122,9 @@
 
                                 </div>
                                 <div class="col-12 pt-3">
-                                    {{-- <div class="card driving-license-settings" id="accordion">
-                                        <div class="card">
-                                            <div class="card-heading">
-                                                <h4 class="card-title">
-                                                    <div class="checkbox">
-                                                        <label data-toggle="collapse" data-target="#collapseOne">
-                                                            <input type="checkbox" /> I have Driver License
-                                                        </label>
-                                                    </div>
-                                                </h4>
-
-                                            </div>
-                                            <div id="collapseOne" class="panel-collapse collapse in">
-                                                <div class="panel-body">
-                                                    <div class="driving-license-kind">
-                                                        <div class="input-group mb-3">
-                                                            <input type="text" class="form-control"
-                                                                aria-label="Amount (to the nearest dollar)">
-                                                            <div class="input-group-append">
-                                                                <span class="input-group-text"><i
-                                                                        class="fas fa-lock"></i></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="" class="form-label"></label>
-                                                            <input
-                                                                type="text|password|email|number|submit|date|datetime|datetime-local|month|color|range|search|tel|time|url|week"
-                                                                name="" id="" class="form-control" placeholder=""
-                                                                aria-describedby="helpId">
-                                                            <small id="helpId" class="text-muted">Help text</small>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div> --}}
                                     <div class="accordion bg-white" id="accordionExample">
                                         <div class="accordion-item">
                                             <h2 class="accordion-header bg-light" id="headingOne">
-                                                {{-- <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    <input type="checkbox" /> 
-                                                </button> --}}
                                                 <div class="checkbox py-3 px-3">
                                                     <label data-bs-toggle="collapse" class="w-100" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                                         <div class="d-flex justify-content-between">
@@ -226,7 +185,7 @@
                                 <tr class="d-flex align-items-center">
                                     <td scope="row" style="width: 20%;">
                                         <img class="img-fluid img-thumbnail" style="height: 60px;"
-                                            src="{{ $item->associatedModel->image }}" alt="">
+                                            src="{{ asset('images/'.$item->associatedModel->image) }}" alt="">
                                     </td>
                                     <td style="width: 60%;">
                                         <span
