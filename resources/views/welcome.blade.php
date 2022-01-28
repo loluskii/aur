@@ -76,7 +76,7 @@
     <div class="row g-4">
         @foreach ($products as $product)
             <div class="col-md-4 col-6 mb-5 pe-2">
-                <a href="{{ route('product.show',$product->id) }}">
+                <a href="{{ route('product.show',$product->tag_number) }}">
                     <div class="">
                         <img class="card-img-top img-fluid" src="{{ $product->image }}" alt="">
                         <div class="card-body px-0 d-flex justify-content-between align-items-center"">

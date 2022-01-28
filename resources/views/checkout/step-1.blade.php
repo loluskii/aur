@@ -6,7 +6,10 @@
     text-transform: none;
 }
     .main {
-        padding: 40px;
+        padding-top: 40px;
+        padding-right: 40px;
+        padding-bottom: 30px;
+        padding-left: 20px;
 
     }
 
@@ -67,7 +70,8 @@
                                     <small>Have an account already? <a href="">Log in</a></small>
                                 @endif
                             </div>
-                            <form action="" method="post" class=" pb-5">
+                            <form action="{{ route('checkout.step_one') }}" method="post" class="pb-5">
+                                @csrf
                                 @if (Auth::check())
                                 <div class="card-body mb-3 ps-0">
                                     <h6>{{ Auth::user()->fname }} {{ Auth::user()->lname }} ({{ Auth::user()->email }})</h6>
@@ -86,7 +90,7 @@
                                     <h5 class="mb-4">Shipping Address</h5>
                                     <div class="mb-3">
                                         <!-- <small class="text-muted">Country/Region</small> -->
-                                        <select class="form-select form-select-lg" required
+                                        <select class="form-select form-select-lg" name="shipping_country" required
                                             aria-label="Default select example">
                                             <option value="NG" >Nigeria</option>
                                         </select>
@@ -94,48 +98,53 @@
                                     <div class="row g-2 mb-3">
                                         <div class="col">
                                             <!-- <small class="text-muted">First Name</small> -->
-                                            <input type="text" class="form-control form-control-lg" required
+                                            <input type="text" name="shipping_fname" class="form-control form-control-lg" required
                                                 placeholder="First name" value="{{ Auth::user()->fname }}" aria-label="First name">
                                         </div>
                                         <div class="col">
                                             <!-- <small class="text-muted">Last Name</small> -->
-                                            <input type="text" class="form-control form-control-lg" required
+                                            <input type="text" name="shipping_lname" class="form-control form-control-lg" required
                                                 placeholder="Last name" value="{{ Auth::user()->lname }}" aria-label="Last name">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <!-- <label for="exampleInputEmail1" class="form-label">Address</label> -->
-                                        <input type="address" placeholder="Address" required
+                                        <input type="address" name="shipping_address" placeholder="Address" required
                                             class="form-control form-control-lg" value="" id="exampleInputEmail1"
                                             aria-describedby="emailHelp">
                                     </div>
                                     <div class="mb-3">
                                         <!-- <label for="exampleInputEmail1" class="form-label">Apartment, suite, etc. (optional)</label> -->
-                                        <input type="email" placeholder="Apartment, suite, etc. (optional)"
+                                        <input type="text" name="landmark" placeholder="Apartment, suite, etc. (optional)"
                                             class="form-control form-control-lg" id="exampleInputEmail1"
                                             aria-describedby="emailHelp">
                                     </div>
                                     <div class="row g-2 mb-3">
                                         <div class="col">
                                             <!-- <small class="text-muted">City</small> -->
-                                            <input type="text" class="form-control form-control-lg" required
+                                            <input type="text" name="shipping_city" class="form-control form-control-lg" required
                                                 placeholder="City" aria-label="First name">
                                         </div>
                                         <div class="col">
+                                            <!-- <small class="text-muted">City</small> -->
+                                            <input type="text" name="shipping_state" class="form-control form-control-lg" required
+                                                placeholder="State" aria-label="First name">
+                                        </div>
+                                        <div class="col">
                                             <!-- <small class="text-muted">Postal Code</small> -->
-                                            <input type="text" class="form-control form-control-lg" required
+                                            <input type="text" name="shipping_zipcode" class="form-control form-control-lg" required
                                                 placeholder="Postal Code" aria-label="Postal Code">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <!-- <label for="exampleInputEmail1" class="form-label">Contact Information</label> -->
-                                        <input type="text" placeholder="Phone Number" required
+                                        <input type="text" name="shipping_phone_number" placeholder="Phone Number" required
                                             class="form-control form-control-lg" id="exampleInputEmail1"
                                             aria-describedby="emailHelp">
                                     </div>
                                 </div>
                                 <div class="col-12 pt-3">
-                                    <button type="submit" class="btn btn-primary btn-dark py-3 px-3">Continue to
+                                    <button type="submit" class="btn btn-primary btn-lg btn-dark py-3 px-3">Continue to
                                         shipping</button>
                                 </div>
                             </form>

@@ -18,6 +18,7 @@ class ProductsTableSeeder extends Seeder
         $products = [
             [
                 'name' => "MEN'S BETTER THAN NAKED & JACKET",
+                'tag_number' => rand(10101,99999),
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua consequat.',
                 'units' => 21,
@@ -28,6 +29,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => "WOMEN'S BETTER THAN NAKED™ JACKET",
+                'tag_number' => rand(10101,99999),
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua consequat.',
                 'units' => 400,
@@ -38,6 +40,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => "WOMEN'S SINGLE-TRACK SHOE",
+                'tag_number' => rand(10101,99999),
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua consequat.',
                 'units' => 37,
@@ -48,6 +51,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => "MEN'S BETTER THAN NAKED & JACKET",
+                'tag_number' => rand(10101,99999),
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua consequat.',
                 'units' => 21,
@@ -58,6 +62,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => "WOMEN'S BETTER THAN NAKED™ JACKET",
+                'tag_number' => rand(10101,99999),
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua consequat.',
                 'units' => 400,
@@ -68,6 +73,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => "WOMEN'S SINGLE-TRACK SHOE",
+                'tag_number' => rand(10101,99999),
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua consequat.',
                 'units' => 37,
@@ -78,6 +84,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => "MEN'S BETTER THAN NAKED & JACKET",
+                'tag_number' => rand(10101,99999),
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua consequat.',
                 'units' => 21,
@@ -88,6 +95,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => "WOMEN'S BETTER THAN NAKED™ JACKET",
+                'tag_number' => rand(10101,99999),
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua consequat.',
                 'units' => 400,
@@ -98,6 +106,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => "WOMEN'S SINGLE-TRACK SHOE",
+                'tag_number' => rand(10101,99999),
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua consequat.',
                 'units' => 37,

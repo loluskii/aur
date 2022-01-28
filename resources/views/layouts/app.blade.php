@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/header-14.css') }}" />
@@ -20,7 +20,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon_io/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon_io/favicon-16x16.png') }}">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="{{ asset('go') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('go') }}"> --}}
     <style>
         @font-face {
             font-family: 'Century Gothic';
@@ -47,9 +47,9 @@
 
 </head>
 
-<body>
+<body class="bg-white">
     <div id="wraps">
-        @if (Route::is('cart.checkout'))
+        @if (Route::is('checkout.*'))
             
         @else
             @include('layouts.header')
@@ -63,6 +63,7 @@
     @include('layouts.footer-scripts')
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    @yield('scripts')
     <script>
         let navToggle = document.querySelector(".nav__toggle");
         let navWrapper = document.querySelector(".nav__wrapper");

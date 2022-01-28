@@ -26,8 +26,18 @@ class CreateOrdersTable extends Migration
             $table->float('grand_total');
             $table->integer('item_count');
             $table->boolean('is_paid')->default(false);
-            $table->enum('payment_method',['payment_on_delivery','stripe', 'paystack'])->default('payment_on_delivery');
-            $table->float('delivery_total');
+            $table->enum('payment_method',['stripe', 'paystack'])->default('stripe');
+            // $table->float('delivery_total');
+            $table->string('shipping_fname');
+            $table->string('shipping_lname');
+            $table->string('shipping_address');
+            $table->string('shipping_landmark');
+            $table->string('shipping_city');
+            $table->string('shipping_state');
+            $table->string('shipping_zipcode');
+            $table->string('shipping_phone');
+            $table->string('shipping_country');
+
             $table->timestamps();
         });
     }

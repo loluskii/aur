@@ -54,9 +54,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($tag)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::where('tag_number', $tag)->first();
         $similar = Product::where('type', $product->type)->take(4)->get();
         if(Auth::check()){
             $cartTotalQuantity = \Cart::session(auth()->id())->getContent()->count();
