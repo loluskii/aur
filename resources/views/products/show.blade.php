@@ -43,7 +43,7 @@
             <div class="col-md-3 col-6 mb-3 pe-2">
                 <a href="{{ route('product.show',$item->tag_number) }}">
                     <div class="">
-                        <img class="card-img-top img-fluid shadow-sm" src="{{ asset('images/'.$item->image) }}" alt="">
+                        <img class="card-img-top img-fluid" src="{{ asset('images/'.$item->image) }}" alt="">
                         <div class="card-body px-0 d-flex justify-content-between align-items-center">
                             <h4 class="mb-0 card-title product-name">{{ $item->name }}</h4>
                             <p class="card-text fw-bold">£{{ $item->price }}</p>

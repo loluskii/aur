@@ -7,6 +7,8 @@ use App\Models\Product;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Cashier\Cashier;
+
 
 class CartController extends Controller
 {
@@ -57,28 +59,18 @@ class CartController extends Controller
     }
     
     public function contactInformation(Request $request){
-        try {
-            $validatedData = $request->validate([
-                'shipping_fname' => 'required',
-                'shipping_lname' => 'required',
-                'shipping_address'  => 'required',
-                'shipping_city' => 'required',
-                'shipping_state' => 'required',
-                'shipping_phone_number' => 'required',
-                'shipping_zipcode' => 'required',
-                'shipping_country' => 'required',
-            ]);
-            // dd($validatedData);
-            
+        try {            
             if(empty($request->session()->get('order'))){
                 $order = new Order;
-                $order->fill($validatedData);
+                $order->fill($request->all());
                 $request->session()->put('order', $order);
             }else{
                 $order = $request->session()->get('order');
-                $order->fill($validatedData);
+                $order->fill($request->all());
                 $request->session()->put('order', $order);
             }
+            
+            // dd(session('order'));
             return redirect()->route('checkout.step_two.index',['order' => $order]);
         } catch (\Exception $e) {
             return back()->with('error',$e->getMessage());
@@ -100,16 +92,10 @@ class CartController extends Controller
     }
     
     public function postShipping(Request $request){
-        try {
-            $validatedData = $request->validate([
-                'subtotal' => 'required',
-                'grand_total' => 'required',
-            ]);
-            
+        try {            
             $order = $request->session()->get('order');
-            $order->fill($validatedData);
+            $order->fill($request->all());
             $request->session()->put('order', $order);
-            
             return redirect()->route('checkout.step_three.index',['order' => $order]);
         } catch (\Exception $e) {
             return back()->with('error',$e->getMessage());
@@ -121,11 +107,11 @@ class CartController extends Controller
             $order = $request->session()->get('order');
             $cartItems = \Cart::session(auth()->id())->getContent();
             $condition = \Cart::getCondition('Standard Shipping');
-            // dd($condition);
+            $intent = $request->user()->createSetupIntent();
             $condition_name = $condition->getName(); // the name of the condition
             $condition_value = $condition->getValue(); // the value of the condition
             
-            return view('checkout.step-3', compact('order','cartItems','condition_name','condition_value'));
+            return view('checkout.step-3', compact('order','cartItems','condition_name','condition_value','intent'));
         } catch (\Exception $th) {
             return back()->with('error','An error occured!');
         }

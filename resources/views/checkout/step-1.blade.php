@@ -115,7 +115,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <!-- <label for="exampleInputEmail1" class="form-label">Apartment, suite, etc. (optional)</label> -->
-                                        <input type="text" name="landmark" placeholder="Apartment, suite, etc. (optional)"
+                                        <input type="text" name="shipping_landmark" placeholder="Apartment, suite, etc. (optional)"
                                             class="form-control form-control-lg" id="exampleInputEmail1"
                                             aria-describedby="emailHelp">
                                     </div>
@@ -123,12 +123,12 @@
                                         <div class="col">
                                             <!-- <small class="text-muted">City</small> -->
                                             <input type="text" name="shipping_city" class="form-control form-control-lg" required
-                                                placeholder="City" aria-label="First name">
+                                                placeholder="City">
                                         </div>
                                         <div class="col">
                                             <!-- <small class="text-muted">City</small> -->
                                             <input type="text" name="shipping_state" class="form-control form-control-lg" required
-                                                placeholder="State" aria-label="First name">
+                                                placeholder="State" >
                                         </div>
                                         <div class="col">
                                             <!-- <small class="text-muted">Postal Code</small> -->
@@ -138,7 +138,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <!-- <label for="exampleInputEmail1" class="form-label">Contact Information</label> -->
-                                        <input type="text" name="shipping_phone_number" placeholder="Phone Number" required
+                                        <input type="text" name="shipping_phone" placeholder="Phone Number" required
                                             class="form-control form-control-lg" id="exampleInputEmail1"
                                             aria-describedby="emailHelp">
                                     </div>

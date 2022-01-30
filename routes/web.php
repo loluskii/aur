@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -42,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/checkout/previous_step=contact_information&step=shipping', [CartController::class,'shipping'])->name('checkout.step_two.index');
     Route::post('/checkout/previous_step=contact_information&step=shipping', [CartController::class,'postShipping'])->name('checkout.step_two');
     Route::get('/checkout/previous_step=shipping&step=payment', [CartController::class,'showPayment'])->name('checkout.step_three.index');
+    Route::post('/checkout/step=payment', [PaymentController::class,'handlePayment'])->name('payment.create');
+    Route::get('/checkout/success', [PaymentController::class, 'paymentSuccess'])->name('payment.succeess');
+    Route::get('/checkout/failed', [PaymentController::class, 'paymentFailure'])->name('payment.failed');
 
 });
 

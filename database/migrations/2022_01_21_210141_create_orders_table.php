@@ -16,10 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('product_id');
-            $table->unsignedInteger('qty');
-            $table->string('status');
-            $table->unsignedInteger('price');
+            // $table->unsignedInteger('product_id');
+            // $table->unsignedInteger('qty');
+            // $table->string('status');
+            // $table->unsignedInteger('price');
             $table->string('order_number');
             $table->string('order_reference');
             $table->float('subtotal');
@@ -31,7 +31,7 @@ class CreateOrdersTable extends Migration
             $table->string('shipping_fname');
             $table->string('shipping_lname');
             $table->string('shipping_address');
-            $table->string('shipping_landmark');
+            $table->string('shipping_landmark')->nullable();
             $table->string('shipping_city');
             $table->string('shipping_state');
             $table->string('shipping_zipcode');
