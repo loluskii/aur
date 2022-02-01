@@ -30,7 +30,7 @@
             font-family: 'Century Gothic',Arial,sans-serif;
             line-height: 25px;
             /* letter-spacing: .1rem; */
-            text-transform: uppercase;
+            /* text-transform: uppercase; */
             color: #000;
             font-size: 13px;
             /* padding: 1.25rem; */

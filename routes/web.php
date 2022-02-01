@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/checkout/previous_step=shipping&step=payment', [CartController::class,'showPayment'])->name('checkout.step_three.index');
     Route::post('/checkout/step=payment', [PaymentController::class,'handlePayment'])->name('payment.create');
     Route::get('/checkout/success', [PaymentController::class, 'paymentSuccess'])->name('payment.succeess');
-    Route::get('/checkout/failed', [PaymentController::class, 'paymentFailure'])->name('payment.failed');
+    Route::get('/checkout/failed', [PaymentController::class, 'paymentFailure'])->name('payment.failure');
 
 });
 

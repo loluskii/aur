@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             'lname' => 'Olokunola',
             'email' => 'olawale@aur2611.store',
             'email_verified_at' => now(),
-            'role_id' => 1,
+            'is_admin' => 1,
             'password' => Hash::make('aur2611'), // aur2611
             'remember_token' => Str::random(10),
         ]);

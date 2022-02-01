@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->unsignedInteger('units')->default(0);
+            $table->bigInteger('category_id')->nullable();
             $table->double('price');
             $table->boolean('discount')->default(false);
             $table->string('discount_price')->default(0);

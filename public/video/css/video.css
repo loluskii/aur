@@ -49,6 +49,15 @@
     padding: 16rem;
     transition: .6s opacity;
   }
+  
+  @media screen and (max-width: 569px){
+    #atlanticlight button svg {
+      fill: #fff;
+      padding: 4rem;
+      transition: .6s opacity;
+    }
+  
+  }
 
   #playpause {
     display: none;

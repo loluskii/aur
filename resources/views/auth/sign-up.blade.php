@@ -2,11 +2,14 @@
 
 @section('styles')
 <style>
+.body .card-body form{
+    text-transform: lowercase
+}
 </style>
 @endsection
 
 @section('content')
-<div class="container py-5" style="height: 70vh">
+<div class="body container py-5" style="height: 80vh">
     <div class="row justify-content-center h-100">
         <div class="col-md-6 my-auto">
             <div class="">
@@ -15,7 +18,7 @@
                     <p>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body" style="text-transform: none;">
                     <form method="POST" action="{{ route('register-user') }}">
                         @csrf
                         <div class="row g-2 mb-3">

@@ -13,7 +13,7 @@ use DB;
 class OrderActions{
 
     public function store($order, $amount, $subamount){
-        DB::beginTransaction();
+        // DB::beginTransaction();
             $newOrder = new Order();
             $ref = Str::random(20);
             $newOrder->order_number = uniqid('#');
@@ -42,7 +42,7 @@ class OrderActions{
                 $newOrder->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
             }
             return $ref;
-        DB::commit();
+        // DB::commit();
     }
     
 }

@@ -273,6 +273,9 @@
                                     type="submit" data-secret="{{ $intent->client_secret }}"> <div class="spinner hidden my-2" id="spinner"></div>
                                     <span id="button-text">Pay now</span>
                                 </button>
+                                <div class="col-12 text-center mt-3">
+                                    <a href="{{ route('checkout.step_two.index') }}" class="">Back to Shipping</a>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -386,8 +389,10 @@
                 console.log(result);
                 if (result.error) {
                     // Inform the user if there was an error.
+                    document.querySelector("#card-errors").classList.remove("hidden");
                     var errorElement = document.getElementById('card-errors');
                     errorElement.textContent = result.error.message;
+                    setLoading(false);
                 } else {
                     console.log(result);
                     // Send the token to your server.

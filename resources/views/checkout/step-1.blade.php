@@ -56,8 +56,8 @@
                             <img src="{{ asset('images/2611.png') }}" class="img-fluid" style="height: 2em;" alt="">
                             <nav aria-label="breadcrumb" class="py-4">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="#">Cart</a></li>
-                                    <li class="breadcrumb-item"><a href="#">Information</a></li>
+                                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('shop') }}">Cart</a></li>
+                                    <li class="breadcrumb-item active fw-bold"><a href="#">Information</a></li>
                                     <li class="breadcrumb-item">Shipping</li>
                                     <li class="breadcrumb-item ">Payment</li>
                                 </ol>
@@ -110,7 +110,7 @@
                                     <div class="mb-3">
                                         <!-- <label for="exampleInputEmail1" class="form-label">Address</label> -->
                                         <input type="address" name="shipping_address" placeholder="Address" required
-                                            class="form-control form-control-lg" value="" id="exampleInputEmail1"
+                                            class="form-control form-control-lg" value="{{ $order_details->shipping_address ?? '' }}" id="exampleInputEmail1"
                                             aria-describedby="emailHelp">
                                     </div>
                                     <div class="mb-3">
@@ -122,23 +122,23 @@
                                     <div class="row g-2 mb-3">
                                         <div class="col">
                                             <!-- <small class="text-muted">City</small> -->
-                                            <input type="text" name="shipping_city" class="form-control form-control-lg" required
+                                            <input type="text" name="shipping_city" class="form-control form-control-lg" value="{{ $order_details->shipping_city ?? '' }}" required
                                                 placeholder="City">
                                         </div>
                                         <div class="col">
                                             <!-- <small class="text-muted">City</small> -->
-                                            <input type="text" name="shipping_state" class="form-control form-control-lg" required
+                                            <input type="text" name="shipping_state" class="form-control form-control-lg" value="{{ $order_details->shipping_state ?? '' }}" required
                                                 placeholder="State" >
                                         </div>
                                         <div class="col">
                                             <!-- <small class="text-muted">Postal Code</small> -->
-                                            <input type="text" name="shipping_zipcode" class="form-control form-control-lg" required
+                                            <input type="text" name="shipping_zipcode" value="{{ $order_details->shipping_zipcode ?? '' }}" class="form-control form-control-lg" required
                                                 placeholder="Postal Code" aria-label="Postal Code">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <!-- <label for="exampleInputEmail1" class="form-label">Contact Information</label> -->
-                                        <input type="text" name="shipping_phone" placeholder="Phone Number" required
+                                        <input type="text" name="shipping_phone" value="{{ $order_details->shipping_phone ?? '' }}" placeholder="Phone Number" required
                                             class="form-control form-control-lg" id="exampleInputEmail1"
                                             aria-describedby="emailHelp">
                                     </div>
@@ -184,7 +184,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-center py-4">
-                        <span>Shipping</span>
+                        <span>Order Total</span>
                         <h3>${{ number_format(Cart::session(auth()->id())->getTotal(),2) }}</h3>
                     </div>
                 </div>

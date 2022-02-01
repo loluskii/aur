@@ -113,7 +113,7 @@ class CartController extends Controller
             
             return view('checkout.step-3', compact('order','cartItems','condition_name','condition_value','intent'));
         } catch (\Exception $th) {
-            return back()->with('error','An error occured!');
+            return back()->with('error','Please Check your internet connection!');
         }
     }
 

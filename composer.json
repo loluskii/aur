@@ -6,7 +6,9 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "cloudinary-labs/cloudinary-laravel": "^1.0",
         "darryldecode/cart": "^4.2",
+        "fakerphp/faker": "^1.9.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/cashier": "^13.8",
@@ -14,8 +16,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
-        "stripe/stripe-php": "^7.112",
-        "fakerphp/faker": "^1.9.1"
+        "stripe/stripe-php": "^7.112"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

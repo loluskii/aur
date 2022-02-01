@@ -27,9 +27,11 @@ class PaymentController extends Controller
             $payment_id = $stripeCharge->jsonSerialize()['id'];
             $subamount = \Cart::session(auth()->id())->getSubTotal();
             $res = (new OrderActions())->store($order, $amount, $subamount);
-            $newOrder = (new OrderQueries())->findByRef($res);
-            
-            DB::beginTransaction();
+            // dd($res);
+            if($res){
+                $newOrder = (new OrderQueries())->findByRef($res);
+                
+                DB::beginTransaction();
                 $payment = new PaymentRecord();
                 $payment->user_id = auth()->id();
                 $payment->order_id = $newOrder->id;
@@ -37,16 +39,16 @@ class PaymentController extends Controller
                 $payment->description = 'Payment for Order '.$newOrder->order_number;
                 $payment->payment_ref = $payment_id;
                 $payment->save();
-            DB::commit();
-                
-            \Cart::session(auth()->id())->clear();
-            $request->session()->forget('order');
-            return redirect()->route('payment.succeess');
+                DB::commit();
+                    
+                \Cart::session(auth()->id())->clear();
+                $request->session()->forget('order');
+                return redirect()->route('payment.succeess');
+            }
 
         } catch (\Exception $th) {
             DB::rollback();
             return redirect()->route('payment.failure', ['error' => $th->getMessage()]);
-            // return view('order-status.order-failure')->with('error',$th->getMessage());
         }
     }
     
