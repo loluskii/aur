@@ -32,7 +32,7 @@
         font-size: 13px;
     }
     
-    button, button span {
+    form button, form button span {
         color: #ffffff;
         border-radius: 4px;
         border: 0;
@@ -47,11 +47,11 @@
     }
 
 
-    button:hover {
+    form button:hover {
         filter: contrast(115%);
     }
 
-    button:disabled {
+    form button:disabled {
         opacity: 0.5;
         cursor: default;
     }
@@ -148,6 +148,17 @@
             margin-right: 0px;
         }
     }
+    
+    .cart-summary .accordion-button:not(.collapsed) {
+        color: #000;
+        background-color: #fff;
+        box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+    }
+    .cart-summary .accordion-body {
+        padding: 1rem 1.25rem;
+        background-color: #e6e6e6;
+    }
+
 </style>
 
 @endsection
@@ -171,6 +182,62 @@
                             </nav>
                         </div>
                         <div class="body py-3">
+                            <div class="cart-summary d-sm-block d-md-none d-lg-none">
+                                <div class="accordion accordion-flush mb-4" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed px-1 fw-bold border-bottom" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                aria-expanded="true" aria-controls="flush-collapseOne">
+                                                <i class="bi bi-cart4 me-2" style="font-size: 25px"></i> Show Order Summary
+                                                $4055
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="product border-bottom">
+                                                    <table class="table table-borderless">
+                                                        <tbody>
+                                                        @foreach ($cartItems as $item)
+                                                        <tr class="d-flex align-items-center">
+                                                            <td scope="row" style="width: 20%;">
+                                                                <img class="img-fluid img-thumbnail" style="height: 60px;" src="{{ asset('images/'.$item->associatedModel->image) }}" alt="">
+                                                            </td>
+                                                            <td style="width: 60%;">
+                                                                <span class="product__description__variant order-summary__small-text text-uppercase" style="display: block;">{{ $item->name }}</span>
+                                                            </td>
+                                                            <td style="width: 20%;">
+                                                                ${{ number_format($item->price,2) }}
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                        </tbody>
+                                                    </table>
+                            
+                                                </div>
+                                                <div class="price border-bottom">
+                                                    <div class="d-flex justify-content-between align-items-center py-3">
+                                                        <span>Subtotal</span>
+                                                        <span>${{ number_format(Cart::session(auth()->id())->getSubTotal(),2) }}</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between align-items-center py-3">
+                                                        <span>Shipping</span>
+                                                        <span>Calculated at the next step</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center py-4">
+                                                    <span>Order Total</span>
+                                                    <h3>${{ number_format(Cart::session(auth()->id())->getTotal(),2) }}</h3>
+                                                </div>
+                            
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                            </div>
+
                             <div class="d-flex justify-content-between">
                                 {{-- <h4 class="mb-4">Contact Information</h4> --}}
                             </div>
@@ -221,8 +288,7 @@
                                 </div>
                                 <div class="shipping-information">
                                     <h4 class="fw-bold">Payment</h4>
-                                    <p>All payments are secure and encrypted. We will never share your details with
-                                        anyone</p>
+                                    <p>All payments are secure and encrypted. </p>
 
 
                                 </div>
@@ -280,7 +346,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-5 d-sm-none d-md-block border-start ps-4 pt-5">
+                <div class="col-md-5 col-lg-5 d-sm-none d-md-block border-start ps-4 pt-5 d-sm-block d-none">
                     <div class="product border-bottom">
                         <table class="table table-borderless">
                             <tbody>
