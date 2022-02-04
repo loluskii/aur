@@ -16,6 +16,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "spatie/laravel-newsletter": "^4.11",
         "stripe/stripe-php": "^7.112"
     },
     "require-dev": {
