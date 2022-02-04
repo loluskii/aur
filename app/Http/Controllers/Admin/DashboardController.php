@@ -26,7 +26,8 @@ class DashboardController extends Controller
         $chartCustomers = UserQueries::userCountJson();
         $monthly_users_count = User::where('is_admin',0)->whereBetween('created_at', [Carbon::now()->subMonth(), Carbon::now()])->get();
         
-        // dd($chartSales);
+        // dd($chartSales, $chartCustomers);
+        
 
         return view('admin.dashboard.index',compact('totalUsers','recent_orders','orders','sales','profit','chartSales', 'chartCustomers','monthly_users_count'));
     }

@@ -7,14 +7,15 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Action\ProductActions;
 use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
     public function index(){
         $products = Product::all();
-        $categories = Category::all();
-        return view('admin.products.index', compact('products', 'categories'));
+        $category = Category::all();
+        return view('admin.products.index', compact('products', 'category'));
 
     }
 
@@ -23,10 +24,9 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
-        // dd($request);
         try{
             // $request->validated();
-            $store = (new StoreProduct())->run($request);
+            $store = ProductActions::create($request);
             if($store){
                 return back()->with(
                     'success',
@@ -45,27 +45,12 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request, $id){
         try{
-            DB::beginTransaction();
-                $product = Product::find($id);
-                $product->name = $request->product_name ?? $product->name;
-                $product->price = $request->price ?? $product->price;
-                $product->category_id = $request->category ?? $product->category_id;
-                if($request->file()){
-                    $path = cloudinary()->upload($request->file('featured_image')->getRealPath())->getSecurePath();
-
-                    $product->cover_img = $path;
-                }else{
-                    $product->cover_img = $product->cover_img;
-                }
-
-                $product->save();
-            DB::commit();
-
-            return back()->with(
-                'success',
-                'Product updated successfully'
-            );
-
+            $res = ProductActions::update($request, $id);
+            if ($res){
+                return back()->with('success','Product updated!');
+            }else{
+                return back()->with('error','An error occured');
+            }
         }catch(\Exception $e){
             return back()->with(
                 'error',

@@ -81,7 +81,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Orders</h5>
 
-                    <table class="table table-borderless datatable">
+                    <table class="table table-borderless" id="datatable">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

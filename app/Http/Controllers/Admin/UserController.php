@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Services\OrderQueries;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
@@ -14,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -46,7 +50,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $orders = (new OrderQueries())->getUserOrderDetails($id);
+        $user_orders = array();
+        foreach($orders as $order){
+            $users_order[] = Order::findOrFail($order);
+        }
+        return view('admin.users.show', compact('user','user_orders'));
+
     }
 
     /**

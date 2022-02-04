@@ -203,7 +203,7 @@
             <div class="card recent-sales">
                 <div class="card-body">
                     <h5 class="card-title">Recent Sales</h5>
-                    <table class="datatable table table-borderless">
+                    <table class="table table-borderless" id="datatable">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

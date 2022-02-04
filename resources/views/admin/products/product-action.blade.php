@@ -15,24 +15,36 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="" class="form-label">Product Image</label>
-                        <input type="file" class="form-control" name="" id="" placeholder="" aria-describedby="fileHelpId">
+                        <input type="file" class="form-control" name="image" id="" placeholder="" aria-describedby="fileHelpId">
                     </div>
+                    
                     <div class="form-group mb-3">
                         <label for="" class="form-label">Product Name</label>
-                        <input type="text" name="product_name" class="form-control" value="{{ $product->name }}"
+                        <input type="text" name="name" value="{{ $product->name }}" class="form-control" value="{{ $product->name }}"
                             required aria-describedby="helpId">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="" class="form-label">Price</label>
-                        <input type="text" name="price" class="form-control" value="{{ $product->price }}" required
+                        <label for="" class="form-label">Description</label>
+                        <textarea class="form-control" placeholder="description" name="description" id=""
+                            rows="2">{{ $product->description }}</textarea>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="" class="form-label">Unit Price</label>
+                        <input type="text" name="unit_price" class="form-control" value="{{ $product->price }}" required
                             aria-describedby="helpId">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="" class="form-label">Number of Units</label>
+                        <input type="text" name="units" class="form-control" placeholder="Quantity"
+                            aria-describedby="helpId" value="{{ $product->units }}">
                     </div>
                     @if (request()->is('admin/products'))
                     <div class="form-group mb-3">
                         <label for="" class="form-label">Select Category</label>
                         <select class="form-control" name="category">
-                            @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value=""></option>
+                            @foreach ($category as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
                     </div>
