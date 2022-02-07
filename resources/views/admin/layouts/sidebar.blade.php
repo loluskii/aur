@@ -96,11 +96,23 @@
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
+                    <a href="{{ route('admin.newsletter.index') }}" class="">
+                        <i class="bi bi-circle"></i><span>Subscribers</span>
+                    </a>
+                </li>
+                <li>
                     <a href="" class="">
                         <i class="bi bi-circle"></i><span>Send Mail</span>
                     </a>
                 </li>
             </ul>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link " href="">
+                <i class="bi bi-gear"></i>
+                <span>Content Management</span>
+            </a>
         </li>
         
         <li class="nav-item">

@@ -79,7 +79,7 @@
                             <i class="bi bi-cart"></i>
                         </div>
                         <div class="ps-3">
-                            <h6>{{ $order->count() }}</h6>
+                            <h6>{{ $order->items->count() }}</h6>
                         </div>
                     </div>
                 </div>

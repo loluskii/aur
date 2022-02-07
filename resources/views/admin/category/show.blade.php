@@ -81,7 +81,7 @@
                             <i class="bi bi-cart"></i>
                         </div>
                         <div class="ps-3">
-                            <h6>{{ 0 }}</h6>
+                            <h6>{{ $products->count() }}</h6>
                         </div>
                     </div>
                 </div>
@@ -91,52 +91,43 @@
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Products</h5>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="products">
-                            <thead>
-                                <tr>
-                                    <th> Image</th>
-                                    <th>Product ID</th>
-                                    <th>Name</th>
-                                    {{-- <th>Category</th> --}}
-                                    <th>Price</th>
-                                    <th>Store Owner</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($products as $product)
-                                <tr>
-                                    <td><img src="{{ $product->cover_img }}" alt="" srcset="" style="height: 50px; width: 50px"></td>
-                                    <td>{{ $product->product_ref }}</td>
-                                    <td>{{ $product->name }}</td>
-                                    <td>£{{ number_format($product->price, 2) }}</td>
-                                    <td>{{ $product->store->name ?? 'Admin' }}</td>
-                                    <td>
-                                        @include('admin.products.product-action')
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card recent-sales">
+            <div class="card-body">
+                <h5 class="card-title">All Products <span> </span></h5>
+                <table class="table table-bordered" id="datatable">
+                    <thead>
+                        <tr>
+                            <th> Image</th>
+                            <th>Product ID</th>
+                            <th>Name</th>
+                            {{-- <th>Category</th> --}}
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($products as $product)
+                        <tr>
+                            <td><img src="{{ $product->image }}" alt="" srcset="" style="height: 50px; "></td>
+                            <td>{{ $product->tag_number }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>£{{ number_format($product->price, 2) }}</td>
+                            <td>
+                                @include('admin.products.product-action')
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
+        </div><!-- End Recent Sales -->
 
-        </div>
     </div>
-
 </div>
-<!-- Button trigger modal -->
-
 
 @endsection
 

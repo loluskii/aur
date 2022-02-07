@@ -5,18 +5,4 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
 @include('layouts.toastr-script')
 
-<script>
-    $(document).ready(function(){
-    $('.navbar-toggler,.slide-fade,.sliding-panel-close').on('click touchstart',function (e) {
-      $('.slide-content,.slide-fade').toggleClass('is-visible');
-      $('#wrapper').toggleClass('is-obscured');
-      e.preventDefault();
-    });
-  });
-  // $(document).ready( function () {
-  //   $('.datatable').DataTable();
-  // });
-  </script>
-  
-
 

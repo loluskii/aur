@@ -2,13 +2,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\NewsletterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,9 @@ Route::middleware('admin')->group(function () {
     Route::get('category/view/{id}',[ProductController::class, 'viewCategory'])->name('category.show');
     Route::post('products/category/update/{id}', [ProductController::class, 'updateCategory'])->name('category.update');
     Route::get('category/delete/{id}',[ProductController::class,'deleteCategory'])->name('category.delete');
+    
+    Route::get('newsletter/all', [NewsletterController::class, 'index'])->name('newsletter.index');
+    // Route::
 
 
 });

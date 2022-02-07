@@ -8,11 +8,11 @@
 @section('content')
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container">
-    <div class="card">
+<div class="container mb-5" style="min-height: 70vh">
+    <div class="card border-0 mb-5">
         <div class="row">
             <aside class="col-md-6 text-center border-end">
-                <img src="{{ asset('images/'.$product->image) }}" style="height: 500px" class="img-fluid">
+                <img src="{{ $product->image }}" style="height: 500px" class="img-fluid">
             </aside>
             <aside class="col-md-6">
                 <article class="card-body p-5">
@@ -31,12 +31,18 @@
                             <p>{{ $product->description }}</p>
                         </dd>
                     </dl>
+                    <dl class="item-property mb-3">
+                        <dt>Quantity Available</dt>
+                        <dd>
+                            <p>22 Units remaining</p>
+                        </dd>
+                    </dl>
                     <a href="{{ route('cart.add', $product->id) }}" class="btn btn-lg btn-outline-dark rounded-0 text-uppercase">  Add to cart </a>
                 </article>
             </aside>
         </div>
     </div>
-
+    @if($similar->count() > 1)
     <div class="row my-5 pt-4">
         <h5 class="pb-3">More Products like this one</h5>
         @foreach ($similar as $item)
@@ -53,6 +59,7 @@
             </div>
         @endforeach
     </div>
+    @endif
 
 
 </div>

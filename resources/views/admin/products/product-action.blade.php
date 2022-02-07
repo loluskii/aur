@@ -7,7 +7,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create a New Task</h5>
+                <h5 class="modal-title">Edit product #{{ $product->tag_number }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="POST" action="{{ route('admin.product.update', $product->id) }}" enctype="multipart/form-data">
@@ -18,39 +18,53 @@
                         <input type="file" class="form-control" name="image" id="" placeholder="" aria-describedby="fileHelpId">
                     </div>
                     
-                    <div class="form-group mb-3">
-                        <label for="" class="form-label">Product Name</label>
-                        <input type="text" name="name" value="{{ $product->name }}" class="form-control" value="{{ $product->name }}"
-                            required aria-describedby="helpId">
+                    <div class="row g-2">
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <label for="" class="form-label">Product Name</label>
+                                <input type="text" name="name" value="{{ $product->name }}" class="form-control" value="{{ $product->name }}"
+                                    required aria-describedby="helpId">
+                            </div>        
+                        </div>
+                        <div class="col">
+                            @if (request()->is('admin/products'))
+                            <div class="form-group mb-3">
+                                <label for="" class="form-label">Select Category</label>
+                                <select class="form-control" name="category">
+                                <option value=""></option>
+                                    @foreach ($category as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @else
+                        
+                            @endif        
+                        </div>
                     </div>
+                    
                     <div class="form-group mb-3">
                         <label for="" class="form-label">Description</label>
                         <textarea class="form-control" placeholder="description" name="description" id=""
                             rows="2">{{ $product->description }}</textarea>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="" class="form-label">Unit Price</label>
-                        <input type="text" name="unit_price" class="form-control" value="{{ $product->price }}" required
-                            aria-describedby="helpId">
+                    <div class="row g-2">
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <label for="" class="form-label">Unit Price</label>
+                                <input type="text" name="unit_price" class="form-control" value="{{ $product->price }}" required
+                                    aria-describedby="helpId">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <label for="" class="form-label">Number of Units</label>
+                                <input type="text" name="units" class="form-control" placeholder="Quantity"
+                                    aria-describedby="helpId" value="{{ $product->units }}">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="" class="form-label">Number of Units</label>
-                        <input type="text" name="units" class="form-control" placeholder="Quantity"
-                            aria-describedby="helpId" value="{{ $product->units }}">
-                    </div>
-                    @if (request()->is('admin/products'))
-                    <div class="form-group mb-3">
-                        <label for="" class="form-label">Select Category</label>
-                        <select class="form-control" name="category">
-                        <option value=""></option>
-                            @foreach ($category as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @else
-                
-                    @endif
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

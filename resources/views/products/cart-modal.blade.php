@@ -12,7 +12,7 @@
                 @foreach ($cartItems as $item)
                 <div class="d-flex justify-content-between border-bottom  py-3">
                     <div class="d-flex w-100">
-                        <img src="{{ asset('images/'.$item->associatedModel->image) }}" class="img-fluid" style="height: 60px;" alt="" srcset="">
+                        <img src="{{ $item->associatedModel->image}}" class="img-fluid" style="height: 60px;" alt="" srcset="">
                         <div class="ms-4 d-flex flex-column">
                             <p>{{ $item->name }}</p>
                             <div class="d-flex mt-auto">
@@ -39,7 +39,7 @@
             </div>
             <div class="d-flex justify-content-between modal-footer">
                 <h4 class="font-weight-bold">${{ number_format(Cart::session(auth()->id())->getTotal(),2 )}}</h4>
-                <a href="{{ route('checkout.index') }}" class="btn btn-dark btn-block btn-lg">CHECKOUT</a>
+                <a href="{{ route('checkout.index') }}" class="btn btn-dark btn-block btn-lg {{ $cartItems->count() > 0 ? '':'disabled' }}">CHECKOUT</a>
             </div>
         </div>
     </div>

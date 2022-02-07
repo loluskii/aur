@@ -13,7 +13,7 @@
                         <input type="file" class="form-control" name="image" id="" placeholder=""
                             aria-describedby="fileHelpId">
                     </div>
-                    <div class="row g-3">
+                    <div class="row g-2">
                         <div class="col">
                             <div class="mb-3">
                                 <label for="" class="form-label">Product Name</label>
@@ -43,15 +43,25 @@
                         <input type="text" name="unit_price" class="form-control" placeholder="Amount"
                             aria-describedby="helpId" value="">
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="" class="form-label">Number of Units</label>
-                        <input type="text" name="units" class="form-control" placeholder="Quantity"
-                            aria-describedby="helpId" value="">
+                    <div class="row g-2">
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <label for="" class="form-label">Number of Units</label>
+                                <input type="text" name="units" class="form-control" placeholder="Quantity"
+                                    aria-describedby="helpId" value="">
+                            </div>        
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <label for="" class="form-label">Alert Quantity</label>
+                                <input type="text" name="alert_quantity" class="form-control" placeholder="Alert Quantity"
+                                    aria-describedby="helpId" value="">
+                            </div>        
+                        </div>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="" class="form-label">Alert Quantity</label>
-                        <input type="text" name="alert_quantity" class="form-control" placeholder="Alert Quantity"
-                            aria-describedby="helpId" value="">
+                    <div class="form-check">
+                        <input type="checkbox" name="is_featured" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Feature on Homepage</label>
                     </div>
                 </div>
                 <div class="modal-footer">

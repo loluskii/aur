@@ -26,6 +26,7 @@ class ProductController extends Controller
     public function store(Request $request){
         try{
             // $request->validated();
+            // dd($request->all());
             $store = ProductActions::create($request);
             if($store){
                 return back()->with(

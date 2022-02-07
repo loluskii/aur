@@ -2,9 +2,10 @@
 
 @section('styles')
 <style>
-*{
-    text-transform: none;
-}
+    * {
+        text-transform: none;
+    }
+
     .main {
         padding-top: 40px;
         padding-right: 40px;
@@ -19,8 +20,9 @@
         margin-left: 30px;
         margin-right: 30px; */
     }
-    
-    form button, form button span {
+
+    form button,
+    form button span {
         color: #ffffff;
         border-radius: 4px;
         border: 0;
@@ -30,6 +32,7 @@
         box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
         width: 100%;
     }
+
     .btn:focus {
         outline: none;
         box-shadow: none;
@@ -73,7 +76,8 @@
         position: absolute;
         content: "";
     }
-    .hidden{
+
+    .hidden {
         display: none;
     }
 
@@ -134,13 +138,16 @@
         font-size: 15px;
         font-weight: 500px;
     }
-    .product__description__variant{
+
+    .product__description__variant {
         font-size: 13px;
     }
+
     @media only screen and (max-width: 595px) {
         .main {
             padding: 20px;
         }
+
         .wrapper {
             padding-left: 0px;
             padding-right: 0px;
@@ -148,23 +155,23 @@
             margin-right: 0px;
         }
     }
+
     .accordion-button:not(.collapsed) {
         color: #000;
         background-color: #fff;
         box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
     }
+
     .accordion-body {
         padding: 1rem 1.25rem;
         background-color: #e6e6e6;
     }
-
-
 </style>
 
 @endsection
 
 @section('content')
-<div class="" >
+<div class="">
     <div class="container-fluid">
         <div class="wrapper">
             <div class="row mb-5" style="min-height: 90vh">
@@ -182,11 +189,12 @@
                             </nav>
                         </div>
                         <div class="body py-3">
-                            <div class="accordion accordion-flush mb-4 d-sm-block d-md-none d-lg-none" id="accordionFlushExample">
+                            <div class="accordion accordion-flush mb-4 d-sm-block d-md-none d-lg-none"
+                                id="accordionFlushExample">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingOne">
-                                        <button class="accordion-button collapsed px-1 fw-bold border-bottom" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                        <button class="accordion-button collapsed px-1 fw-bold border-bottom"
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
                                             aria-expanded="true" aria-controls="flush-collapseOne">
                                             <i class="bi bi-cart4 me-2" style="font-size: 25px"></i> Show Order Summary
                                             $4055
@@ -198,27 +206,33 @@
                                             <div class="product border-bottom">
                                                 <table class="table table-borderless">
                                                     <tbody>
-                                                    @foreach ($cartItems as $item)
-                                                    <tr class="d-flex align-items-center">
-                                                        <td scope="row" style="width: 20%;">
-                                                            <img class="img-fluid img-thumbnail" style="height: 60px;" src="{{ asset('images/'.$item->associatedModel->image) }}" alt="">
-                                                        </td>
-                                                        <td style="width: 60%;">
-                                                            <span class="product__description__variant order-summary__small-text text-uppercase" style="display: block;">{{ $item->name }}</span>
-                                                        </td>
-                                                        <td style="width: 20%;">
-                                                            ${{ number_format($item->price,2) }}
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
+                                                        @foreach ($cartItems as $item)
+                                                        <tr class="d-flex align-items-center">
+                                                            <td scope="row" style="width: 20%;">
+                                                                <img class="img-fluid img-thumbnail"
+                                                                    style="height: 60px;"
+                                                                    src="{{ $item->associatedModel->image }}" alt="">
+                                                            </td>
+                                                            <td style="width: 60%;">
+                                                                <span
+                                                                    class="product__description__variant order-summary__small-text text-uppercase"
+                                                                    style="display: block;">{{ $item->name }}</span>
+                                                            </td>
+                                                            <td style="width: 20%;">
+                                                                ${{ number_format($item->price,2) }}
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
-                        
+
                                             </div>
                                             <div class="price border-bottom">
                                                 <div class="d-flex justify-content-between align-items-center py-3">
                                                     <span>Subtotal</span>
-                                                    <span>${{ number_format(Cart::session(auth()->id())->getSubTotal(),2) }}</span>
+                                                    <span>${{
+                                                        number_format(Cart::session(auth()->id())->getSubTotal(),2)
+                                                        }}</span>
                                                 </div>
                                                 <div class="d-flex justify-content-between align-items-center py-3">
                                                     <span>Shipping</span>
@@ -229,7 +243,7 @@
                                                 <span>Order Total</span>
                                                 <h3>${{ number_format(Cart::session(auth()->id())->getTotal(),2) }}</h3>
                                             </div>
-                        
+
                                         </div>
                                     </div>
                                 </div>
@@ -239,7 +253,8 @@
                             <div class="d-flex justify-content-between">
                                 {{-- <h4 class="mb-4">Contact Information</h4> --}}
                             </div>
-                            <form action="{{ route('checkout.step_two') }}" method="post" id="shipping-form" class="shipping-form pb-5">
+                            <form action="{{ route('checkout.step_two') }}" method="post" id="shipping-form"
+                                class="shipping-form pb-5">
                                 @csrf
                                 <div class="card mb-5">
                                     <div class="card-body">
@@ -252,7 +267,7 @@
                                                     <span class=" text-wrap">{{ Auth::user()->email }}</span>
                                                 </div>
                                             </div>
-                                            <a href=""><small  class="text-danger fw-bold">Change</small></a>
+                                            <a href=""><small class="text-danger fw-bold">Change</small></a>
                                         </div>
                                         <hr style="width: auto">
                                         <div class="shipping d-flex justify-content-between align-items-center">
@@ -261,22 +276,28 @@
                                                     <span class="text-muted fw-bold">Ships to</span>
                                                 </div>
                                                 <div class="col-auto">
-                                                    <span class="text-wrap">{{ $order->shipping_address }},{{ $order->shipping_zipcode }} {{ $order->shipping_state }}, {{ $order->shipping_zipcode }}</span>
+                                                    <span class="text-wrap">{{ $order->shipping_address }},{{
+                                                        $order->shipping_zipcode }} {{ $order->shipping_state }}, {{
+                                                        $order->shipping_zipcode }}</span>
                                                 </div>
                                             </div>
-                                            <a href="{{ route('checkout.index') }}"><small class="text-danger fw-bold">Change</small></a>
+                                            <a href="{{ route('checkout.index') }}"><small
+                                                    class="text-danger fw-bold">Change</small></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="shipping-information">
                                     <h5 class="mb-4 fw-bold">Shipping Method</h5>
-                                    
+
                                     <label class="card py-4 px-3 checkbox-label d-flex w-100" id="planbox">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex align-items-center">
-                                                <input type="radio" class="me-4" checked value="{{ $conditionValue }}" name="shipping">
-                                                <input type="hidden" name="subtotal" value="{{ Cart::session(auth()->id())->getSubTotal() }}"> 
-                                                <input type="hidden" name="grand_total" value="{{ Cart::session(auth()->id())->getTotal() }}">
+                                                <input type="radio" class="me-4" checked value="{{ $conditionValue }}"
+                                                    name="shipping">
+                                                <input type="hidden" name="subtotal"
+                                                    value="{{ Cart::session(auth()->id())->getSubTotal() }}">
+                                                <input type="hidden" name="grand_total"
+                                                    value="{{ Cart::session(auth()->id())->getTotal() }}">
                                                 <h5 class="fw-bold text-muted">Standard Shipping</h5>
                                             </div>
                                             <span class="fw-bold">${{ $conditionValue }}</span>
@@ -284,9 +305,14 @@
                                     </label>
                                 </div>
                                 <div class="col-12 pt-3">
-                                    <button id="card-button" type="submit" class="btn btn-lg btn-dark py-3 px-3 me-2 btn-block"> <div class="spinner hidden my-1" id="spinner"></div>
-                                        <span id="button-text">Continue to Payment</span></button>
-                                        <a href="{{ route('checkout.index') }}" class="btn btn-lg py-3 px-3 text-danger"><small>Back to previous step</small></a>
+                                    <button id="card-button" type="submit"
+                                        class="btn btn-lg btn-dark py-3 px-3 me-2 btn-block">
+                                        <div class="spinner hidden my-1" id="spinner"></div>
+                                        <span id="button-text">Continue to Payment</span>
+                                    </button>
+                                    <a href="{{ route('checkout.index') }}"
+                                        class="btn btn-lg py-3 px-3 text-danger"><small>Back to previous
+                                            step</small></a>
                                 </div>
                             </form>
                         </div>
@@ -297,19 +323,22 @@
                     <div class="product border-bottom">
                         <table class="table table-borderless">
                             <tbody>
-                            @foreach ($cartItems as $item)
-                            <tr class="d-flex align-items-center">
-                                <td scope="row" style="width: 20%;">
-                                    <img class="img-fluid img-thumbnail" style="height: 60px;" src="{{ asset('images/'.$item->associatedModel->image) }}" alt="">
-                                </td>
-                                <td style="width: 60%;">
-                                    <span class="product__description__variant order-summary__small-text text-uppercase" style="display: block;">{{ $item->name }}</span>
-                                </td>
-                                <td style="width: 20%;">
-                                    ${{ number_format($item->price,2) }}
-                                </td>
-                            </tr>
-                            @endforeach
+                                @foreach ($cartItems as $item)
+                                <tr class="d-flex align-items-center">
+                                    <td scope="row" style="width: 20%;">
+                                        <img class="img-fluid img-thumbnail" style="height: 60px;"
+                                            src="{{ $item->associatedModel->image }}" alt="">
+                                    </td>
+                                    <td style="width: 60%;">
+                                        <span
+                                            class="product__description__variant order-summary__small-text text-uppercase"
+                                            style="display: block;">{{ $item->name }}</span>
+                                    </td>
+                                    <td style="width: 20%;">
+                                        ${{ number_format($item->price,2) }}
+                                    </td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
 
@@ -337,8 +366,8 @@
 @endsection
 
 @section('scripts')
-    <script>
-        var form = document.getElementById('shipping-form');
+<script>
+    var form = document.getElementById('shipping-form');
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -361,5 +390,5 @@
         }
     }
 
-    </script>
+</script>
 @endsection

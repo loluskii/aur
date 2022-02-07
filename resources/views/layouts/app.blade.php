@@ -35,11 +35,14 @@
             /* letter-spacing: .1rem; */
             /* text-transform: uppercase; */
             color: #000;
-            font-size: 13px;
+            font-size: 15px;
             /* padding: 1.25rem; */
         }
         .card-body .product-name, .card-body p{
             font-size: 12px;
+        }
+        .wraps{
+            min-height: 100vh;
         }
 
     </style>
@@ -67,21 +70,6 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     @yield('scripts')
-    <script>
-        let navToggle = document.querySelector(".nav__toggle");
-        let navWrapper = document.querySelector(".nav__wrapper");
-        navToggle.addEventListener("click", function () {
-          if (navWrapper.classList.contains("active")) {
-            this.setAttribute("aria-expanded", "false");
-            this.setAttribute("aria-label", "menu");
-            navWrapper.classList.remove("active");
-          } else {
-            navWrapper.classList.add("active");
-            this.setAttribute("aria-label", "close menu");
-            this.setAttribute("aria-expanded", "true");
-          }
-        });
-    </script>
 
 </body>
 

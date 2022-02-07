@@ -78,10 +78,10 @@
             <div class="col-md-3 col-6 mb-5 pe-2">
                 <a href="{{ route('product.show', $product->tag_number) }}">
                     <div class="">
-                        <img class="card-img-top img-fluid" src="{{ asset('images/'.$product->image) }}" alt="">
+                        <img class="card-img-top img-fluid" src="{{ $product->image }}" alt="">
                         <div class="card-body px-0 d-flex justify-content-between align-items-center">
-                            <h4 class="mb-0 card-title product-name">{{ $product->name }}</h4>
-                            <p class="card-text">£{{ $product->price }}</p>
+                            <h4 class="mb-0 card-title product-name fw-bold">{{ $product->name }}</h4>
+                            <p class="card-text fw-bold">£{{ $product->price }}</p>
                         </div>
                     </div>
                 </a>
@@ -96,7 +96,8 @@
                 <h2 class="h5 text-white text-sm-start text-center fw-bold mb-3">SIGN UP FOR THE UPDATES</h2>
                 <p class="mb-3 text-white text-sm-start text-center" style="font-weight: 600">By clicking the subscribe
                     button, you agree to the Privacy Policy and Terms & Condition</p>
-                <form action="" method="post">
+                <form action="{{ route('subscribe') }}" method="post">
+                @csrf
                     <div class="row g-1 w-100">
                         <div class="col-md-6">
                             <div class="form-group pl-0">

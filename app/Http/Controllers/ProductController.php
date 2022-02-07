@@ -57,7 +57,7 @@ class ProductController extends Controller
     public function show($tag)
     {
         $product = Product::where('tag_number', $tag)->first();
-        $similar = Product::where('type', $product->type)->take(4)->get();
+        $similar = Product::where('tag_number','!=',$product->tag_number)->where('category_id', $product->category_id)->take(4)->get();
         if(Auth::check()){
             $cartTotalQuantity = \Cart::session(auth()->id())->getContent()->count();
             $cartItems = \Cart::session(auth()->id())->getContent();

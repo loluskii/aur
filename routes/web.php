@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\NewsletterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +22,15 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/',[PagesController::class, 'index'])->name('home');
 
-Route::get('dashboard', [AuthController::class, 'dashboard']);
+// Route::get('dashboard', [AuthController::class, 'dashboard']);
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login.custom');
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
 Route::post('register', [AuthController::class, 'register'])->name('register-user');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
+Route::post('subscribe', [NewsletterController::class, 'store'])->name('subscribe');
+Route::get('about-us', [PagesController::class,'aboutUs'])->name('about-us');
+Route::get('shipping-and-returns', [PagesController::class,'shippingPolicy'])->name('shipping');
 
 Route::group(['prefix' => 'shop'], function () {
     Route::get('/',[ProductController::class, 'index'])->name('shop');
