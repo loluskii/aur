@@ -14,10 +14,11 @@
             <div class="col-md-3 col-6 mb-3 pe-2">
                 <a href="{{ route('product.show',$product->tag_number) }}">
                     <div class="">
-                        <img class="card-img-top img-fluid" src="{{ $product->image }}" alt="">
+                        <p></p>
+                        <img class="card-img-top img-fluid" src="{{ $product->images()->first()->image_url }}" alt="">
                         <div class="card-body px-0 d-flex justify-content-between align-items-center">
                             <h4 class="mb-0 card-title product-name fw-bold">{{ $product->name }}</h4>
-                            <p class="card-text fw-bold">£{{ $product->price }}</p>
+                            <p class="card-text fw-bold">${{ $product->price }}</p>
                         </div>
                     </div>
                 </a>

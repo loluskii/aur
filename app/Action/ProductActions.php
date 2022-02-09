@@ -3,6 +3,7 @@ namespace App\Action;
 
 use Exception;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
@@ -10,25 +11,30 @@ class ProductActions
 {
     public static function create($request){
         return DB::transaction(function () use ($request) {
-            $path = $request->file('image')->storeOnCloudinary('aur2611');
+            $product = new Product;
+            $product->tag_number = mt_rand(1000,9999);
+            $product->name = $request->name;
+            $product->category_id = $request->category;
+            $product->description = $request->description;
+            $product->price = $request->unit_price;
+            $product->units = $request->units;
+            $product->alert_quantity = $request->alert_quantity;
+            
+            
+            
+            if($request->has('is_featured')){
+                $product->is_featured = true;
+            }
+            $product->save();
             if($request->has('image')){
-                $product = new Product;
-                $product->tag_number = mt_rand(1000,9999);
-                $product->name = $request->name;
-                $product->category_id = $request->category;
-                $product->description = $request->description;
-                $product->price = $request->unit_price;
-                $product->units = $request->units;
-                $product->alert_quantity = $request->alert_quantity;
-                $imageUrl =  $path->getSecurePath();
-                // $imageName = $product->tag_number.'.'.$request->image->extension();  
-                // $request->image->move(public_path('images/products'), $imageName);
-                $product->image = $imageUrl;
-                if($request->has('is_featured')){
-                    $product->is_featured = true;
+                foreach ($request->file('image') as $imagefile){                
+                    $path = $imagefile->storeOnCloudinary($product->tag_number);
+                    $imageUrl =  $path->getSecurePath();
+                    $image = new ProductImage;
+                    $image->product_id = $product->id;
+                    $image->image_url = $imageUrl;
+                    $image->save();
                 }
-                // if(checkFeaturedCount())
-                $product->save();
                 return true;
             }else{
                 return false;

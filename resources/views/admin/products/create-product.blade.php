@@ -10,7 +10,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Product Image</label>
-                        <input type="file" class="form-control" name="image" id="" placeholder=""
+                        <input type="file" multiple  class="form-control" name="image[]" id="" placeholder=""
                             aria-describedby="fileHelpId">
                     </div>
                     <div class="row g-2">

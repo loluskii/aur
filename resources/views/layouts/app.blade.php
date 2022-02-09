@@ -39,7 +39,7 @@
             /* padding: 1.25rem; */
         }
         .card-body .product-name, .card-body p{
-            font-size: 12px;
+            font-size: 15px;
         }
         .wraps{
             min-height: 100vh;

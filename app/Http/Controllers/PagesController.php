@@ -9,6 +9,7 @@ class PagesController extends Controller
 {
     public function index(){
         $products = Product::where('is_featured',true)->get();
+        
         return view('welcome', compact('products'));
     }
     
