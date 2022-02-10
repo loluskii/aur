@@ -20,4 +20,8 @@ class PagesController extends Controller
     public function shippingPolicy(){
         return view('shipping');
     }
+    
+    public function contact(){
+        return view('contact');
+    }
 }

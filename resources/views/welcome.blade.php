@@ -75,13 +75,15 @@
 <div class="container">
     <div class="row g-4">
         @foreach ($products as $product)
-            <div class="col-md-3 col-6 mb-5 pe-2">
+            <div class="col-md-4 col-12 mb-5 pe-2">
                 <a href="{{ route('product.show', $product->tag_number) }}">
-                    <div class="">
-                        <img class="card-img-top img-fluid" src="{{ $product->images()->first()->image_url }}" alt="">
-                        <div class="card-body px-0 d-flex justify-content-between align-items-center">
-                            <h4 class="mb-0 card-title product-name fw-bold">{{ $product->name }}</h4>
-                            <p class="card-text fw-bold">${{ $product->price }}</p>
+                    <div class="card shadow-sm border-0 p-2">
+                        <div class="card-img-header">
+                            <img class="card-img-top img-fluid" src="{{ $product->images()->first()->image_url }}" style="width: 100%; height: 360px; object-fit: contain;" alt="">
+                        </div>
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0 card-title product-name">{{ $product->name }}</h4>
+                            <p class="card-text">${{ $product->price }}</p>
                         </div>
                     </div>
                 </a>
@@ -93,8 +95,8 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-12 col-md-10">
-                <h2 class="h5 text-white text-sm-start text-center fw-bold mb-3">SIGN UP FOR THE UPDATES</h2>
-                <p class="mb-3 text-white text-sm-start text-center" style="font-weight: 600">By clicking the subscribe
+                <h2 class="h5 text-white text-start fw-bold mb-3">SIGN UP FOR THE UPDATES</h2>
+                <p class="mb-3 text-white text-start" style="font-weight: 600">By clicking the subscribe
                     button, you agree to the Privacy Policy and Terms & Condition</p>
                 <form action="{{ route('subscribe') }}" method="post">
                 @csrf

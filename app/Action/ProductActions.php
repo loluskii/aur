@@ -53,7 +53,6 @@ class ProductActions
 
     public static function update($request, $id){
         return DB::transaction(function () use ($request, $id) {
-            $path = $request->file('image')->storeOnCloudinary('products');
             $product = Product::findOrFail($id);
             $product->name = $request->name ?? $product->name;
             $product->category_id = $request->category ?? $product->category_id;
@@ -61,9 +60,8 @@ class ProductActions
             $product->price = $request->unit_price ?? $product->price;
             $product->units = $request->units ?? $product->units;
             if($request->has('image')){
+                $path = $request->file('image')->storeOnCloudinary('products');
                 $imageUrl =  $path->getSecurePath();
-                // $imageName = Str::slug($request['image']).'-'.time().'.'.$request->image->extension();  
-                // $request->image->move(public_path('images/products'), $imageName);
                 $product->image = $imageUrl;
             }else{
                 $product->image = $product->image;

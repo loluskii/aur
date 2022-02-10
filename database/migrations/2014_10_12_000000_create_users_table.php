@@ -20,12 +20,6 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('role_id')->default(1);
             $table->string('email')->unique();
             $table->string('phone_no')->nullable();
-            $table->longText('address_line_1')->nullable();
-            $table->longText('address_line_2')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('zip')->nullable();
-            $table->string('country')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('is_admin')->default(false);

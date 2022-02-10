@@ -54,13 +54,30 @@ class User extends Authenticatable
     public function orders(){
         return $this->hasMany(Order::class);
     }
-
-    public function addresses(){
-        return $this->hasMany(Address::class);
-    }
     
     public function newsletter(){
         return $this->hasMany(Newsletter::class);
     }
+    
+    public function getFullName(){
+        return ucfirst($this->fname) . ' ' . ucfirst($this->lname);
+    }
+    
+    public function getFullAddress(){
+        $address = Address::firstWhere('user_id',$this->id);
+        if($address){
+            return $address->shipping_address.', '.$address->shipping_city.', '.$address->shipping_state.', '.$address->shipping_country;
+        }else{
+            return null;
+        }
+    }
+    
+    public function getOrders(){
+        return Order::where('user_id', $this->id)->get();
+    }
+    
+    // public function getUserAddress(){
+    //     return 
+    // }
 
 }

@@ -4,6 +4,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
@@ -27,10 +28,12 @@ Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login.custom');
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
 Route::post('register', [AuthController::class, 'register'])->name('register-user');
-Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
+Route::post('signout', [AuthController::class, 'signOut'])->name('signout');
 Route::post('subscribe', [NewsletterController::class, 'store'])->name('subscribe');
-Route::get('about-us', [PagesController::class,'aboutUs'])->name('about-us');
-Route::get('shipping-and-returns', [PagesController::class,'shippingPolicy'])->name('shipping');
+Route::get('pages/about-us', [PagesController::class,'aboutUs'])->name('about-us');
+Route::get('pages/shipping-and-returns', [PagesController::class,'shippingPolicy'])->name('shipping');
+Route::get('pages/contact', [PagesController::class,'contact'])->name('contact');
+
 
 Route::group(['prefix' => 'shop'], function () {
     Route::get('/',[ProductController::class, 'index'])->name('shop');
@@ -50,6 +53,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/checkout/step=payment', [PaymentController::class,'handlePayment'])->name('payment.create');
     Route::get('/checkout/success', [PaymentController::class, 'paymentSuccess'])->name('payment.succeess');
     Route::get('/checkout/failed', [PaymentController::class, 'paymentFailure'])->name('payment.failure');
+    Route::get('/account', [HomeController::class, 'index'])->name('account');
+    Route::get('/account/add', [HomeController::class, 'addAddress'])->name('account.address.add');
+    Route::get('/account/edit', [HomeController::class, 'editAddress'])->name('account.address.edit');
+    Route::post('/account/add', [HomeController::class, 'storeAddress'])->name('account.address.store');
+    Route::post('/account/update', [HomeController::class, 'updateAddress'])->name('account.address.update');
+    Route::get('/account/address/delete/{id}', [HomeController::class, 'deleteAddress'])->name('account.address.delete');
+    Route::get('/account/orders/{id}', [HomeController::class, 'getOrderDetails'])->name('account.order.show');
 
 });
 

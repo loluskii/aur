@@ -1,126 +1,103 @@
+<style>
+.header-img{
+    min-width: 210px;
+}
+/* @media screen and (max-width : 569px){
+    .header-img{
+        min-width: 110px;
+    }
+
+} */
+</style>
 @guest
-<div class="header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white py-4">
-        <div class="container">
+<div class="header mb-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg- py-4">
+        <div class="container-fluid  px-lg-5 px-md-5 px-sm-0 px-xs-0">
+            <div class="collapse navbar-collapse" id="">
+                <ul class="navbar-nav mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('shop') }}">SHOP <span class="visually-hidden">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">SWEATSHIRTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">T-SHIRTS</a>
+                    </li>
+                </ul>
+            </div>
             <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                 aria-label="Toggle navigation">
-                <span><i class="bi bi-list"></i></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
-            
-            <a class="navbar-brand mx-auto  d-lg-none" href="#"><img src="{{ asset('images/2611.png') }}"
-                    style="height: 30px" class="img-fluid" alt="" srcset=""></a>
-            <a class="d-none d-lg-block" href="">2611 BLOG</a>
-            <div class="d-lg-none">
-                <span><i class="bi bi-clipboard"></i> </span>
+            <div class="header-img text-center text-md-center text-lg-start">
+                <a class="navbar-brand mx-auto" href="/"><img src="{{ asset('images/2611.png') }}" style="height: 30px" class="img-fluid" alt="" srcset=""></a>
             </div>
-            <div class="collapse navbar-collapse justify-content-between" id="collapsibleNavId">
-                <ul class=" navbar-nav mx-auto text-center mt-2 mt-lg-0">
-                    
-                    <li class="nav-item">
-                        <a class="navbar-brand mx-auto" href="#"><img src="{{ asset('images/2611.png') }}"
-                                style="height: 30px" class="img-fluid" alt="" srcset=""></a>
-                    </li>
-                </ul>
-            </div>
-            <a class="d-none d-lg-block" href="">Shopping bag <span><i class=" bi bi-clipboard"></i> </span></a>
-        </div>
-    </nav>
-    <nav class="navbar navbar-expand-lg d-none d-lg-block navbar-light bg-white pb-4">
-        <div class="container">
+            <a class="navbar-brand d-lg-none" href="#">CART</a>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
-                    <li class="nav-item me-4">
-                        <a class="nav-link fw-bold text-black" href="{{ route('shop') }}">Shop</a>
+                <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link me-3" href="{{ route('login') }}">LOGIN <span class="visually-hidden">(current)</span></a>
                     </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link fw-bold text-black" href="#">T-Shirts</a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link fw-bold text-black" href="#">Sweatshirts</a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link fw-bold text-black" href="#">Newsletter</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">CART</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
 </div>
 
 
 @endguest
 
 @auth
-<header class="site-header py-3">
-    <div class="site-header__top">
-        <div class="wrapper">
-            <div class="site-header__middle text-center">
-                <a href="/" class="brand">
-                    <img src="{{ asset('images/2611.png') }}" style="height: 30px" alt="" class="img-fluid">
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="site-header__bottom">
-        <div class="wrapper site-header__wrapper">
-            <div class="site-header__start">
-                <nav class="nav">
-                    <button class="btn nav__toggle" aria-expanded="false" type="button">
-                        {{-- <span class="navbar-toggler-icon"></span> --}}
-                        <i class="fa fa-bars "></i>
-                    </button>
-                    <ul class="nav__wrapper">
-                        <li class="nav__item"><a href="{{ route('shop') }}">Shop</a></li>
-                        <li class="nav__item"><a href="#">Sweatshirts</a></li>
-                        <li class="nav__item"><a href="#">T-Shirts</a></li>
-                    </ul>
-                </nav>
-            </div>
 
-            <div class="site-header__end bottom">
-                {{-- <div class="search">
-                    <button class="search__toggle" aria-label="Open search">
-                        Search
-                    </button>
-                    <form class="search__form" action="">
-                        <label class="sr-only" for="search">Search</label>
-                        <input type="search" name="" id="search" placeholder="What's on your mind?" />
-                    </form>
-                </div> --}}
-                <a href="#" data-bs-toggle="modal" data-bs-target="#modelId" class="cart">
-                    <svg version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <g>
-                            <title>Cart</title>
-                            <path
-                                d="m95.398 23.699c-1.8008-2.3008-4.6016-3.6992-7.5-3.6992h-60.898l-1.8984-7.3984c-1.1016-4.3008-4.8984-7.3008-9.3008-7.3008h-10.199c-1.6992 0-3.1016 1.3984-3.1016 3.1016 0 1.6992 1.3984 3.1016 3.1016 3.1016h10.199c1.5 0 2.8008 1 3.1992 2.5l12.199 48.602c1.1016 4.3008 4.8984 7.3008 9.3008 7.3008h39.898c4.3984 0 8.3008-3 9.3008-7.3008l7.5-30.801c0.69922-2.8047 0.10156-5.8047-1.8008-8.1055zm-4.2969 6.6992-7.5 30.801c-0.39844 1.5-1.6992 2.5-3.1992 2.5h-39.902c-1.5 0-2.8008-1-3.1992-2.5l-8.6992-34.898h59.301c1 0 2 0.5 2.6016 1.3008 0.59766 0.79688 0.89453 1.7969 0.59766 2.7969z" />
-                            <path
-                                d="m42.602 73.898c-5.6992 0-10.398 4.6992-10.398 10.398s4.6992 10.398 10.398 10.398c5.6992 0.003907 10.398-4.6953 10.398-10.395s-4.6992-10.402-10.398-10.402zm0 14.5c-2.3008 0-4.1016-1.8008-4.1016-4.1016s1.8008-4.1016 4.1016-4.1016c2.3008 0 4.1016 1.8008 4.1016 4.1016-0.003906 2.2031-1.9023 4.1016-4.1016 4.1016z" />
-                            <path
-                                d="m77 73.898c-5.6992 0-10.398 4.6992-10.398 10.398s4.6992 10.398 10.398 10.398 10.398-4.6992 10.398-10.398c-0.097657-5.6953-4.6992-10.398-10.398-10.398zm0 14.5c-2.3008 0-4.1016-1.8008-4.1016-4.1016s1.8008-4.1016 4.1016-4.1016 4.1016 1.8008 4.1016 4.1016c0 2.2031-1.9023 4.1016-4.1016 4.1016z" />
-                        </g>
-                    </svg>
-                    <span class="badge badge-primary" style="background-color:#000000; border-radius: 50%;">{{
-                        Cart::session(auth()->id())->getContent()->count()}}</span>
-
-                </a>
-                <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                    <svg version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <title>Profile</title>
-                        <path
-                            d="m65.57 52.5c6.9336-4.5078 11.574-11.797 12.723-19.988 1.1484-8.1875-1.3047-16.473-6.7344-22.715-5.4258-6.2422-13.289-9.8242-21.559-9.8242s-16.133 3.582-21.559 9.8242c-5.4297 6.2422-7.8828 14.527-6.7344 22.715 1.1484 8.1914 5.7891 15.48 12.723 19.988-10.012 3.2812-18.73 9.6406-24.914 18.172-6.1836 8.5273-9.5117 18.793-9.5156 29.328h7.1445c0-15.312 8.168-29.461 21.426-37.117 13.262-7.6523 29.598-7.6523 42.859 0 13.258 7.6562 21.426 21.805 21.426 37.117h7.1445c-0.003906-10.535-3.332-20.801-9.5156-29.328-6.1836-8.5312-14.902-14.891-24.914-18.172zm-37-23.93c0-5.6836 2.2578-11.133 6.2773-15.152 4.0195-4.0156 9.4688-6.2734 15.152-6.2734s11.133 2.2578 15.152 6.2734c4.0195 4.0195 6.2773 9.4688 6.2773 15.152 0 5.6836-2.2578 11.137-6.2773 15.152-4.0195 4.0195-9.4688 6.2773-15.152 6.2773s-11.133-2.2578-15.152-6.2773c-4.0195-4.0156-6.2773-9.4688-6.2773-15.152z" />
-                    </svg>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">My Account</a></li>
-                    <li><a class="dropdown-item" href="{{ route('signout') }}">Sign Out</a></li>
+<header class="mb-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg- py-4">
+        <div class="container-fluid px-lg-5 px-md-5 px-sm-0 px-xs-0">
+            <div class="collapse navbar-collapse" id="">
+                <ul class="navbar-nav mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('shop') }}">SHOP <span class="visually-hidden">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">SWEATSHIRTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">T-SHIRTS</a>
+                    </li>
+                </ul>
+            </div>
+            <button class="navbar-toggler d-lg-none border-0" data-bs-toggle="modal" data-bs-target="#mobileSideNav" type="button" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="header-img text-center text-md-center text-lg-center">
+                <a class="navbar-brand mx-auto" href="/"><img src="{{ asset('images/2611.png') }}" style="height: 30px" class="img-fluid" alt="" srcset=""></a>
+            </div>
+            <a class="navbar-brand d-lg-none" style="font-size: inherit" data-bs-toggle="modal" data-bs-target="#modelId" href="#">CART ({{ Cart::session(auth()->id())->getContent()->count()}})</a>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link me-3" href="{{ route('account') }}">MY ACCOUNT<span class="visually-hidden">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modelId" href="">CART ({{ Cart::session(auth()->id())->getContent()->count()}})</a>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>
+    </nav>
 </header>
+
+</div>
+
 <!-- Button trigger modal -->
 
 <!-- Modal -->
 @include('products.cart-modal')
+@include('layouts.partials.mobile-nav')
 @endauth

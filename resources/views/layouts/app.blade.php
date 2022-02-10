@@ -13,8 +13,6 @@
     {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/header-14.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/reset.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap-side-modals.css') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon_io/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon_io/favicon-32x32.png') }}">
@@ -33,16 +31,23 @@
             font-family: 'Century Gothic',Arial,sans-serif;
             line-height: 25px;
             /* letter-spacing: .1rem; */
-            /* text-transform: uppercase; */
+            text-transform: uppercase;
             color: #000;
             font-size: 15px;
             /* padding: 1.25rem; */
         }
+        /* .card{
+            max-width: 23rem;
+        } */
         .card-body .product-name, .card-body p{
             font-size: 15px;
         }
         .wraps{
             min-height: 100vh;
+        }
+        
+        .container{
+            max-width: 1124px;
         }
 
     </style>
@@ -53,7 +58,7 @@
 
 </head>
 
-<body class="bg-white">
+<body class="bg-light">
     <div id="wraps">
         @if (Route::is('checkout.*'))
             

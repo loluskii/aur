@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Address extends Model
 {
     use HasFactory;
-    
+    protected $table = 'address';
     protected $fillable = [
         'shipping_fname',
         'shipping_lname',
@@ -20,7 +20,4 @@ class Address extends Model
         'shipping_phone',
     ];
     
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
 }

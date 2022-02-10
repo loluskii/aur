@@ -34,6 +34,7 @@ class OrderActions{
             $newOrder->payment_method = 'stripe';
             // $newOrder->delivery_total = $delivery_fee;
             $newOrder->is_paid = 1;
+            $newOrder->status = 1;
             $newOrder->order_reference = $ref;
     
             $newOrder->save();
