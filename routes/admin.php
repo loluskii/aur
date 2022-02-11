@@ -42,7 +42,7 @@ Route::middleware('admin')->group(function () {
 
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{id}',[OrderController::class, 'show'])->name('orders.show');
-    Route::get('orders/update/{id}',[OrderController::class,'update'])->name('orders.update');
+    Route::post('orders/update/{id}',[OrderController::class,'update'])->name('orders.update');
 
     Route::post('products/create', [ProductController::class, 'store'])->name('product.store');
     Route::post('products/update/{id}', [ProductController::class, 'updateProduct'])->name('product.update');
@@ -54,7 +54,7 @@ Route::middleware('admin')->group(function () {
     Route::get('category/delete/{id}',[ProductController::class,'deleteCategory'])->name('category.delete');
     
     Route::get('newsletter/all', [NewsletterController::class, 'index'])->name('newsletter.index');
-    // Route::
+    Route::get('newsletter/create', [NewsletterController::class, 'create'])->name('newsletter.create');
 
 
 });

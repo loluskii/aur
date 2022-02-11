@@ -179,8 +179,7 @@
                                                         <td class="no-line"></td>
                                                         <td class="no-line text-start"><strong>Shipping</strong>
                                                         </td>
-                                                        <td class="no-line text-right">${{
-                                                            number_format($order->delivery_total,2) }}</td>
+                                                        <td class="no-line text-right">$50.00</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="no-line"></td>

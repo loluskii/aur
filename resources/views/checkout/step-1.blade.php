@@ -280,7 +280,7 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center py-4">
                         <span>Order Total</span>
-                        <h3>${{ number_format(Cart::session(auth()->id())->getTotal(),2) }}</h3>
+                        <h3>${{ number_format(Cart::session(auth()->id())->getSubTotal(),2) }}</h3>
                     </div>
                 </div>
             </div>

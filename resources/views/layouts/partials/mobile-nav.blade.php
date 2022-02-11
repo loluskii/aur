@@ -21,12 +21,18 @@
                             <li class="nav-item">
                                 <a class="nav-link py-3 text-white" style="font-weight: 800; font-size: 1.5rem; text-transform: uppercase; text-decoration: none" href="{{ route('account') }}">ACCOUNT</a>
                             </li>
+                            @if (Auth::check())
                             <li class="nav-item">
                                 <a class="nav-link py-3 text-white" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="font-weight: 800; font-size: 1.5rem; text-transform: uppercase; text-decoration: none" href="">LOG OUT</a>
                             </li>
                             <form id="logout-form" action="{{ route('signout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
+                            @else
+                            <li class="nav-item">
+                                <a class="nav-link py-3 text-white" style="font-weight: 800; font-size: 1.5rem; text-transform: uppercase; text-decoration: none" href="{{ route('login') }}">LOG IN</a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
                 </div>

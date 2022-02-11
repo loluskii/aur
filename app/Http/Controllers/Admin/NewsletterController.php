@@ -27,7 +27,7 @@ class NewsletterController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.newsletter.create');
     }
 
     /**

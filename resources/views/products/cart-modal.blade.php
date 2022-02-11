@@ -38,8 +38,8 @@
 
             </div>
             <div class="d-flex justify-content-between modal-footer">
-                <h4 class="font-weight-bold">${{ number_format(Cart::session(auth()->id())->getTotal(),2 )}}</h4>
-                <a href="{{ route('checkout.index') }}" class="btn btn-dark btn-block btn-lg {{ $cartItems->count() > 0 ? '':'disabled' }}">CHECKOUT</a>
+                <h4 class="font-weight-bold">${{ number_format(Cart::session(auth()->id())->getSubTotal(),2 )}}</h4>
+                <a href="{{ route('checkout.index') }}" class="btn btn-dark btn-block btn-sm {{ $cartItems->count() > 0 ? '':'disabled' }}">CHECKOUT</a>
             </div>
         </div>
     </div>

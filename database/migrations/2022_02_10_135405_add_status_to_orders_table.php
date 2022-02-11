@@ -14,7 +14,7 @@ class AddStatusToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->enum('status', [0,1,2,3,4,5,6]);
+            $table->integer('status')->default(1);
         });
     }
 

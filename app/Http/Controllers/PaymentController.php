@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\Models\User;
 use App\Action\OrderActions;
 use Illuminate\Http\Request;
 use App\Models\PaymentRecord;
+use App\Jobs\NotifyAdminOrder;
+use App\Jobs\SendOrderInvoice;
 use App\Services\OrderQueries;
-use DB;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -40,14 +44,20 @@ class PaymentController extends Controller
                 $payment->payment_ref = $payment_id;
                 $payment->save();
                 DB::commit();
+                
+                $admin = User::where('is_admin', 1)->get();
+                $user = Auth::user()->email;
                     
                 \Cart::session(auth()->id())->clear();
                 $request->session()->forget('order');
+                
+                NotifyAdminOrder::dispatch($newOrder, $admin);
+                
                 return redirect()->route('payment.succeess');
             }
 
         } catch (\Exception $th) {
-            DB::rollback();
+            // DB::rollback();
             return redirect()->route('payment.failure', ['error' => $th->getMessage()]);
         }
     }

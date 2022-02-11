@@ -37,11 +37,11 @@
                         <i class="bi bi-circle"></i><span>All Users</span>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="" class="">
                         <i class="bi bi-circle"></i><span>Blocked Users</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
 
@@ -101,7 +101,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="">
+                    <a href="{{ route('admin.newsletter.create') }}" class="">
                         <i class="bi bi-circle"></i><span>Send Mail</span>
                     </a>
                 </li>
