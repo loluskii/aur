@@ -33,6 +33,16 @@
                                 <a class="nav-link py-3 text-white" style="font-weight: 800; font-size: 1.5rem; text-transform: uppercase; text-decoration: none" href="{{ route('login') }}">LOG IN</a>
                             </li>
                             @endif
+                            <li class="nav-item">
+                                <a class="nav-link py-3 text-white" style="font-weight: 800; font-size: 1.5rem; text-transform: uppercase; text-decoration: none" href="{{ route('account') }}">ABOUT US</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link py-3 text-white" style="font-weight: 800; font-size: 1.5rem; text-transform: uppercase; text-decoration: none" href="{{ route('account') }}">SHIPPING</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link py-3 text-white" style="font-weight: 800; font-size: 1.5rem; text-transform: uppercase; text-decoration: none" href="{{ route('account') }}">CONTACT</a>
+                            </li>
+
                         </ul>
                     </div>
                 </div>

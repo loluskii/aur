@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Action\UserActions;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class SettingController extends Controller
 {
@@ -14,7 +16,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        return view('admin.settings.index', compact('user'));
     }
 
     /**
@@ -60,26 +63,37 @@ class SettingController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function updateUser(Request $request, $id)
     {
-        //
+        try {
+            //code...
+            $user = UserActions::updateAdminProdile($request, $id);
+            if ($user) {
+                # code...
+                return redirect()->route('admin.settings.index')->with('success', 'Successfully Updated User');
+            }
+            return redirect()->back()->with('error', 'An error occured while updating User');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function updatePassword(Request $request)
     {
-        //
+        try {
+            if ($request->password != $request->renewpassword) {
+                # code...
+                return redirect()->back()->with('error', 'Passwords Mismatch');
+            }
+            //code...
+            $user = UserActions::updateAdminPassword($request);
+            if ($user) {
+                # code...
+                return redirect()->route('admin.settings.index')->with('success', 'Successfully Updated Password');
+            }
+            return redirect()->back()->with('error', 'An error occured while updating Password');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }

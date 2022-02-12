@@ -96,7 +96,7 @@
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('admin.newsletter.index') }}" class="">
+                    <a href="{{ route('admin.newsletter.subscribers') }}" class="">
                         <i class="bi bi-circle"></i><span>Subscribers</span>
                     </a>
                 </li>
@@ -105,21 +105,36 @@
                         <i class="bi bi-circle"></i><span>Send Mail</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.newsletter.show') }}" class="">
+                        <i class="bi bi-circle"></i><span>Newsletters</span>
+                    </a>
+                </li>
             </ul>
         </li>
         
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link " href="">
                 <i class="bi bi-gear"></i>
                 <span>Content Management</span>
             </a>
-        </li>
+        </li> --}}
         
         <li class="nav-item">
-            <a class="nav-link " href="">
+            <a class="nav-link " href="{{ route('admin.settings.index') }}">
                 <i class="bi bi-gear"></i>
                 <span>Settings</span>
             </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+            </a>
+            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </li>
 
     </ul>

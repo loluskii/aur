@@ -103,7 +103,7 @@
                     <div class="row g-1 w-100">
                         <div class="col-md-6">
                             <div class="form-group pl-0">
-                                <input type="text" name="" id="" class="form-control form-control-lg rounded-0"
+                                <input type="text" name="email" id="" class="form-control form-control-lg rounded-0"
                                     style="border: 1px solid black" placeholder="Your email" aria-describedby="helpId">
                             </div>
                         </div>

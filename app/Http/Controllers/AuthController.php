@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Hash;
 use DB;
+use Hash;
 use Session;
 use App\Models\User;
+use App\Models\Newsletter;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class  AuthController extends Controller
@@ -49,7 +50,6 @@ class  AuthController extends Controller
             'fname' => 'required',
             'lname' => 'required',
             'email' => 'required|email|unique:users',
-            'phone_no' => 'required',
             'password' => 'required|min:6',
         ]);
 
@@ -62,12 +62,11 @@ class  AuthController extends Controller
                 'email' => $request->email,
                 'phone_no' => $request->phone_no,
                 'password' => Hash::make($request->password),
-                'address_line_1' => $request->address_line_1,
-                'address_line_2' => $request->address_line_2,
-                'city' => $request->city,
-                'state' => $request->state,
-                'zip' => $request->zip,
-                'country' => $request->country,
+            ]);
+            $subscriber = Newsletter::create([
+                'fname' => $request->fname,
+                'lname' => $request->lname,
+                'email' => $request->email,
             ]);
             Auth::login($user, true);
             DB::commit();

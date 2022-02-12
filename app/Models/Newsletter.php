@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Newsletter extends Model
 {
     use HasFactory;
+    protected $fillable = ['fname','lname','email'];
     
     public function user(){
         return $this->belongsTo(User::class);

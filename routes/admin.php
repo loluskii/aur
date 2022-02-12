@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NewsletterController;
 
@@ -23,9 +24,9 @@ use App\Http\Controllers\Admin\NewsletterController;
 */
 
 
-Route::get('/overview/router', function () {
-    return view('admin.auth.login');
-})->name('login.view');
+
+Route::get('login', [AuthController::class, 'index'])->name('login');
+
 Route::post('login', [AuthController::class, 'authenticate'])->name('login');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -53,8 +54,15 @@ Route::middleware('admin')->group(function () {
     Route::post('products/category/update/{id}', [ProductController::class, 'updateCategory'])->name('category.update');
     Route::get('category/delete/{id}',[ProductController::class,'deleteCategory'])->name('category.delete');
     
-    Route::get('newsletter/all', [NewsletterController::class, 'index'])->name('newsletter.index');
+    Route::get('/', [SettingController::class, 'index'])->name('settings.index');
+    Route::post('update-user/{id}', [SettingController::class, 'updateUser'])->name('settings.user.update');
+    Route::post('update-password/{id}', [SettingController::class, 'updatePassword'])->name('settings.password.update');
+
+
+    Route::get('newsletter/all', [NewsletterController::class, 'showNewsletters'])->name('newsletter.show');
+    Route::get('newsletter/subscribers', [NewsletterController::class, 'index'])->name('newsletter.subscribers');
     Route::get('newsletter/create', [NewsletterController::class, 'create'])->name('newsletter.create');
+    Route::post('newsletter/create/new', [NewsletterController::class, 'store'])->name('newsletter.store');
 
 
 });
