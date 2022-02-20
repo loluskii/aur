@@ -25,8 +25,9 @@ use App\Http\Controllers\Admin\NewsletterController;
 
 
 
-Route::get('login', [AuthController::class, 'index'])->name('login');
-
+Route::get('/overview/router', function () {
+    return view('admin.auth.login');
+})->name('login.view');
 Route::post('login', [AuthController::class, 'authenticate'])->name('login');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 

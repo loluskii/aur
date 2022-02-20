@@ -12,18 +12,18 @@
 @guest
 <div class="header mb-5">
     <nav class="navbar navbar-expand-lg navbar-light bg- py-4">
-        <div class="container-fluid  px-lg-5 px-md-5 px-sm-0 px-xs-0">
+        <div class="container-fluid px-md-5 px-lg-5 px-0">
             <div class="collapse navbar-collapse" id="">
                 <ul class="navbar-nav mt-2 mt-lg-0">
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('shop') }}">SHOP <span class="visually-hidden">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">SWEATSHIRTS</a>
+                        <a class="nav-link" href="#">SUBSCRIBE TO NEWSLETTER</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">T-SHIRTS</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
             <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="modal" data-bs-target="#mobileSideNav" aria-controls="collapsibleNavId" aria-expanded="false"
@@ -46,6 +46,23 @@
             </div>
         </div>
     </nav>
+    <ul class="nav justify-content-center py-2 d-none d-md-flex d-lg-flex">
+        <li class="nav-item">
+            <a class="nav-link text-decoration-none text-muted" href="#">T-SHIRTS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-decoration-none text-muted" href="#">SWEATSHIRTS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-decoration-none text-muted" href="#">OUTWEAR</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-decoration-none text-muted" href="#">BOTTOMS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-decoration-none text-muted" href="#">ACCESSORIES</a>
+        </li>
+    </ul>
 
 </div>
 
