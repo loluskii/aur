@@ -12,7 +12,7 @@
                 @foreach ($cartItems as $item)
                 <div class="d-flex justify-content-between border-bottom  py-3">
                     <div class="d-flex w-100">
-                        <img src="{{ $item->associatedModel->images()->first()->image_url}}" class="img-fluid" style="height: 60px;" alt="" srcset="">
+                        <img src="{{ $item->associatedModel->images()->first()->image_url ?? ''}}" class="img-fluid" style="height: 60px;" alt="" srcset="">
                         <div class="ms-4 d-flex flex-column">
                             <p>{{ $item->name }}</p>
                             <div class="d-flex mt-auto">

@@ -25,12 +25,12 @@
 @section('content')
 <div class="container mb-5">
     <div class="iframe-container placeholder-glow" id="atlanticlight">
-        <video width="1220" height="520" controls>
-            <source src="https://res.cloudinary.com/deumzc82y/video/upload/v1642159679/Untitled_gdenrn.mp4"
+        <video width="1220" height="500" loop autoplay="true" muted="muted" webkit-playsinline="true" playsinline="true">
+            <source src="{{ asset('cm-chat-media-video-1:06e9ceca-d11c-55fc-be4f-4c344b1fafb9:1008:0:0.MOV') }}"
                 type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <button>
+        {{-- <button>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" id="playpause"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Play</title>
@@ -45,31 +45,34 @@
                 <animate to="25,11.5 39.7,24.5 41.5,26 39.7,27.4 25,39" id="righttoplay" xlink:href="#rightbar"
                     attributeName="points" dur=".3s" begin="indefinite" fill="freeze" />
             </svg>
-        </button>
-        <script>
-            var atlanticlight = document.querySelector("#atlanticlight video"),
-            playpause = document.getElementById("playpause"),
-              lefttoplay = document.getElementById("lefttoplay"),
-              righttoplay = document.getElementById("righttoplay"),
-              lefttopause = document.getElementById("lefttopause"),
-              righttopause = document.getElementById("righttopause");
-              atlanticlight.removeAttribute("controls");
-              playpause.style.display = "block";
-              playpause.addEventListener('click',function(){
-                if (atlanticlight.paused) {
-                  atlanticlight.play();
-                  playpause.classList.add("playing");
-                  lefttopause.beginElement();
-                  righttopause.beginElement();
-                } else {
-                  atlanticlight.pause();
-                  lefttoplay.beginElement();
-                  righttoplay.beginElement();
-                  playpause.classList.remove("playing");
-            }
+        </button> --}}
+        {{-- <script>
+        
+            var atlanticlight = document.querySelector("#atlanticlight video");
+            // atlanticlight.play();
+            // playpause = document.getElementById("playpause"),
+            //   lefttoplay = document.getElementById("lefttoplay"),
+            //   righttoplay = document.getElementById("righttoplay"),
+            //   lefttopause = document.getElementById("lefttopause"),
+            //   righttopause = document.getElementById("righttopause");
+            //   atlanticlight.removeAttribute("controls");
+            //   playpause.style.display = "block";
+            //   atlanticlight.play();
+            //   playpause.addEventListener('click',function(){
+            //     if (atlanticlight.paused) {
+            //       atlanticlight.play();
+            //       playpause.classList.add("playing");
+            //       lefttopause.beginElement();
+            //       righttopause.beginElement();
+            //     } else {
+            //       atlanticlight.pause();
+            //       lefttoplay.beginElement();
+            //       righttoplay.beginElement();
+            //       playpause.classList.remove("playing");
+            // }
 
-            },false);
-        </script>
+            // },false);
+        </script> --}}
     </div>
 </div>
 <div class="container">

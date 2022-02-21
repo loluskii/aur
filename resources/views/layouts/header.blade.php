@@ -108,6 +108,23 @@
             </div>
         </div>
     </nav>
+    <ul class="nav justify-content-center py-2 d-none d-md-flex d-lg-flex">
+        <li class="nav-item">
+            <a class="nav-link text-decoration-none text-muted" href="#">T-SHIRTS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-decoration-none text-muted" href="#">SWEATSHIRTS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-decoration-none text-muted" href="#">OUTWEAR</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-decoration-none text-muted" href="#">BOTTOMS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-decoration-none text-muted" href="#">ACCESSORIES</a>
+        </li>
+    </ul>
 </header>
 
 </div>

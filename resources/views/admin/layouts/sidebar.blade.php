@@ -64,13 +64,13 @@
             </ul>
         </li>
         
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link " href="{{ route('admin.orders.index') }}">
                 <i class="bi bi-grid-1x2"></i>
                 <span>Blog</span>
             </a>
         </li>
-        
+         --}}
         
         {{-- <li class="nav-item">
             <a class="nav-link active collapsed" data-bs-target="#f" data-bs-toggle="collapse" href="#">

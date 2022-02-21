@@ -38,15 +38,15 @@
                             @foreach ($product->images->take(4) as $image)
 
                             <div class="item-gallery">
-                                <a href="#" class="thumbnail" data-big="{{ $image->image_url }}">
-                                    <img src="{{ $image->image_url }}">
+                                <a href="#" class="thumbnail" data-big="{{ $image->image_url ?? '' }}">
+                                    <img src="{{ $image->image_url ?? '' }}">
                                 </a> 
                             </div>
                             @endforeach
                         </div>
                     </div>
                     <div class="col-lg-11 col-md-11 col-sm-12 order-lg-last order-md-last order-first">
-                        <img src="{{ $product->images()->first()->image_url }}" style="height: 650px"
+                        <img src="{{ $product->images()->first()->image_url ?? '' }}" style="height: 650px"
                             class="primary img-fluid">
                     </div>
                 </div>
