@@ -19,7 +19,7 @@
                                 <a class="nav-link py-3 text-white"  style="font-weight: 800; font-size: 17px; text-transform: uppercase; text-decoration: none"href="#">SWEATSHIRTS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link py-3 text-white" style="font-weight: 800; font-size: 17px; text-transform: uppercase; text-decoration: none" href="#">OUTWEAR</a>
+                                <a class="nav-link py-3 text-white" style="font-weight: 800; font-size: 17px; text-transform: uppercase; text-decoration: none" href="#">OUTERWEAR</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link py-3 text-white"  style="font-weight: 800; font-size: 17px; text-transform: uppercase; text-decoration: none"href="#">BOTTOMS</a>

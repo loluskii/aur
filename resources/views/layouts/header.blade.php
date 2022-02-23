@@ -54,7 +54,7 @@
             <a class="nav-link text-decoration-none text-muted" href="#">SWEATSHIRTS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-decoration-none text-muted" href="#">OUTWEAR</a>
+            <a class="nav-link text-decoration-none text-muted" href="#">OUTERWEAR</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-decoration-none text-muted" href="#">BOTTOMS</a>
@@ -116,7 +116,7 @@
             <a class="nav-link text-decoration-none text-muted" href="#">SWEATSHIRTS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-decoration-none text-muted" href="#">OUTWEAR</a>
+            <a class="nav-link text-decoration-none text-muted" href="#">OUTERWEAR</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-decoration-none text-muted" href="#">BOTTOMS</a>

@@ -12,7 +12,7 @@ use DB;
 
 class OrderActions{
 
-    public function store($order, $amount, $subamount){
+    public function store($order, $amount, $subamount, $method){
         // DB::beginTransaction();
             $newOrder = new Order();
             $ref = Str::random(20);
@@ -31,7 +31,7 @@ class OrderActions{
             $newOrder->item_count = \Cart::session(auth()->id())->getContent()->count();
             $newOrder->user_id = auth()->id();
             // $newOrder->plan = $order->plan;
-            $newOrder->payment_method = 'stripe';
+            $newOrder->payment_method = $method;
             // $newOrder->delivery_total = $delivery_fee;
             $newOrder->is_paid = 1;
             $newOrder->status = 1;

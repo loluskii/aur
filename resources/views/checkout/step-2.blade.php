@@ -261,35 +261,34 @@
                                         <div class="contact d-flex justify-content-between align-items-center">
                                             <div class="row">
                                                 <div class="col-auto">
-                                                    <span class="text-muted fw-bold">Contact</span>
+                                                    <span class="text-muted">Contact</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <span class=" text-wrap">{{ Auth::user()->email }}</span>
                                                 </div>
                                             </div>
-                                            <a href=""><small class="text-danger fw-bold">Change</small></a>
+                                            <a href=""><small class="text-danger">Change</small></a>
                                         </div>
                                         <hr style="width: auto">
                                         <div class="shipping d-flex justify-content-between align-items-center">
                                             <div class="row">
                                                 <div class="col-auto">
-                                                    <span class="text-muted fw-bold">Ships to</span>
+                                                    <span class="text-muted">Ships to</span>
                                                 </div>
                                                 <div class="col-auto">
-                                                    <span class="text-wrap">{{ $order->shipping_address }},{{
-                                                        $order->shipping_zipcode }} {{ $order->shipping_state }}, {{
-                                                        $order->shipping_zipcode }}</span>
+                                                    <span class="text-wrap">{{ $order->shipping_address }},{{ $order->shipping_state }}, {{
+                                                        $order->shipping_country }}</span>
                                                 </div>
                                             </div>
                                             <a href="{{ route('checkout.index') }}"><small
-                                                    class="text-danger fw-bold">Change</small></a>
+                                                    class="text-danger">Change</small></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="shipping-information">
-                                    <h5 class="mb-4 fw-bold">Shipping Method</h5>
+                                    <h5 class="mb-4 h6">Shipping Method</h5>
 
-                                    <label class="card py-4 px-3 checkbox-label d-flex w-100" id="planbox">
+                                    <label class="card p-3 checkbox-label d-flex w-100" id="planbox">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex align-items-center">
                                                 <input type="radio" class="me-4" checked value="{{ $conditionValue }}"
@@ -298,20 +297,20 @@
                                                     value="{{ Cart::session(auth()->id())->getSubTotal() }}">
                                                 <input type="hidden" name="grand_total"
                                                     value="{{ Cart::session(auth()->id())->getTotal() }}">
-                                                <h5 class="fw-bold text-muted">Standard Shipping</h5>
+                                                <h5 class="h6 text-muted">Standard Shipping</h5>
                                             </div>
-                                            <span class="fw-bold">${{ $conditionValue }}</span>
+                                            <span>${{ $conditionValue }}</span>
                                         </div>
                                     </label>
                                 </div>
-                                <div class="col-12 pt-3">
+                                <div class="col-12 pt-3 text-center">
                                     <button id="card-button" type="submit"
-                                        class="btn btn-lg btn-dark py-3 px-3 me-2 btn-block">
+                                        class="btn btn-dark py-2 px-3 me-2 btn-block">
                                         <div class="spinner hidden my-1" id="spinner"></div>
                                         <span id="button-text">Continue to Payment</span>
                                     </button>
                                     <a href="{{ route('checkout.index') }}"
-                                        class="btn btn-lg py-3 px-3 text-danger"><small>Back to previous
+                                        class="btn btn-lg py-2 px-3 text-danger"><small>Back to previous
                                             step</small></a>
                                 </div>
                             </form>
@@ -355,7 +354,7 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center py-4">
                         <span>Order Total</span>
-                        <h2>${{ number_format(Cart::session(auth()->id())->getTotal(),2) }}</h2>
+                        <h4 class="h4">${{ number_format(Cart::session(auth()->id())->getTotal(),2) }}</h4>
                     </div>
                 </div>
             </div>

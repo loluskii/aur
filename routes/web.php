@@ -50,8 +50,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/checkout/previous_step=contact_information&step=shipping', [CartController::class,'shipping'])->name('checkout.step_two.index');
     Route::post('/checkout/previous_step=contact_information&step=shipping', [CartController::class,'postShipping'])->name('checkout.step_two');
     Route::get('/checkout/previous_step=shipping&step=payment', [CartController::class,'showPayment'])->name('checkout.step_three.index');
-    Route::post('/checkout/step=payment', [PaymentController::class,'handlePayment'])->name('payment.create');
+    Route::post('/checkout/step=payment', [PaymentController::class,'stripeHandlePayment'])->name('payment.create');
     Route::get('/checkout/success', [PaymentController::class, 'paymentSuccess'])->name('payment.succeess');
+    Route::post('/pay', [PaymentController::class, 'flutterInit'])->name('pay.flutter');
+    Route::get('/rave/callback', [PaymentController::class,'flutterwaveCallback'])->name('flutter.callback');
     Route::get('/checkout/failed', [PaymentController::class, 'paymentFailure'])->name('payment.failure');
     Route::get('/account', [HomeController::class, 'index'])->name('account');
     Route::get('/account/add', [HomeController::class, 'addAddress'])->name('account.address.add');

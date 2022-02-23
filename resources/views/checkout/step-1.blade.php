@@ -161,7 +161,7 @@
                                 </div>
                                 @else
                                 <div class="mb-5">
-                                    <input type="email" class="form-control form-control-lg"
+                                    <input type="email" class="form-control "
                                         placeholder="Contact Information" id="exampleInputEmail1"
                                         aria-describedby="emailHelp">
                                     <div id="emailHelp" class="form-text">We'll never share your email with anyone
@@ -172,7 +172,7 @@
                                     <h5 class="mb-4">Shipping Address</h5>
                                     <div class="mb-3">
                                         <!-- <small class="text-muted">Country/Region</small> -->
-                                        <select class="form-select form-select-lg" name="shipping_country" required
+                                        <select class="form-select" name="shipping_country" required
                                             aria-label="Default select example">
                                             <option value="NG">Nigeria</option>
                                         </select>
@@ -181,20 +181,20 @@
                                         <div class="col">
                                             <!-- <small class="text-muted">First Name</small> -->
                                             <input type="text" name="shipping_fname"
-                                                class="form-control form-control-lg" required placeholder="First name"
+                                                class="form-control " required placeholder="First name"
                                                 value="{{ Auth::user()->fname }}" aria-label="First name">
                                         </div>
                                         <div class="col">
                                             <!-- <small class="text-muted">Last Name</small> -->
                                             <input type="text" name="shipping_lname"
-                                                class="form-control form-control-lg" required placeholder="Last name"
+                                                class="form-control " required placeholder="Last name"
                                                 value="{{ Auth::user()->lname }}" aria-label="Last name">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <!-- <label for="exampleInputEmail1" class="form-label">Address</label> -->
                                         <input type="address" name="shipping_address" placeholder="Address" required
-                                            class="form-control form-control-lg"
+                                            class="form-control "
                                             value="{{ $order_details->shipping_address ?? '' }}" id="exampleInputEmail1"
                                             aria-describedby="emailHelp">
                                     </div>
@@ -202,20 +202,20 @@
                                         <!-- <label for="exampleInputEmail1" class="form-label">Apartment, suite, etc. (optional)</label> -->
                                         <input type="text" name="shipping_landmark"
                                             placeholder="Apartment, suite, etc. (optional)"
-                                            class="form-control form-control-lg" id="exampleInputEmail1"
+                                            class="form-control " id="exampleInputEmail1"
                                             aria-describedby="emailHelp">
                                     </div>
                                     <div class="row g-2 mb-3">
                                         <div class="col">
                                             <!-- <small class="text-muted">City</small> -->
-                                            <input type="text" name="shipping_city" class="form-control form-control-lg"
+                                            <input type="text" name="shipping_city" class="form-control "
                                                 value="{{ $order_details->shipping_city ?? '' }}" required
                                                 placeholder="City">
                                         </div>
                                         <div class="col">
                                             <!-- <small class="text-muted">City</small> -->
                                             <input type="text" name="shipping_state"
-                                                class="form-control form-control-lg"
+                                                class="form-control "
                                                 value="{{ $order_details->shipping_state ?? '' }}" required
                                                 placeholder="State">
                                         </div>
@@ -223,7 +223,7 @@
                                             <!-- <small class="text-muted">Postal Code</small> -->
                                             <input type="text" name="shipping_zipcode"
                                                 value="{{ $order_details->shipping_zipcode ?? '' }}"
-                                                class="form-control form-control-lg" required placeholder="Postal Code"
+                                                class="form-control " required placeholder="Postal Code"
                                                 aria-label="Postal Code">
                                         </div>
                                     </div>
@@ -231,12 +231,12 @@
                                         <!-- <label for="exampleInputEmail1" class="form-label">Contact Information</label> -->
                                         <input type="text" name="shipping_phone"
                                             value="{{ $order_details->shipping_phone ?? '' }}"
-                                            placeholder="Phone Number" required class="form-control form-control-lg"
+                                            placeholder="Phone Number" required class="form-control "
                                             id="exampleInputEmail1" aria-describedby="emailHelp">
                                     </div>
                                 </div>
                                 <div class="col-12 pt-3">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-dark py-3 px-3">Continue to
+                                    <button type="submit" class="btn btn-primary btn-dark py-2 px-3">Continue to
                                         shipping</button>
                                 </div>
                             </form>
