@@ -26,7 +26,7 @@ class CreateOrdersTable extends Migration
             $table->float('grand_total');
             $table->integer('item_count');
             $table->boolean('is_paid')->default(false);
-            $table->enum('payment_method',['stripe', 'paystack'])->default('stripe');
+            $table->enum('payment_method',['stripe', 'flutterwave'])->default('stripe');
             // $table->float('delivery_total');
             $table->string('shipping_fname');
             $table->string('shipping_lname');
