@@ -15,6 +15,31 @@ class PagesController extends Controller
         return view('welcome', compact('products'));
     }
     
+    public function sweatshirts(){
+        $products = Product::where('category_id',1)->get();
+        return view('products.sweatshirt.index', compact('products'));
+    }
+    
+    public function tshirts(){
+        $products = Product::where('category_id',2)->get();
+        return view('products.tshirts.index', compact('products'));
+    }
+    
+    public function accessories(){
+        $products = Product::where('category_id',3)->get();
+        return view('products.accessories.index', compact('products'));
+    }
+    
+    public function outwear(){
+        $products = Product::where('category_id',4)->get();
+        return view('products.outwear.index', compact('products'));
+    }
+    
+    public function bottoms(){
+        $products = Product::where('category_id',5)->get();
+        return view('products.bottoms.index', compact('products'));
+    }
+    
     public function aboutUs(){
         return view('about-us');
     }

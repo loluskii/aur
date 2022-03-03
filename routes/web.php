@@ -38,8 +38,14 @@ Route::get('pages/contact', [PagesController::class,'contact'])->name('contact')
 Route::group(['prefix' => 'shop'], function () {
     Route::get('/',[ProductController::class, 'index'])->name('shop');
     Route::get('{tag}', [ProductController::class, 'show'])->name('product.show');
-
 });
+
+Route::get('/sweatshirts',[PagesController::class,'sweatshirts'])->name('product.sweatshirts');
+Route::get('/tshirts',[PagesController::class,'tshirts'])->name('product.tshirts');
+Route::get('/outwear',[PagesController::class,'outwear'])->name('product.outwear');
+Route::get('/bottoms',[PagesController::class,'bottoms'])->name('product.bottoms');
+Route::get('/accessories',[PagesController::class,'accessories'])->name('product.accessories');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('add/{product}', [CartController::class, 'addToCart'])->name('cart.add');

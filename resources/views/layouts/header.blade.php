@@ -48,19 +48,19 @@
     </nav>
     <ul class="nav justify-content-center py-2 d-none d-md-flex d-lg-flex">
         <li class="nav-item">
-            <a class="nav-link text-decoration-none text-muted" href="#">T-SHIRTS</a>
+            <a class="nav-link text-decoration-none text-muted" href="{{ route('product.tshirts') }}">T-SHIRTS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-decoration-none text-muted" href="#">SWEATSHIRTS</a>
+            <a class="nav-link text-decoration-none text-muted" href="{{ route('product.sweatshirts') }}">SWEATSHIRTS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-decoration-none text-muted" href="#">OUTERWEAR</a>
+            <a class="nav-link text-decoration-none text-muted" href="{{ route('product.outwear') }}">OUTERWEAR</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-decoration-none text-muted" href="#">BOTTOMS</a>
+            <a class="nav-link text-decoration-none text-muted" href="{{ route('product.bottoms') }}">BOTTOMS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-decoration-none text-muted" href="#">ACCESSORIES</a>
+            <a class="nav-link text-decoration-none text-muted" href="{{ route('product.accessories') }}">ACCESSORIES</a>
         </li>
     </ul>
 
@@ -110,19 +110,19 @@
     </nav>
     <ul class="nav justify-content-center py-2 d-none d-md-flex d-lg-flex">
         <li class="nav-item">
-            <a class="nav-link text-decoration-none text-muted" href="#">T-SHIRTS</a>
+            <a class="nav-link text-decoration-none text-muted" href="{{ route('product.tshirts') }}">T-SHIRTS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-decoration-none text-muted" href="#">SWEATSHIRTS</a>
+            <a class="nav-link text-decoration-none text-muted" href="{{ route('product.sweatshirts') }}">SWEATSHIRTS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-decoration-none text-muted" href="#">OUTERWEAR</a>
+            <a class="nav-link text-decoration-none text-muted" href="{{ route('product.outwear') }}">OUTERWEAR</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-decoration-none text-muted" href="#">BOTTOMS</a>
+            <a class="nav-link text-decoration-none text-muted" href="{{ route('product.bottoms') }}">BOTTOMS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-decoration-none text-muted" href="#">ACCESSORIES</a>
+            <a class="nav-link text-decoration-none text-muted" href="{{ route('product.accessories') }}">ACCESSORIES</a>
         </li>
     </ul>
 </header>

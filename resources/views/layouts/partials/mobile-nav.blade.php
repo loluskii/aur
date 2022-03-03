@@ -1,4 +1,4 @@
-<div class="modal modal-left fade bg-black"  id="mobileSideNav" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal modal-left fade"  id="mobileSideNav" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog w-75"  role="document">
         <div class="modal-content p-4" style="background-color: black; color: white">
             <div class="modal-header">
