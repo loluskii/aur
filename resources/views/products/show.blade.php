@@ -91,7 +91,7 @@
         <div class="col-md-4 col-lg-4 col-12 mb-3 pe-2">
             <a href="{{ route('product.show',$item->tag_number) }}">
                 <div class="text-center p-2">
-                    <img class="card-img-top img-fluid" src="{{ $item->images()->first()->image_url ?? '' }}"  alt="">
+                    <img class="card-img-top img-fluid" src="{{ $item->images()->first()->image_url ?? '' }}" style="width: 100%; height: 360px; object-fit: contain;"  alt="">
                     <div class="card-body px-0 d-flex justify-content-between align-items-center">
                         <h4 class="mb-0 card-title product-name">{{ $item->name }}</h4>
                         <p class="card-text fw-bold">£{{ $item->price }}</p>
