@@ -56,7 +56,7 @@
                     <div class="card border-0 my-3">
                         <div class="row g-0">
                             <div class="col-md-3 col-lg-4 col-6 text-start">
-                                <img src="{{ $item->images()->first()->image_url }}" style="height: 120px; width: 200px; object-fit: contain" class="img-fluid rounded-start" alt="...">
+                                <img src="{{ $item->images()->first()->image_url ?? '' }}" style="height: 120px; width: 200px; object-fit: contain" class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-9 col-lg-4 col-6">
                                 <div class="card-body">
