@@ -22,6 +22,7 @@ class PagesController extends Controller
     
     public function tshirts(){
         $products = Product::where('category_id',2)->get();
+        // dd($products);
         return view('products.tshirts.index', compact('products'));
     }
     

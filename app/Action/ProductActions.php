@@ -14,7 +14,7 @@ class ProductActions
             $product = new Product;
             $product->tag_number = mt_rand(1000,9999);
             $product->name = $request->name;
-            $product->category_id = $request->category;
+            $product->category_id = $request->category_id;
             $product->description = $request->description;
             $product->price = $request->unit_price;
             $product->units = $request->units;
