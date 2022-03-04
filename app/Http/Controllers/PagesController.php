@@ -31,9 +31,9 @@ class PagesController extends Controller
         return view('products.accessories.index', compact('products'));
     }
     
-    public function outwear(){
+    public function outerwear(){
         $products = Product::where('category_id',4)->get();
-        return view('products.outwear.index', compact('products'));
+        return view('products.outerwear.index', compact('products'));
     }
     
     public function bottoms(){

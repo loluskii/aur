@@ -40,11 +40,37 @@ Route::group(['prefix' => 'shop'], function () {
     Route::get('{tag}', [ProductController::class, 'show'])->name('product.show');
 });
 
-Route::get('/sweatshirts',[PagesController::class,'sweatshirts'])->name('product.sweatshirts');
-Route::get('/tshirts',[PagesController::class,'tshirts'])->name('product.tshirts');
-Route::get('/outwear',[PagesController::class,'outwear'])->name('product.outwear');
-Route::get('/bottoms',[PagesController::class,'bottoms'])->name('product.bottoms');
-Route::get('/accessories',[PagesController::class,'accessories'])->name('product.accessories');
+// Route::get('/sweatshirts',[PagesController::class,'sweatshirts'])->name('product.sweatshirts');
+// Route::get('/tshirts',[PagesController::class,'tshirts'])->name('product.tshirts');
+// Route::get('/outerwear',[PagesController::class,'outerwear'])->name('product.outerwear');
+// Route::get('/bottoms',[PagesController::class,'bottoms'])->name('product.bottoms');
+// Route::get('/accessories',[PagesController::class,'accessories'])->name('product.accessories');
+
+
+Route::get('/sweatshirts', function () {
+    $products = Product::where('category_id',1)->get();
+    return view('products.sweatshirt.index')->with('products',$products);
+})->name('product.sweatshirts');
+
+Route::get('/tshirts', function () {
+    $products = Product::where('category_id',2)->get();
+    return view('products.tshirts.index')->with('products',$products);
+})->name('product.tshirts');
+
+Route::get('/outerwear', function () {
+    $products = Product::where('category_id',3)->get();
+    return view('products.outerwear.index')->with('products',$products);
+})->name('product.outerwear');
+
+Route::get('/bottoms', function () {
+    $products = Product::where('category_id',4)->get();
+    return view('products.bottoms.index')->with('products',$products);
+})->name('product.bottoms');
+
+Route::get('/accessories', function () {
+    $products = Product::where('category_id',5)->get();
+    return view('products.accessories.index')->with('products',$products);
+})->name('product.accessories');
 
 
 Route::middleware(['auth'])->group(function () {

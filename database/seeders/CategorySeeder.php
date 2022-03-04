@@ -28,8 +28,8 @@ class CategorySeeder extends Seeder
                 'slug' => 'accessories',
             ],
             [
-                'name' => 'Outwear',
-                'slug' => 'outwear',
+                'name' => 'outerwear',
+                'slug' => 'outerwear',
             ],
             [
                 'name' => 'Bottoms',
