@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="row  g-5 justify-content-center">
-        @if ($products->count() > 0)
+        @if ($products)
             @foreach ($products as $product)
                 <div class="col-md-4 col-sm-12 col-lg-4 mb-3">
                     <a href="{{ route('product.show',$product->tag_number) }}">

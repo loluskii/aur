@@ -30,7 +30,7 @@
 <div class="container mb-5" style="min-height: 70vh">
     <div class="border-0 mb-5">
         <div class="row">
-            <aside class="col-md-6 text-center border-end pb-5">
+            <aside class="col-md-7 text-center border-end pb-5">
                 <div class="row">
                     <div class="col-lg-1 col-md-1 col-sm-12 order-lg-first order-md-first order-last">
                         <div
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </aside>
-            <aside class="col-md-6">
+            <aside class="col-md-5">
                 <article class="card-body p-lg-5 p-md-5 p-sm-2">
                     <header class="pt-4 mb-4 d-flex flex-lg-column flex-md-column flex-sm-row justify-contentr-between align-items-lg-start align-items-md-start">
                         <h4 class="text-uppercase font-weigh mb-1 me-auto fw-bold">{{ $product->name }}</h4>

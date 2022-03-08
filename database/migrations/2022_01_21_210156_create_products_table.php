@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('tag_number');
             $table->string('image')->nullable();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->unsignedInteger('units')->default(0);
             $table->integer('alert_quantity')->default(5);
             $table->bigInteger('category_id')->nullable();

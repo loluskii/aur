@@ -80,7 +80,7 @@
         @foreach ($products as $product)
             <div class="col-md-4 col-12 mb-5 pe-2">
                 <a href="{{ route('product.show', $product->tag_number) }}">
-                    <div class="card shadow-sm border-0 p-2">
+                    <div class="border-0 p-2">
                         <div class="card-img-header">
                             <img class="card-img-top img-fluid" src="{{ $product->images()->first()->image_url ?? '' }}" style="width: 100%; height: 360px; object-fit: contain;" alt="">
                         </div>
