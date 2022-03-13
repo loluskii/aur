@@ -2,38 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Cashier\Cashier;
+use Illuminate\Support\Facades\Auth;
 
 
 class CartController extends Controller
 {
-
-    public function addToCart(Product $product){
-        \Cart::session(auth()->id())->add(array(
+    public function getSessionID(){
+        if(!Auth::check()){
+            return 'guest';
+        }
+        return auth()->id();
+    }
+    
+    public function addToCart(Request $request , Product $product){
+        \Cart::session($this->getSessionID())->add(array(
             'id' => $product->id,
             'name' => $product->name,
             'price' => $product->price,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => array(
+                'size' => $request->size,
+            ),
             'associatedModel' => $product
         ));
-
         return redirect()->route('product.show',['tag' => $product->tag_number]);
     }
 
     public function index(){
-        $cartTotalQuantity = \Cart::session(auth()->id())->getContent()->count();
-        $cartItems = \Cart::session(auth()->id())->getContent();
+        $cartTotalQuantity = \Cart::session($this->getSessionID())->getContent()->count();
+        $cartItems = \Cart::session($this->getSessionID())->getContent();
         return view('store.cart', compact('cartItems', 'cartTotalQuantity'));
     }
 
     public function update($id){
-        \Cart::session(auth()->id())->update($id,[
+        \Cart::session($this->getSessionID())->update($id,[
             'quantity' =>  array(
                 'relative' => false,
                 'value' => request('quantity'),
@@ -45,14 +53,14 @@ class CartController extends Controller
 
     public function destroy($id)
     {
-        $cartItems = \Cart::session(auth()->id())->remove($id);
+        $cartItems = \Cart::session($this->getSessionID())->remove($id);
 
         return back();
     }
 
     public function checkout(){
-        $cartItems = \Cart::session(auth()->id())->getContent();
-        $cartTotalQuantity = \Cart::session(auth()->id())->getContent()->count();
+        $cartItems = \Cart::session($this->getSessionID())->getContent();
+        $cartTotalQuantity = \Cart::session($this->getSessionID())->getContent()->count();
         // $address = Address::where('user_id', auth()->id())->first();
         $order_details = session('order');
         return view('checkout.step-1', compact('cartItems','cartTotalQuantity','order_details'));
@@ -79,14 +87,14 @@ class CartController extends Controller
     
     public function shipping(Request $request){
         $order = $request->session()->get('order');
-        $cartItems = \Cart::session(auth()->id())->getContent();
+        $cartItems = \Cart::session($this->getSessionID())->getContent();
         $condition = new \Darryldecode\Cart\CartCondition(array(
             'name' => 'Standard Shipping',
             'type' => 'shipping',
             'target' => 'total',
             'value' => '50',
         ));
-        \Cart::session(auth()->id())->condition($condition);
+        \Cart::session($this->getSessionID())->condition($condition);
         $conditionValue = $condition->getValue();
         return view('checkout.step-2', compact('order','cartItems','conditionValue'));
     }
@@ -105,15 +113,15 @@ class CartController extends Controller
     public function showPayment(Request $request){
         try {
             $order = $request->session()->get('order');
-            $cartItems = \Cart::session(auth()->id())->getContent();
+            $cartItems = \Cart::session($this->getSessionID())->getContent();
             $condition = \Cart::getCondition('Standard Shipping');
-            $intent = $request->user()->createSetupIntent();
+            $intent = $this->getSessionID() == 'guest' ? (new User())->createSetupIntent() : $request->user()->createSetupIntent();
             $condition_name = $condition->getName(); // the name of the condition
             $condition_value = $condition->getValue(); // the value of the condition
             
             return view('checkout.step-3', compact('order','cartItems','condition_name','condition_value','intent'));
         } catch (\Exception $th) {
-            return back()->with('error','Please Check your internet connection!');
+            return back()->with('error',$th->getMessage());
         }
     }
 

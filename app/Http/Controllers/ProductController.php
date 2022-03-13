@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+
+    public function getSessionID(){
+        if(!Auth::check()){
+            return 'guest';
+        }
+        return auth()->id();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +25,8 @@ class ProductController extends Controller
         $products = Product::all();
         
         if(Auth::check()){
-            $cartTotalQuantity = \Cart::session(auth()->id())->getContent()->count();
-            $cartItems = \Cart::session(auth()->id())->getContent();
+            $cartTotalQuantity = \Cart::session($this->getSessionID())->getContent()->count();
+            $cartItems = \Cart::session($this->getSessionID())->getContent();
             return view('products.index', compact('products','cartItems','cartTotalQuantity'));
         }else{
             return view('products.index', compact('products'));
@@ -59,8 +66,8 @@ class ProductController extends Controller
         $product = Product::where('tag_number', $tag)->first();
         $similar = Product::where('tag_number','!=',$product->tag_number)->where('category_id', $product->category_id)->take(4)->get();
         if(Auth::check()){
-            $cartTotalQuantity = \Cart::session(auth()->id())->getContent()->count();
-            $cartItems = \Cart::session(auth()->id())->getContent();
+            $cartTotalQuantity = \Cart::session($this->getSessionID())->getContent()->count();
+            $cartItems = \Cart::session($this->getSessionID())->getContent();
             return view('products.show', compact('product', 'similar', 'cartItems','cartTotalQuantity'));
         }
         return view('products.show', compact('product', 'similar'));

@@ -22,19 +22,26 @@ class PaymentController extends Controller
         $this->stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
     }
     
+    public function getSessionID(){
+        if(!Auth::check()){
+            return 'guest';
+        }
+        return auth()->id();
+    }
+    
     public function flutterInit(Request $request){
         try {
+            // dd($request->all());
             $reference = Flutterwave::generateReference();
             $data = [
                 'payment_options' => 'card,banktransfer',
                 'amount' => $request->amount,
-                'email' => Auth::user()->email,
+                'email' => Auth::user()->email ?? $request->email,
                 'tx_ref' => $reference,
                 'currency' => "USD",
                 'redirect_url' => route('flutter.callback'),
                 'customer' => [
-                    'email' => Auth::user()->email,
-                    "phone_number" => $request->phone,
+                    'email' => Auth::user()->email ?? $request->email,
                     "name" => $request->name
                 ],
     
@@ -65,8 +72,8 @@ class PaymentController extends Controller
         if($status != "cancelled"){
             $transactionID = Flutterwave::getTransactionIDFromCallback();
         }
-        $amount = \Cart::session(auth()->id())->getTotal();
-        $subamount = \Cart::session(auth()->id())->getSubTotal();
+        $amount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal();
+        $subamount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getSubTotal();
         $method = 'flutterwave';
 
         //if payment is successful
@@ -93,9 +100,9 @@ class PaymentController extends Controller
                 DB::commit();
                 
                 $admin = User::where('is_admin', 1)->get();
-                $user = Auth::user()->email;
+                $user = $newOrder->shipping_email;
                     
-                \Cart::session(auth()->id())->clear();
+                \Cart::session(auth()->check() ? auth()->id() : 'guest')->clear();
                 request()->session()->forget('order');
                 
                 NotifyAdminOrder::dispatch($newOrder, $admin);
@@ -119,23 +126,28 @@ class PaymentController extends Controller
     }
     
     public function stripeHandlePayment(Request $request){
-        $user = $request->user();
-        $paymentMethod = $request->paymentMethod;
-        $amount = \Cart::session(auth()->id())->getTotal();
+        $user = $request->user() ?? new User();
         $order = $request->session()->get('order');     
+        $email = $user->email ?? $order->shipping_email;
+        $paymentMethod = $request->paymentMethod;
+        $amount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal();
+        
         $method = 'stripe';
         try {
             $user->createOrGetStripeCustomer();
             $user->updateDefaultPaymentMethod($paymentMethod);
-            $stripeCharge = $user->charge($amount * 100, $paymentMethod,['receipt_email' => $user->email]);
+            $stripeCharge = $user->charge($amount * 100, $paymentMethod,['receipt_email' => $email]);
             $payment_id = $stripeCharge->jsonSerialize()['id'];
-            $subamount = \Cart::session(auth()->id())->getSubTotal();
-            $res = (new OrderActions())->store($order, $amount, $subamount);
+            $subamount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getSubTotal();
+            $res = (new OrderActions())->store($order, $amount, $subamount, $method);
             // dd($res);
             if($res){
                 $newOrder = (new OrderQueries())->findByRef($res);
                 
                 DB::beginTransaction();
+            if(PaymentRecord::where('payment_ref', $payment_id)->first()){
+                throw new Exception('Duplicate transaction');
+            }else{
                 $payment = new PaymentRecord();
                 $payment->user_id = auth()->id();
                 $payment->order_id = $newOrder->id;
@@ -146,14 +158,14 @@ class PaymentController extends Controller
                 DB::commit();
                 
                 $admin = User::where('is_admin', 1)->get();
-                $user = Auth::user()->email;
+                // $user = Auth::user()->email;
                     
-                \Cart::session(auth()->id())->clear();
+                \Cart::session(auth()->check() ? auth()->id() : 'guest')->clear();
                 $request->session()->forget('order');
                 
                 NotifyAdminOrder::dispatch($newOrder, $admin);
                 
-                return redirect()->route('payment.succeess');
+                return redirect()->route('payment.succeess');}
             }
 
         } catch (\Exception $th) {

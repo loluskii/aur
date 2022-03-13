@@ -72,21 +72,22 @@ Route::get('/accessories', function () {
     return view('products.accessories.index')->with('products',$products);
 })->name('product.accessories');
 
+Route::post('add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::get('/cart/destroy/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.index');
+Route::post('/checkout/step=contact_information', [CartController::class,'contactInformation'])->name('checkout.step_one');
+Route::get('/checkout/previous_step=contact_information&step=shipping', [CartController::class,'shipping'])->name('checkout.step_two.index');
+Route::post('/checkout/previous_step=contact_information&step=shipping', [CartController::class,'postShipping'])->name('checkout.step_two');
+Route::get('/checkout/previous_step=shipping&step=payment', [CartController::class,'showPayment'])->name('checkout.step_three.index');
+Route::post('/checkout/step=payment', [PaymentController::class,'stripeHandlePayment'])->name('payment.create');
+Route::get('/checkout/success', [PaymentController::class, 'paymentSuccess'])->name('payment.succeess');
+Route::post('/pay', [PaymentController::class, 'flutterInit'])->name('pay.flutter');
+Route::get('/rave/callback', [PaymentController::class,'flutterwaveCallback'])->name('flutter.callback');
+Route::get('/checkout/failed', [PaymentController::class, 'paymentFailure'])->name('payment.failure');
+
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
-    Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-    Route::get('/cart/destroy/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
-    Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.index');
-    Route::post('/checkout/step=contact_information', [CartController::class,'contactInformation'])->name('checkout.step_one');
-    Route::get('/checkout/previous_step=contact_information&step=shipping', [CartController::class,'shipping'])->name('checkout.step_two.index');
-    Route::post('/checkout/previous_step=contact_information&step=shipping', [CartController::class,'postShipping'])->name('checkout.step_two');
-    Route::get('/checkout/previous_step=shipping&step=payment', [CartController::class,'showPayment'])->name('checkout.step_three.index');
-    Route::post('/checkout/step=payment', [PaymentController::class,'stripeHandlePayment'])->name('payment.create');
-    Route::get('/checkout/success', [PaymentController::class, 'paymentSuccess'])->name('payment.succeess');
-    Route::post('/pay', [PaymentController::class, 'flutterInit'])->name('pay.flutter');
-    Route::get('/rave/callback', [PaymentController::class,'flutterwaveCallback'])->name('flutter.callback');
-    Route::get('/checkout/failed', [PaymentController::class, 'paymentFailure'])->name('payment.failure');
     Route::get('/account', [HomeController::class, 'index'])->name('account');
     Route::get('/account/add', [HomeController::class, 'addAddress'])->name('account.address.add');
     Route::get('/account/edit', [HomeController::class, 'editAddress'])->name('account.address.edit');

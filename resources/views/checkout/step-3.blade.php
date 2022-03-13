@@ -4,6 +4,14 @@
     <style>
         * {
             text-transform: none;
+        font-size: 14px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+        line-height: 1.3em;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+        -webkit-font-smoothing: subpixel-antialiased;
+
         }
 
         .main {
@@ -27,9 +35,9 @@
 
         .wrapper {
             /* padding-left: 30px;
-                        padding-right: 30px;
-                        margin-left: 30px;
-                        margin-right: 30px; */
+                            padding-right: 30px;
+                            margin-left: 30px;
+                            margin-right: 30px; */
         }
 
         .form-control::placeholder {
@@ -42,6 +50,8 @@
         .product__description__variant {
             font-size: 13px;
         }
+        
+        
 
         form button,
         form button span {
@@ -178,8 +188,8 @@
 
 @section('content')
     <div class="">
-        <div class="container-fluid">
-            <div class="wrapper">
+        <div class="container px-0">
+            <div class="wrapper px-0">
                 <div class="row mb-5" style="min-height: 90vh">
                     <div class="col-md-7 col-lg-7">
                         <div class="main">
@@ -240,7 +250,7 @@
                                                     <div class="price border-bottom">
                                                         <div class="d-flex justify-content-between align-items-center py-3">
                                                             <span>Subtotal</span>
-                                                            <span>${{ number_format(Cart::session(auth()->id())->getSubTotal(), 2) }}</span>
+                                                            <span>${{ number_format(Cart::session(auth()->check() ? auth()->id() : 'guest')->getSubTotal(),2) }}</span>
                                                         </div>
                                                         <div class="d-flex justify-content-between align-items-center py-3">
                                                             <span>Shipping</span>
@@ -249,7 +259,7 @@
                                                     </div>
                                                     <div class="d-flex justify-content-between align-items-center py-4">
                                                         <span>Order Total</span>
-                                                        <h3>${{ number_format(Cart::session(auth()->id())->getTotal(), 2) }}
+                                                        <h3>${{ number_format(Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal(),2) }}
                                                         </h3>
                                                     </div>
 
@@ -273,14 +283,14 @@
                                                 </div>
                                                 <div class="col-auto">
                                                     <span
-                                                        class="text-uppercase text-wrap">{{ Auth::user()->email }}</span>
+                                                        class="text-wrap">{{ Auth::user()->email ?? $order->shipping_email }}</span>
                                                 </div>
                                             </div>
-                                            <a href=""><small class="text-danger">Change</small></a>
+                                            {{-- <a href=""><small class="text-danger">Change</small></a> --}}
                                         </div>
                                         <hr style="width: auto">
                                         <div class="shipping d-flex justify-content-between align-items-center">
-                                            <div class="">
+                                            <div class="row">
                                                 <div class="col-auto">
                                                     <span class="text-muted">Ships to</span>
                                                 </div>
@@ -290,7 +300,7 @@
                                                         {{ $order->shipping_state }},{{ $order->shipping_zipcode }}</span>
                                                 </div>
                                             </div>
-                                            <a href=""><small class="text-danger">Change</small></a>
+                                            {{-- <a href=""><small class="text-danger">Change</small></a> --}}
                                         </div>
                                         <hr style="width: auto">
                                         <div class="method d-flex justify-content-between align-items-center">
@@ -307,8 +317,8 @@
                                     </div>
                                 </div>
                                 <div class="shipping-information">
-                                    <h4 class="fw-bold">Payment</h4>
-                                    <p>All payments are secure and encrypted. </p>
+                                    <h4 style="font-weight: normal">Payment</h4>
+                                    <p class="text-secondary">All payments are secure and encrypted. </p>
 
 
                                 </div>
@@ -392,13 +402,19 @@
                                                             {{-- <span>and more ...</span> --}}
                                                         </div>
                                                     </div>
-                                                    <form action="{{ route('pay.flutter') }}" method="post" class="pb-5">
+                                                    <form action="{{ route('pay.flutter') }}" method="post"
+                                                        class="pb-5">
                                                         @csrf
-                                                        <input type="hidden" name="amount" value="{{ Cart::session(auth()->id())->getTotal() }}" /> 
-                                                        <input type="hidden" name="payment_method" value="both" /> 
-                                                        <input type="hidden" name="description" value="Order for {{ Auth::user()->getFullName() }}" />
-                                                        <input type="hidden" name="country" value="{{ $order->shipping_country }}" /> 
-                                                        <input type="hidden" name="logo" value="{{ asset('images/2611.png') }}" />
+                                                        <input type="hidden" name="amount"
+                                                            value="{{ Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal() }}" />
+                                                        <input type="hidden" name="payment_method" value="both" />
+                                                        {{-- <input type="hidden" name="email" value="{{ $order->shipping_email }}"> --}}
+                                                        <input type="hidden" name="description"
+                                                            value="Order for {{ $order->shipping_fname}}" />
+                                                        <input type="hidden" name="country"
+                                                            value="{{ $order->shipping_country }}" />
+                                                        <input type="hidden" name="logo"
+                                                            value="{{ asset('images/2611.png') }}" />
                                                         <div class="mb-3">
                                                             <input type="text" class="form-control form-control-lg"
                                                                 name="name" id="" aria-describedby="helpId"
@@ -409,12 +425,6 @@
                                                                 name="email" id="" aria-describedby="helpId"
                                                                 placeholder="Email Address">
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control form-control-lg"
-                                                                name="email" id="" aria-describedby="helpId"
-                                                                placeholder="Phone Number">
-                                                        </div>
-
                                                         <div class="col-12">
                                                             <button id="card-button"
                                                                 class="mt-4 payment-button btn btn-dark btn-lg px-3"
@@ -439,47 +449,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5 col-lg-5 d-sm-none d-md-block border-start ps-4 pt-5 d-sm-block d-none">
-                        <div class="product border-bottom">
-                            <table class="table table-borderless">
-                                <tbody>
-                                    @foreach ($cartItems as $item)
-                                        <tr class="d-flex align-items-center">
-                                            <td scope="row" style="width: 20%;">
-                                                <img class="img-fluid img-thumbnail" style="height: 60px;"
-                                                    src="{{ $item->associatedModel->images()->first()->image_url ?? '' }}"
-                                                    alt="">
-                                            </td>
-                                            <td style="width: 60%;">
-                                                <span
-                                                    class="product__description__variant order-summary__small-text text-uppercase"
-                                                    style="display: block;">{{ $item->name }}</span>
-                                            </td>
-                                            <td style="width: 20%;">
-                                                ${{ number_format($item->price, 2) }}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-
-                        </div>
-                        <div class="price border-bottom">
-                            <div class="d-flex justify-content-between align-items-center py-3">
-                                <span>Subtotal</span>
-                                <span>${{ number_format(Cart::session(auth()->id())->getSubTotal(), 2) }}</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center py-3">
-                                <span>Shipping</span>
-                                <span>${{ $condition_value }}</span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center py-4">
-                            <span>Shipping</span>
-                            <h2 class="h4">${{ number_format(Cart::session(auth()->id())->getTotal(), 2) }}
-                            </h2>
-                        </div>
-                    </div>
+                    @include('checkout.cart-content')
                 </div>
             </div>
         </div>

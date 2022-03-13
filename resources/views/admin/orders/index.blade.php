@@ -146,7 +146,7 @@
                             @endphp
                             <tr>
                                 <td>{{ ++$key }}</td>
-                                <td>{{ $order->shipping_fname }} {{ $order->shipping_lname }}</td>
+                                <td>{{ $order->shipping_fname ?? 'Guest' }} {{ $order->shipping_lname ?? 'User' }}</td>
                                 <td>{{ $order->order_number }}</td>
                                 <td>{{ $order->item_count }}</td>
                                 <td>${{ number_format($order->grand_total, 2) }}</td>

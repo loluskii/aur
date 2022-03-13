@@ -19,6 +19,7 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
+        
         try{
             $input = $request->all();
 
@@ -36,8 +37,8 @@ class AuthController extends Controller
                     'success', 'Welcome Admin!',
                 );
             }
-            session()->flash('loginMsg', 'The provided credentials do not match our records.');
-            return back();
+            // session()->flash('loginMsg', 'The provided credentials do not match our records.');
+            return back()->with('loginMsg', 'The provided credentials do not match our records.');
         }catch(\Exception $e){
             return back()->with(
                 'error', $e->getMessage()
