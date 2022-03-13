@@ -46,7 +46,9 @@
                                     class="visually-hidden">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">CART</a>
+                            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modelId" href="">CART
+                                ({{ Cart::session('guest')->getContent()->count() }})
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -74,6 +76,7 @@
 
     </div>
 
+    @include('products.cart-modal')
     @include('layouts.partials.mobile-nav')
 
 @endguest
@@ -106,16 +109,19 @@
                             style="height: 30px" class="img-fluid" alt="" srcset=""></a>
                 </div>
                 <a class="navbar-brand d-lg-none" style="font-size: inherit" data-bs-toggle="modal"
-                    data-bs-target="#modelId" href="#">CART ({{ Cart::session(auth()->id())->getContent()->count() }})</a>
+                    data-bs-target="#modelId" href="#">CART
+                    ({{ Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent()->count() }})
+                </a>
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link me-3" href="{{ route('account') }}">MY ACCOUNT<span
+                            <a class="nav-link me-3" href="{{ route('account') }}">MY ACCOUNT <span
                                     class="visually-hidden">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modelId" href="">CART
-                                ({{ Cart::session(auth()->id())->getContent()->count() }})</a>
+                                ({{ Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent()->count() }})
+                            </a>
                         </li>
                     </ul>
                 </div>

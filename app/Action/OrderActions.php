@@ -26,9 +26,10 @@ class OrderActions{
             $newOrder->shipping_zipcode = $order->shipping_zipcode;
             $newOrder->shipping_landmark = $order->shipping_landmark;
             $newOrder->shipping_country = $order->shipping_country;
+            $newOrder->shipping_email = $order->shipping_email;
             $newOrder->subtotal = $subamount;
             $newOrder->grand_total = $amount;
-            $newOrder->item_count = \Cart::session(auth()->id())->getContent()->count();
+            $newOrder->item_count = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent()->count();
             $newOrder->user_id = auth()->id();
             // $newOrder->plan = $order->plan;
             $newOrder->payment_method = $method;
@@ -38,7 +39,7 @@ class OrderActions{
             $newOrder->order_reference = $ref;
     
             $newOrder->save();
-            $cartItems =  \Cart::session(auth()->id())->getContent();
+            $cartItems =  \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent();
             foreach($cartItems as $item){
                 $newOrder->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
             }
