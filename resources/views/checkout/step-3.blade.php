@@ -4,13 +4,13 @@
     <style>
         * {
             text-transform: none;
-        font-size: 14px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-        line-height: 1.3em;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        word-break: break-word;
-        -webkit-font-smoothing: subpixel-antialiased;
+            font-size: 14px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            line-height: 1.3em;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+            -webkit-font-smoothing: subpixel-antialiased;
 
         }
 
@@ -35,9 +35,9 @@
 
         .wrapper {
             /* padding-left: 30px;
-                            padding-right: 30px;
-                            margin-left: 30px;
-                            margin-right: 30px; */
+                                padding-right: 30px;
+                                margin-left: 30px;
+                                margin-right: 30px; */
         }
 
         .form-control::placeholder {
@@ -50,8 +50,8 @@
         .product__description__variant {
             font-size: 13px;
         }
-        
-        
+
+
 
         form button,
         form button span {
@@ -194,8 +194,8 @@
                     <div class="col-md-7 col-lg-7">
                         <div class="main">
                             <div class="header">
-                                <img src="{{ asset('images/2611.png') }}" class="img-fluid" style="height: 2em;"
-                                    alt="">
+                                <img src="{{ secure_asset('images/2611.png') }}" class="img-fluid"
+                                    style="height: 2em;" alt="">
                                 <nav aria-label="breadcrumb" class="py-4">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item active" aria-current="page"><a href="#">Cart</a></li>
@@ -250,7 +250,7 @@
                                                     <div class="price border-bottom">
                                                         <div class="d-flex justify-content-between align-items-center py-3">
                                                             <span>Subtotal</span>
-                                                            <span>${{ number_format(Cart::session(auth()->check() ? auth()->id() : 'guest')->getSubTotal(),2) }}</span>
+                                                            <span>${{ number_format(Cart::session(auth()->check() ? auth()->id() : 'guest')->getSubTotal(), 2) }}</span>
                                                         </div>
                                                         <div class="d-flex justify-content-between align-items-center py-3">
                                                             <span>Shipping</span>
@@ -259,7 +259,7 @@
                                                     </div>
                                                     <div class="d-flex justify-content-between align-items-center py-4">
                                                         <span>Order Total</span>
-                                                        <h3>${{ number_format(Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal(),2) }}
+                                                        <h3>${{ number_format(Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal(), 2) }}
                                                         </h3>
                                                     </div>
 
@@ -342,13 +342,13 @@
                                                     <div class="d-flex justify-content-end mt-4 mb-3">
                                                         {{-- <h4>Credit Card</h4> --}}
                                                         <div class="d-flex align-items-center images">
-                                                            <img src="{{ asset('images/payment/visa.svg') }}"
+                                                            <img src="{{ secure_asset('images/payment/visa.svg') }}"
                                                                 class="img-fluid mx-1" alt="" srcset="">
-                                                            <img src="{{ asset('images/payment/master.svg') }}"
+                                                            <img src="{{ secure_asset('images/payment/master.svg') }}"
                                                                 class="img-fluid mx-1" alt="" srcset="">
-                                                            <img src="{{ asset('images/payment/american_express.svg') }}"
+                                                            <img src="{{ secure_asset('images/payment/american_express.svg') }}"
                                                                 class="img-fluid mx-1" alt="" srcset="">
-                                                            <img src="{{ asset('images/payment/discover.svg') }}"
+                                                            <img src="{{ secure_asset('images/payment/discover.svg') }}"
                                                                 class="img-fluid" alt="" srcset="">
                                                             {{-- <span>and more ...</span> --}}
                                                         </div>
@@ -391,13 +391,13 @@
                                                     <div class="d-flex justify-content-end mt-4 mb-3">
                                                         {{-- <h4>Credit Card</h4> --}}
                                                         <div class="d-flex align-items-center images">
-                                                            <img src="{{ asset('images/payment/visa.svg') }}"
+                                                            <img src="{{ secure_asset('images/payment/visa.svg') }}"
                                                                 class="img-fluid mx-1" alt="" srcset="">
-                                                            <img src="{{ asset('images/payment/master.svg') }}"
+                                                            <img src="{{ secure_asset('images/payment/master.svg') }}"
                                                                 class="img-fluid mx-1" alt="" srcset="">
-                                                            <img src="{{ asset('images/payment/american_express.svg') }}"
+                                                            <img src="{{ secure_asset('images/payment/american_express.svg') }}"
                                                                 class="img-fluid mx-1" alt="" srcset="">
-                                                            <img src="{{ asset('images/payment/discover.svg') }}"
+                                                            <img src="{{ secure_asset('images/payment/discover.svg') }}"
                                                                 class="img-fluid" alt="" srcset="">
                                                             {{-- <span>and more ...</span> --}}
                                                         </div>
@@ -410,11 +410,11 @@
                                                         <input type="hidden" name="payment_method" value="both" />
                                                         {{-- <input type="hidden" name="email" value="{{ $order->shipping_email }}"> --}}
                                                         <input type="hidden" name="description"
-                                                            value="Order for {{ $order->shipping_fname}}" />
+                                                            value="Order for {{ $order->shipping_fname }}" />
                                                         <input type="hidden" name="country"
                                                             value="{{ $order->shipping_country }}" />
                                                         <input type="hidden" name="logo"
-                                                            value="{{ asset('images/2611.png') }}" />
+                                                            value="{{ secure_asset('images/2611.png') }}" />
                                                         <div class="mb-3">
                                                             <input type="text" class="form-control form-control-lg"
                                                                 name="name" id="" aria-describedby="helpId"

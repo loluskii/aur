@@ -18,12 +18,12 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::create([
-            'fname' => 'Wale',
-            'lname' => 'Olokunola',
-            'email' => 'olawale@aur2611.store',
+            'fname' => 'Jonah',
+            'lname' => 'Obaro',
+            'email' => 'admin@2611-aur.com',
             'email_verified_at' => now(),
             'is_admin' =>  1,
-            'password' => Hash::make('password'), // aur2611
+            'password' => Hash::make('Wxasju42!as_0'), // aur2611
             'remember_token' => Str::random(10),
         ]);
 

@@ -2,16 +2,16 @@
 
 @section('styles')
     <style>
-    * {
-        text-transform: none;
-        font-size: 14px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-        line-height: 1.3em;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        word-break: break-word;
-        -webkit-font-smoothing: subpixel-antialiased;
-    }
+        * {
+            text-transform: none;
+            font-size: 14px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            line-height: 1.3em;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+            -webkit-font-smoothing: subpixel-antialiased;
+        }
 
         .main {
             padding-top: 40px;
@@ -23,9 +23,9 @@
 
         .wrapper {
             /* padding-left: 30px;
-                padding-right: 30px;
-                margin-left: 30px;
-                margin-right: 30px; */
+                    padding-right: 30px;
+                    margin-left: 30px;
+                    margin-right: 30px; */
         }
 
         form button,
@@ -103,12 +103,14 @@
                     <div class="col-md-7 col-lg-7">
                         <div class="main">
                             <div class="header">
-                                <img src="{{ asset('images/2611.png') }}" class="img-fluid" style="height: 2em;"
-                                    alt="">
+                                <img src="{{ secure_asset('images/2611.png') }}" class="img-fluid"
+                                    style="height: 2em;" alt="">
                                 <nav aria-label="breadcrumb" class="py-4">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item" aria-current="page"><a href="{{ route('shop') }}">Cart</a></li>
-                                        <li class="breadcrumb-item active"><a href="{{ route('checkout.index') }}">Information</a></li>
+                                        <li class="breadcrumb-item" aria-current="page"><a
+                                                href="{{ route('shop') }}">Cart</a></li>
+                                        <li class="breadcrumb-item active"><a
+                                                href="{{ route('checkout.index') }}">Information</a></li>
                                         <li class="breadcrumb-item" style="font-weight: 500">Shipping</li>
                                         <li class="breadcrumb-item ">Payment</li>
                                     </ol>
@@ -190,10 +192,12 @@
                                                         <span class="text-muted">Contact</span>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <span class=" text-wrap">{{ Auth::user()->email ?? $order->shipping_email }}</span>
+                                                        <span
+                                                            class=" text-wrap">{{ Auth::user()->email ?? $order->shipping_email }}</span>
                                                     </div>
                                                 </div>
-                                                <a href=""><small style="color: #bf7a49; font-weight: 500">Change</small></a>
+                                                <a href=""><small
+                                                        style="color: #bf7a49; font-weight: 500">Change</small></a>
                                             </div>
                                             <hr style="width: auto">
                                             <div class="shipping d-flex justify-content-between align-items-center">
@@ -207,7 +211,8 @@
                                                             {{ $order->shipping_country }}</span>
                                                     </div>
                                                 </div>
-                                                <a href="{{ route('checkout.index') }}"><small style="color: #bf7a49; font-weight: 500">Change</small></a>
+                                                <a href="{{ route('checkout.index') }}"><small
+                                                        style="color: #bf7a49; font-weight: 500">Change</small></a>
                                             </div>
                                         </div>
                                     </div>

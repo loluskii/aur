@@ -13,9 +13,9 @@
 
         .wrapper {
             /* padding-left: 30px;
-            padding-right: 30px;
-            margin-left: 30px;
-            margin-right: 30px; */
+                padding-right: 30px;
+                margin-left: 30px;
+                margin-right: 30px; */
         }
 
         .form-control::placeholder {
@@ -53,8 +53,8 @@
                     <div class="col-md-7 col-lg-7">
                         <div class="main">
                             <div class="header">
-                                <img src="{{ asset('images/2611.png') }}" class="img-fluid" style="height: 2em;"
-                                    alt="">
+                                <img src="{{ secure_asset('images/2611.png') }}" class="img-fluid"
+                                    style="height: 2em;" alt="">
                                 <nav aria-label="breadcrumb" class="py-4">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item active" aria-current="page"><a href="#">Cart</a></li>
@@ -188,7 +188,8 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center py-4">
                             <span>Shipping</span>
-                            <h3>${{ number_format(Cart::auth()->check() ? auth()->id() : ('guest')->getTotal(), 2) }}</h3>
+                            <h3>${{ number_format(Cart::auth()->check() ? auth()->id() : ('guest')->getTotal(), 2) }}
+                            </h3>
                         </div>
                     </div>
                 </div>

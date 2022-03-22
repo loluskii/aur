@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -450,6 +447,7 @@
             color-scheme: light dark;
             supported-color-schemes: light dark;
         }
+
     </style>
     <!--[if mso]>
     <style type="text/css">
@@ -468,7 +466,8 @@
                     <tr>
                         <td class="email-masthead">
                             <a href="" class="f-fallback email-masthead_name">
-                                <img src="{{ asset('images/2611.png') }}" style="height: 30px" alt="" srcset="">
+                                <img src="{{ secure_asset('images/2611.png') }}" style="height: 30px" alt=""
+                                    srcset="">
                             </a>
                         </td>
                     </tr>
@@ -483,7 +482,9 @@
                                         <div class="f-fallback">
                                             <h1>Hi {{ $order->user->fname }},</h1>
                                             <p>Thank you for shopping on AUR2611!</p>
-                                            <p>We're glad to inform you that your order has successfully been delivered to you. Thank you for shopping with AUR2611. We hope to see you soon but in the meantime please enjoy your products! </p>
+                                            <p>We're glad to inform you that your order has successfully been delivered
+                                                to you. Thank you for shopping with AUR2611. We hope to see you soon but
+                                                in the meantime please enjoy your products! </p>
 
                                             <!-- Discount -->
 
@@ -557,7 +558,8 @@
                                                     </td>
                                                 </tr>
                                             </table> --}}
-                                            <p>If you have any questions, please reach out to us at <a href="mailto:orders@aur2611.com">orders@aur2611.com</a> for help.
+                                            <p>If you have any questions, please reach out to us at <a
+                                                    href="mailto:orders@aur2611.com">orders@aur2611.com</a> for help.
                                             </p>
                                             <p>Cheers,
                                                 <br>The 2611 Team

@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -450,6 +447,7 @@
             color-scheme: light dark;
             supported-color-schemes: light dark;
         }
+
     </style>
     <!--[if mso]>
     <style type="text/css">
@@ -468,7 +466,8 @@
                     <tr>
                         <td class="email-masthead">
                             <a href="" class="f-fallback email-masthead_name">
-                                <img src="{{ asset('images/2611.png') }}" style="height: 30px" alt="" srcset="">
+                                <img src="{{ secure_asset('images/2611.png') }}" style="height: 30px" alt=""
+                                    srcset="">
                             </a>
                         </td>
                     </tr>
@@ -483,7 +482,8 @@
                                         <div class="f-fallback">
                                             <h1>Hi {{ $newOrder->user->fname }},</h1>
                                             <p>Thank you for shopping on AUR2611!</p>
-                                            <p>We're glad to inform you that your order has successfully been confirmed and is currently awaitng pickup. Please view the details of your
+                                            <p>We're glad to inform you that your order has successfully been confirmed
+                                                and is currently awaitng pickup. Please view the details of your
                                                 purchase below.</p>
 
                                             <!-- Discount -->
@@ -511,16 +511,18 @@
                                                                 </th>
                                                             </tr>
                                                             @foreach ($newOrder->items as $item)
-                                                            <tr>
-                                                                <td width="80%" class="purchase_item">
-                                                                    <span class="f-fallback">
-                                                                        {{ $item->pivot->quantity }}x {{ $item->name }}
-                                                                    </span>
-                                                                </td>
-                                                                <td class="align-right" width="20%"
-                                                                    class="purchase_item"><span
-                                                                        class="f-fallback">£{{ $item->pivot->price }} each</span></td>
-                                                            </tr>
+                                                                <tr>
+                                                                    <td width="80%" class="purchase_item">
+                                                                        <span class="f-fallback">
+                                                                            {{ $item->pivot->quantity }}x
+                                                                            {{ $item->name }}
+                                                                        </span>
+                                                                    </td>
+                                                                    <td class="align-right" width="20%"
+                                                                        class="purchase_item"><span
+                                                                            class="f-fallback">£{{ $item->pivot->price }}
+                                                                            each</span></td>
+                                                                </tr>
                                                             @endforeach
 
 
@@ -531,34 +533,45 @@
                                                                         Subtotal</p>
                                                                 </td>
                                                                 <td width="20%" class="purchase_footer" valign="middle">
-                                                                    <p class="f-fallback purchase_total">£{{ number_format($newOrder->subtotal,2) }}</p>
+                                                                    <p class="f-fallback purchase_total">
+                                                                        £{{ number_format($newOrder->subtotal, 2) }}
+                                                                    </p>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td width="80%" class="purchase_footer" style="border: none;" valign="middle">
+                                                                <td width="80%" class="purchase_footer"
+                                                                    style="border: none;" valign="middle">
                                                                     <p
                                                                         class="f-fallback purchase_total purchase_total--label">
                                                                         Shipping Fee</p>
                                                                 </td>
-                                                                <td width="20%" class="purchase_footer" style="border: none;" valign="middle">
-                                                                    <p class="f-fallback purchase_total">£{{ number_format($newOrder->delivery_total,2) }}</p>
+                                                                <td width="20%" class="purchase_footer"
+                                                                    style="border: none;" valign="middle">
+                                                                    <p class="f-fallback purchase_total">
+                                                                        £{{ number_format($newOrder->delivery_total, 2) }}
+                                                                    </p>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td width="80%" class="purchase_footer" style="border: none;" valign="middle">
+                                                                <td width="80%" class="purchase_footer"
+                                                                    style="border: none;" valign="middle">
                                                                     <p
                                                                         class="f-fallback purchase_total purchase_total--label">
                                                                         Total</p>
                                                                 </td>
-                                                                <td width="20%" class="purchase_footer" style="border: none;" valign="middle">
-                                                                    <p class="f-fallback purchase_total">£{{ number_format($newOrder->grand_total,2) }}</p>
+                                                                <td width="20%" class="purchase_footer"
+                                                                    style="border: none;" valign="middle">
+                                                                    <p class="f-fallback purchase_total">
+                                                                        £{{ number_format($newOrder->grand_total, 2) }}
+                                                                    </p>
                                                                 </td>
                                                             </tr>
                                                         </table>
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <p>If you have any questions about this receipt, please reach out to us at <a href="mailto:orders@aur2611.com">orders@aur2611.com</a> for help.
+                                            <p>If you have any questions about this receipt, please reach out to us at
+                                                <a href="mailto:orders@aur2611.com">orders@aur2611.com</a> for help.
                                             </p>
                                             <p>Cheers,
                                                 <br>The 2611 Team

@@ -7,14 +7,14 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-                        
+
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="pt-4 pb-2">
                                     {{-- <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5> --}}
                                     <div class="d-flex justify-content-center py-4">
                                         <a href="index.html" class="d-flex align-items-center w-auto">
-                                            <img src="{{ asset('images/2611.png') }}" alt="">
+                                            <img src="{{ secure_asset('images/2611.png') }}" alt="">
                                         </a>
                                     </div>
                                     <p class="text-center small">Enter your email & password to login</p>
@@ -24,16 +24,14 @@
                                     <div class="col-12">
                                         <label for="yourUsername" class="form-label">Email</label>
                                         <div class="input-group has-validation">
-                                            <input name="email" type="email"
-                                                class="form-control"
+                                            <input name="email" type="email" class="form-control"
                                                 value="{{ old('email') }}" required autocomplete="email" autofocus>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <label for="yourPassword" class="form-label">Password</label>
-                                        <input id="password" type="password"
-                                            class="form-control" name="password"
-                                            required autocomplete="current-password">
+                                        <input id="password" type="password" class="form-control" name="password" required
+                                            autocomplete="current-password">
                                     </div>
                                     <div class="col-12">
                                         <div class="form-check">
@@ -59,5 +57,4 @@
             </div>
         </section>
     </div>
-
 @endsection

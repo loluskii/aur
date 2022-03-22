@@ -35,7 +35,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="header-img text-center text-md-center text-lg-start">
-                    <a class="navbar-brand mx-auto" href="/"><img src="{{ asset('images/2611.png') }}"
+                    <a class="navbar-brand mx-auto" href="/"><img src="{{ secure_asset('images/2611.png') }}"
                             style="height: 30px" class="img-fluid" alt="" srcset=""></a>
                 </div>
                 <a class="nav-link d-lg-none text-decoration-none text-dark" href="">CART</a>
@@ -78,7 +78,6 @@
 
     @include('products.cart-modal')
     @include('layouts.partials.mobile-nav')
-
 @endguest
 
 @auth
@@ -105,7 +104,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="header-img text-center text-md-center text-lg-center">
-                    <a class="navbar-brand mx-auto" href="/"><img src="{{ asset('images/2611.png') }}"
+                    <a class="navbar-brand mx-auto" href="/"><img src="{{ secure_asset('images/2611.png') }}"
                             style="height: 30px" class="img-fluid" alt="" srcset=""></a>
                 </div>
                 <a class="navbar-brand d-lg-none" style="font-size: inherit" data-bs-toggle="modal"
