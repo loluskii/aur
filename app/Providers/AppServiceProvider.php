@@ -28,6 +28,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Cashier::useCustomerModel(User::class);
+        if(config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
 
     }
 }
