@@ -11,36 +11,22 @@
                 <div class="row h-100">
                     <div class="col-12">
                         <ul class="ps-0">
+
                             <li class="nav-item">
                                 <a class="nav-link py-3 text-white"
                                     style="font-weight: 800; font-size: 17px; text-transform: uppercase; text-decoration: none"
                                     href="{{ route('shop') }}">SHOP</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 text-white"
-                                    style="font-weight: 800; font-size: 17px; text-transform: uppercase; text-decoration: none"
-                                    href="#">T-SHIRTS</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 text-white"
-                                    style="font-weight: 800; font-size: 17px; text-transform: uppercase; text-decoration: none"
-                                    href="#">SWEATSHIRTS</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 text-white"
-                                    style="font-weight: 800; font-size: 17px; text-transform: uppercase; text-decoration: none"
-                                    href="#">OUTERWEAR</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 text-white"
-                                    style="font-weight: 800; font-size: 17px; text-transform: uppercase; text-decoration: none"
-                                    href="#">BOTTOMS</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link py-3 text-white"
-                                    style="font-weight: 800; font-size: 17px; text-transform: uppercase; text-decoration: none"
-                                    href="#">ACCESSORIES</a>
-                            </li>
+                            @php
+                                $categories = App\Models\Category::all();
+                            @endphp
+                            @foreach ($categories as $category)
+                                <li class="nav-item">
+                                    <a class="nav-link py-3 text-white"
+                                        style="font-weight: 800; font-size: 17px; text-transform: uppercase; text-decoration: none"
+                                        href="{{ route('product.category', $category->id) }}">{{ $category->name }}</a>
+                                </li>
+                            @endforeach
                             @if (Auth::check())
                                 <li class="nav-item">
                                     <a class="nav-link py-3 text-white"

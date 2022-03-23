@@ -55,23 +55,15 @@
             </div>
         </nav>
         <ul class="nav justify-content-center py-2 d-none d-md-flex d-lg-flex">
-            <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted" href="{{ route('product.tshirts') }}">T-SHIRTS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted"
-                    href="{{ route('product.sweatshirts') }}">SWEATSHIRTS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted" href="{{ route('product.outerwear') }}">OUTERWEAR</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted" href="{{ route('product.bottoms') }}">BOTTOMS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted"
-                    href="{{ route('product.accessories') }}">ACCESSORIES</a>
-            </li>
+            @php
+                $categories = App\Models\Category::all();
+                
+            @endphp
+            @foreach ($categories as $category)
+                <li class="nav-item">
+                    <a class="nav-link text-decoration-none text-uppercase text-muted" href="{{ route('product.category', $category->id) }}">{{ $category->name }}</a>
+                </li>
+            @endforeach
         </ul>
 
     </div>
@@ -127,23 +119,15 @@
             </div>
         </nav>
         <ul class="nav justify-content-center py-2 d-none d-md-flex d-lg-flex">
-            <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted" href="{{ route('product.tshirts') }}">T-SHIRTS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted"
-                    href="{{ route('product.sweatshirts') }}">SWEATSHIRTS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted" href="{{ route('product.outerwear') }}">OUTERWEAR</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted" href="{{ route('product.bottoms') }}">BOTTOMS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted"
-                    href="{{ route('product.accessories') }}">ACCESSORIES</a>
-            </li>
+            @php
+                $categories = App\Models\Category::all();
+                
+            @endphp
+            @foreach ($categories as $category)
+                <li class="nav-item">
+                    <a class="nav-link text-decoration-none text-uppercase text-muted" href="{{ route('product.category', $category->id) }}">{{ $category->name }}</a>
+                </li>
+            @endforeach
         </ul>
     </header>
 

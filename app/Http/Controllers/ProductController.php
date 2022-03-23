@@ -33,6 +33,11 @@ class ProductController extends Controller
         }
         
     }
+    
+    public function getCategory($id){
+        $products = Product::where('category_id','=', $id)->get();
+        return view('products.category.index',compact('products'));
+    }
 
     /**
      * Show the form for creating a new resource.
