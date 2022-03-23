@@ -8,7 +8,7 @@
                         <a class="py-3" href="{{ route('contact') }}">Contact</a>
                         <a class="py-3" href="{{ route('shipping') }}">Shipping and Returns</a>
                         
-                        <a class="py-3" href="{{ route('shipping') }}">Socials</a>
+                        <a class="py-3" href="https://www.instagram.com/2611aur/">Socials</a>
                         {{-- <a class="px-3" href="">FAQ</a> --}}
                         
                     {{-- </div> --}}
