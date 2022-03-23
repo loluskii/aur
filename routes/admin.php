@@ -23,10 +23,6 @@ use App\Http\Controllers\Admin\NewsletterController;
 |
 */
 
-if(config('app.env') === 'production') {
-    \URL::forceScheme('https');
-}
-
 Route::get('/overview/router', function () {
     return view('admin.auth.login');
 })->name('login.view');
