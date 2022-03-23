@@ -103,8 +103,7 @@
                     <div class="col-md-7 col-lg-7">
                         <div class="main">
                             <div class="header">
-                                <img src="{{ secure_asset('images/2611.png') }}" class="img-fluid"
-                                    style="height: 2em;" alt="">
+                                <a href="/"><img src="{{ secure_asset('images/2611.png') }}" class="img-fluid" style="height: 2em;" alt=""></a>
                                 <nav aria-label="breadcrumb" class="py-4">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item" aria-current="page"><a
