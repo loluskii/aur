@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>2611</title>
+    <title>2611 AUR</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,8 +22,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ secure_asset('favicon-16x16.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ secure_asset('favicon-32x32.png') }}">
     <link rel="manifest" href="/site.webmanifest">
-    <meta name="description"
-        content="Shop the best fashion products on AUR2611. From T-Shirts to Sweatshirts to Accessories. Visit 2611-aur.com now!">
+    <meta name="description" content="Shop the best fashion products on AUR2611. From T-Shirts to Sweatshirts to Accessories. Visit 2611-aur.com now!">
 
 
     <link rel="manifest" href="/site.webmanifest">

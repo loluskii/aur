@@ -63,7 +63,11 @@ class CartController extends Controller
         $cartTotalQuantity = \Cart::session($this->getSessionID())->getContent()->count();
         // $address = Address::where('user_id', auth()->id())->first();
         $order_details = session('order');
-        return view('checkout.step-1', compact('cartItems','cartTotalQuantity','order_details'));
+        if($cartItems->count() > 0){
+            return view('checkout.step-1', compact('cartItems','cartTotalQuantity','order_details'));
+        }else{
+            return redirect()->route('shop');
+        }
     }
     
     public function contactInformation(Request $request){

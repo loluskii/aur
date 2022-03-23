@@ -247,10 +247,11 @@
                                                 id="exampleInputEmail1" aria-describedby="emailHelp">
                                         </div>
                                     </div>
-                                    <div class="col-12 pt-3">
+                                    <div class="d-flex align-items-center pt-3">
                                         <button type="submit" class="btn btn-primary btn-dark"
                                             style="padding: 1.4em 1.7em;">Continue to
                                             shipping</button>
+                                        <a href="{{ route('cart.show') }}" class="ms-4">Return to Cart</a>
                                     </div>
                                 </form>
                             </div>

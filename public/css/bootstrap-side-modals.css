@@ -19,6 +19,15 @@
   height: 100%;
 }
 
+.modal.modal-right .modal-dialog{
+  position: fixed;
+  margin: auto;
+  width: 430px;
+  max-width: 100%;
+  height: 100%;
+
+}
+
 .modal.modal-left .modal-content,
 .modal.modal-right .modal-content {
   height: 100%;

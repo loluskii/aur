@@ -85,7 +85,7 @@ Route::get('/checkout/success', [PaymentController::class, 'paymentSuccess'])->n
 Route::post('/pay', [PaymentController::class, 'flutterInit'])->name('pay.flutter');
 Route::get('/rave/callback', [PaymentController::class,'flutterwaveCallback'])->name('flutter.callback');
 Route::get('/checkout/failed', [PaymentController::class, 'paymentFailure'])->name('payment.failure');
-
+Route::post('stripe-webhook',[PaymentController::class,'webhook']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/account', [HomeController::class, 'index'])->name('account');
@@ -97,6 +97,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/account/orders/{id}', [HomeController::class, 'getOrderDetails'])->name('account.order.show');
 
 });
+
+Route::get('/cart', function () {
+    return view('checkout.show-cart');
+})->name('cart.show');
 
 
 
