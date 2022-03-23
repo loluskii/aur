@@ -31,6 +31,7 @@ Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login.custom');
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
 Route::post('register', [AuthController::class, 'register'])->name('register-user');
+
 Route::post('signout', [AuthController::class, 'signOut'])->name('signout');
 Route::post('subscribe', [NewsletterController::class, 'storeSubscriber'])->name('subscribe');
 Route::get('pages/about-us', [PagesController::class,'aboutUs'])->name('about-us');
