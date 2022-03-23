@@ -6,7 +6,7 @@
     RewriteEngine On
     
     RewriteCond %{SERVER_PORT} 80
-    RewriteRule ^(.*)$ https://YOURWEBSITEDOMAIN/$1 [R,L]
+    RewriteRule ^(.*)$ https://2611-aur.com/$1 [R,L]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
