@@ -105,7 +105,7 @@
                         <dl class="item-property mb-4" style="max-width: 500px">
                             {{-- <dt>Description</dt> --}}
                             <dd>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam veritatis, id illum magni pariatur aspernatur doloribus ipsa, consectetur rerum soluta, nemo sunt inventore repellat possimus quibusdam eos recusandae? Quisquam, nobis?</p>
+                                <p>{{ $product->description }}</p>
                             </dd>
                         </dl>
                         <form class="pt-4" action="{{ route('cart.add',$product->id) }}" method="post">
