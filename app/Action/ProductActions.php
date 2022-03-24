@@ -17,8 +17,8 @@ class ProductActions
             $product->category_id = $request->category_id;
             $product->description = $request->description;
             $product->price = $request->unit_price;
-            $product->units = $request->units;
-            $product->alert_quantity = $request->alert_quantity;
+            // $product->units = $request->units;
+            // $product->alert_quantity = $request->alert_quantity;
             
             
             

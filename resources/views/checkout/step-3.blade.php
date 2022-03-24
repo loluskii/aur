@@ -35,9 +35,9 @@
 
         .wrapper {
             /* padding-left: 30px;
-                                padding-right: 30px;
-                                margin-left: 30px;
-                                margin-right: 30px; */
+                                    padding-right: 30px;
+                                    margin-left: 30px;
+                                    margin-right: 30px; */
         }
 
         .form-control::placeholder {
@@ -194,7 +194,8 @@
                     <div class="col-md-7 col-lg-7">
                         <div class="main">
                             <div class="header">
-                                <a href="/"><img src="{{ secure_asset('images/2611.png') }}" class="img-fluid" style="height: 2em;" alt=""></a>
+                                <a href="/"><img src="{{ secure_asset('images/2611.png') }}" class="img-fluid"
+                                        style="height: 2em;" alt=""></a>
                                 <nav aria-label="breadcrumb" class="py-4">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item active" aria-current="page"><a href="#">Cart</a></li>
@@ -338,39 +339,17 @@
                                             aria-labelledby="nav-home-tab">
                                             <div class="">
                                                 <div class="card-body px-0">
-                                                    <div class="d-flex justify-content-end mt-4 mb-3">
-                                                        {{-- <h4>Credit Card</h4> --}}
-                                                        <div class="d-flex align-items-center images">
-                                                            <img src="{{ secure_asset('images/payment/visa.svg') }}"
-                                                                class="img-fluid mx-1" alt="" srcset="">
-                                                            <img src="{{ secure_asset('images/payment/master.svg') }}"
-                                                                class="img-fluid mx-1" alt="" srcset="">
-                                                            <img src="{{ secure_asset('images/payment/american_express.svg') }}"
-                                                                class="img-fluid mx-1" alt="" srcset="">
-                                                            <img src="{{ secure_asset('images/payment/discover.svg') }}"
-                                                                class="img-fluid" alt="" srcset="">
-                                                            {{-- <span>and more ...</span> --}}
-                                                        </div>
-                                                    </div>
-                                                    <form action="{{ route('payment.create') }}" method="post"
+                                                    <p class="text-muted"> Note: After clicking on the button, you will
+                                                        be directed
+                                                        to a secure gateway for payment. After completing the payment
+                                                        process, you will
+                                                        be redirected back to the website to view details of your order.
+                                                    </p>
+                                                    <form action="{{ route('stripe.checkout') }}" method="post"
                                                         class="pb-5" id="payment-form">
                                                         @csrf
-                                                        <div id="card-errors" class="element-errors alert alert-danger"
-                                                            role="alert">
-                                                        </div>
-                                                        {{-- <div id="card-errors" class="element-errors">sdsdf</div> --}}
-
-                                                        <div class="form-group mb-3">
-                                                            <input type="text" class="form-control form-control-lg bg-white"
-                                                                placeholder="Cardholder Name" id="card_holder_name">
-
-                                                        </div>
-                                                        <div id="card-element"
-                                                            class="form-control form-control-lg bg-white">
-                                                        </div>
                                                         <button id="card-button"
-                                                            class="mt-4 payment-button btn btn-dark btn-lg px-3"
-                                                            type="submit" data-secret="{{ $intent->client_secret }}">
+                                                            class="payment-button btn btn-dark btn-lg px-3" type="submit">
                                                             <div class="spinner hidden my-2" id="spinner"></div>
                                                             <span id="button-text">Pay now</span>
                                                         </button>
@@ -387,27 +366,20 @@
                                             aria-labelledby="nav-profile-tab">
                                             <div class="">
                                                 <div class="card-body px-0">
-                                                    <div class="d-flex justify-content-end mt-4 mb-3">
-                                                        {{-- <h4>Credit Card</h4> --}}
-                                                        <div class="d-flex align-items-center images">
-                                                            <img src="{{ secure_asset('images/payment/visa.svg') }}"
-                                                                class="img-fluid mx-1" alt="" srcset="">
-                                                            <img src="{{ secure_asset('images/payment/master.svg') }}"
-                                                                class="img-fluid mx-1" alt="" srcset="">
-                                                            <img src="{{ secure_asset('images/payment/american_express.svg') }}"
-                                                                class="img-fluid mx-1" alt="" srcset="">
-                                                            <img src="{{ secure_asset('images/payment/discover.svg') }}"
-                                                                class="img-fluid" alt="" srcset="">
-                                                            {{-- <span>and more ...</span> --}}
-                                                        </div>
-                                                    </div>
+                                                    <p class="text-muted"> Note: After clicking on the button, you will
+                                                        be directed
+                                                        to a secure gateway for payment. After completing the payment
+                                                        process, you will
+                                                        be redirected back to the website to view details of your order.
+                                                    </p>
                                                     <form action="{{ route('pay.flutter') }}" method="post"
                                                         class="pb-5">
                                                         @csrf
                                                         <input type="hidden" name="amount"
                                                             value="{{ Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal() }}" />
                                                         <input type="hidden" name="payment_method" value="both" />
-                                                        {{-- <input type="hidden" name="email" value="{{ $order->shipping_email }}"> --}}
+                                                        <input type="hidden" name="email"
+                                                            value="{{ $order->shipping_email }}">
                                                         <input type="hidden" name="description"
                                                             value="Order for {{ $order->shipping_fname }}" />
                                                         <input type="hidden" name="country"
@@ -419,14 +391,9 @@
                                                                 name="name" id="" aria-describedby="helpId"
                                                                 placeholder="Full Name">
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control form-control-lg"
-                                                                name="email" id="" aria-describedby="helpId"
-                                                                placeholder="Email Address">
-                                                        </div>
                                                         <div class="col-12">
                                                             <button id="card-button"
-                                                                class="mt-4 payment-button btn btn-dark btn-lg px-3"
+                                                                class="payment-button btn btn-dark btn-lg px-3"
                                                                 type="submit">
                                                                 <div class="spinner hidden my-2" id="spinner"></div>
                                                                 <span id="button-text">Pay now</span>
@@ -456,110 +423,4 @@
 @endsection
 
 @section('scripts')
-    <script src="https://js.stripe.com/v3/"></script>
-
-    <script>
-        // Custom styling can be passed to options when creating an Element.
-        // (Note that this demo uses a wider set of styles than the guide below.)
-        var style = {
-            base: {
-                color: '#32325d',
-                padding: '30px',
-                fontFamily: '"Century Gothic",Arial,sans-serif',
-                fontSmoothing: 'antialiased',
-                fontSize: '16px',
-                '::placeholder': {
-                    color: '#aab7c4'
-                }
-            },
-            invalid: {
-                color: '#fa755a',
-                iconColor: '#fa755a'
-            }
-        };
-
-        const stripe = Stripe('{{ env('STRIPE_KEY') }}', {
-            locale: 'en'
-        }); // Create a Stripe client.
-        const elements = stripe.elements(); // Create an instance of Elements.
-        const cardElement = elements.create('card', {
-            style: style
-        }); // Create an instance of the card Element.
-        const cardButton = document.getElementById('card-button');
-        const clientSecret = cardButton.dataset.secret;
-        const cardHolderName = document.getElementById('card_holder_name');
-        // var displayError = document.getElementById('card-errors');
-        document.querySelector("#card-errors").classList.add("hidden");
-
-        cardElement.mount('#card-element'); // Add an instance of the card Element into the `card-element` <div>.
-
-        // Handle real-time validation errors from the card Element.
-        cardElement.addEventListener('change', function(event) {
-            var displayError = document.getElementById('card-errors');
-            if (event.error) {
-                document.querySelector("#card-errors").classList.remove("hidden");
-                displayError.textContent = event.error.message;
-                setLoading(false);
-            } else {
-                document.querySelector("#card-errors").classList.add("hidden");
-                displayError.textContent = '';
-            }
-        });
-
-        // Handle form submission.
-        var form = document.getElementById('payment-form');
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            setLoading(true);
-            stripe.handleCardSetup(clientSecret, cardElement, {
-                    payment_method_data: {
-                        billing_details: {
-                            name: cardHolderName.value
-                        }
-                    }
-                })
-                .then(function(result) {
-                    console.log(result);
-                    if (result.error) {
-                        // Inform the user if there was an error.
-                        document.querySelector("#card-errors").classList.remove("hidden");
-                        var errorElement = document.getElementById('card-errors');
-                        errorElement.textContent = result.error.message;
-                        setLoading(false);
-                    } else {
-                        console.log(result);
-                        // Send the token to your server.
-                        stripeTokenHandler(result.setupIntent.payment_method);
-                    }
-                });
-        });
-
-        // Submit the form with the token ID.
-        function stripeTokenHandler(paymentMethod) {
-            // Insert the token ID into the form so it gets submitted to the server
-            var form = document.getElementById('payment-form');
-            var hiddenInput = document.createElement('input');
-            hiddenInput.setAttribute('type', 'hidden');
-            hiddenInput.setAttribute('name', 'paymentMethod');
-            hiddenInput.setAttribute('value', paymentMethod);
-            form.appendChild(hiddenInput);
-
-            // Submit the form
-            form.submit();
-        }
-
-        function setLoading(isLoading) {
-            if (isLoading) {
-                // Disable the button and show a spinner
-                document.querySelector("#card-button").classList.add("disabled");
-                document.querySelector("#spinner").classList.remove("hidden");
-                document.querySelector("#button-text").classList.add("hidden");
-            } else {
-                document.querySelector("#card-button").classList.remove("disabled");
-                document.querySelector("#spinner").classList.add("hidden");
-                document.querySelector("#button-text").classList.remove("hidden");
-            }
-        }
-    </script>
 @endsection

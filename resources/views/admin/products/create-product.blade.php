@@ -43,7 +43,7 @@
                         <input type="text" name="unit_price" class="form-control" placeholder="Amount"
                             aria-describedby="helpId" value="">
                     </div>
-                    <div class="row g-2">
+                    {{-- <div class="row g-2">
                         <div class="col">
                             <div class="form-group mb-3">
                                 <label for="" class="form-label">Number of Units</label>
@@ -58,7 +58,7 @@
                                     aria-describedby="helpId" value="">
                             </div>        
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-check">
                         <input type="checkbox" name="is_featured" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Feature on Homepage</label>

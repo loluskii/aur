@@ -33,8 +33,6 @@ class CreateAddressTable extends Migration
             // $table->string('billing_state');
             // $table->string('billing_zipcode');
             // $table->string('billing_phone');
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
 
         });

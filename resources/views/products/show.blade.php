@@ -191,6 +191,7 @@
 
         });
     </script>
+    
 @endsection
 
 {{-- style="width: 100%; height: 360px; object-fit: contain;" --}}

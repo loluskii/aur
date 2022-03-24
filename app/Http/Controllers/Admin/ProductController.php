@@ -39,7 +39,7 @@ class ProductController extends Controller
         }catch(\Exception $e){
             return back()->with(
                 'error',
-                $e->getMessage()
+                'Please check your internet!'
             );
         }
     }

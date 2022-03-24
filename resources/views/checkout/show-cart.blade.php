@@ -13,8 +13,7 @@
                         <img src="{{ $item->associatedModel->images()->first()->image_url ?? '' }}" class="img-fluid"
                             style="height: ;" alt="" srcset="">
                         <div class="d-flex justify-content-between align-items-center">
-                            <small class="mt-3" style="line-height: 1.2">CHENILLE VARSITY JACKET L /
-                                TAN/GREEN</small>
+                            <small class="mt-3" style="line-height: 1.2">{{ $item->name }}</small>
                             <small class="mt-3"
                                 style="line-height: 1.2">${{ number_format($item->price) }}</small>
                         </div>

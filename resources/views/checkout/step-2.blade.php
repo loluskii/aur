@@ -264,7 +264,7 @@
             setLoading(true);
             setTimeout(function() {
                 $(".shipping-form").submit();
-            }, 5000);
+            }, 2000);
         });
 
         function setLoading(isLoading) {

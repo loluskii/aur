@@ -41,13 +41,6 @@ Route::group(['prefix' => 'shop'], function () {
     Route::get('category/{id}',[ProductController::class,'getCategory'])->name('product.category');
 });
 
-// Route::get('/sweatshirts',[PagesController::class,'sweatshirts'])->name('product.sweatshirts');
-// Route::get('/tshirts',[PagesController::class,'tshirts'])->name('product.tshirts');
-// Route::get('/outerwear',[PagesController::class,'outerwear'])->name('product.outerwear');
-// Route::get('/bottoms',[PagesController::class,'bottoms'])->name('product.bottoms');
-// Route::get('/accessories',[PagesController::class,'accessories'])->name('product.accessories');
-
-
 Route::post('add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::get('/cart/destroy/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
@@ -56,12 +49,16 @@ Route::post('/checkout/step=contact_information', [CartController::class,'contac
 Route::get('/checkout/previous_step=contact_information&step=shipping', [CartController::class,'shipping'])->name('checkout.step_two.index');
 Route::post('/checkout/previous_step=contact_information&step=shipping', [CartController::class,'postShipping'])->name('checkout.step_two');
 Route::get('/checkout/previous_step=shipping&step=payment', [CartController::class,'showPayment'])->name('checkout.step_three.index');
-Route::post('/checkout/step=payment', [PaymentController::class,'stripeHandlePayment'])->name('payment.create');
-Route::get('/checkout/success', [PaymentController::class, 'paymentSuccess'])->name('payment.succeess');
+//Stripe checkout
+Route::post('/stripe-checkout',[PaymentController::class, 'stripeInit'])->name('stripe.checkout');
+Route::post('stripe-webhook',[PaymentController::class,'webhook']);
+//Flutterwave Checkout
 Route::post('/pay', [PaymentController::class, 'flutterInit'])->name('pay.flutter');
 Route::get('/rave/callback', [PaymentController::class,'flutterwaveCallback'])->name('flutter.callback');
+
+Route::post('/checkout/step=payment', [PaymentController::class,'stripeHandlePayment'])->name('payment.create');
+Route::get('/checkout/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
 Route::get('/checkout/failed', [PaymentController::class, 'paymentFailure'])->name('payment.failure');
-Route::post('stripe-webhook',[PaymentController::class,'webhook']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/account', [HomeController::class, 'index'])->name('account');

@@ -27,7 +27,7 @@ class CartController extends Controller
             'price' => $product->price,
             'quantity' => 1,
             'attributes' => array(
-                'size' => $request->size,
+                'size' => $request->size, 
             ),
             'associatedModel' => $product
         ));
@@ -119,11 +119,11 @@ class CartController extends Controller
             $order = $request->session()->get('order');
             $cartItems = \Cart::session($this->getSessionID())->getContent();
             $condition = \Cart::getCondition('Standard Shipping');
-            $intent = $this->getSessionID() == 'guest' ? (new User())->createSetupIntent() : $request->user()->createSetupIntent();
+            // $intent = $this->getSessionID() == 'guest' ? (new User())->createSetupIntent() : $request->user()->createSetupIntent();
             $condition_name = $condition->getName(); // the name of the condition
             $condition_value = $condition->getValue(); // the value of the condition
             
-            return view('checkout.step-3', compact('order','cartItems','condition_name','condition_value','intent'));
+            return view('checkout.step-3', compact('order','cartItems','condition_name','condition_value'));
         } catch (\Exception $th) {
             return back()->with('error',$th->getMessage());
         }

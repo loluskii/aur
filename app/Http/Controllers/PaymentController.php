@@ -35,7 +35,7 @@ class PaymentController extends Controller
             $reference = Flutterwave::generateReference();
             $data = [
                 'payment_options' => 'card,banktransfer',
-                'amount' => $request->amount,
+                'amount' => 500,
                 'email' => Auth::user()->email ?? $request->email,
                 'tx_ref' => $reference,
                 'currency' => "USD",
@@ -61,7 +61,7 @@ class PaymentController extends Controller
     
             return redirect($payment['data']['link']);
         } catch (\Exception $th) {
-            return back()->with('error', $th->getMessage());
+            return back()->with('error', 'Please check your internet connection and try again!');
         }
     }
     
@@ -72,9 +72,11 @@ class PaymentController extends Controller
         if($status != "cancelled"){
             $transactionID = Flutterwave::getTransactionIDFromCallback();
         }
+        // dd($order);
         $amount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal();
         $subamount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getSubTotal();
         $method = 'flutterwave';
+        $user_id = auth()->check() ? auth()->id() : rand(0000,9999);
 
         //if payment is successful
         if($status == "cancelled"){
@@ -83,7 +85,7 @@ class PaymentController extends Controller
         elseif ($status ==  'successful') {
             $data = Flutterwave::verifyTransaction($transactionID);
             // dd($data);
-            $res = (new OrderActions())->store($order, $amount, $subamount, $method);
+            $res = (new OrderActions())->store($order, $amount, $subamount, $method, $user_id);
             $newOrder = OrderQueries::findByRef($res);
         
             DB::beginTransaction();
@@ -91,7 +93,7 @@ class PaymentController extends Controller
                 throw new Exception('Duplicate transaction');
             }else{
                 $payment = new PaymentRecord();
-                $payment->user_id = auth()->id();
+                $payment->user_id = $newOrder->user_id;
                 $payment->order_id = $newOrder->id;
                 $payment->amount = $amount;
                 $payment->description = 'Payment for Order '.$newOrder->order_number;
@@ -107,7 +109,7 @@ class PaymentController extends Controller
                 
                 NotifyAdminOrder::dispatch($newOrder, $admin);
                 
-                return redirect()->route('payment.succeess');
+                return redirect()->route('payment.success');
             }
         }
         else{
@@ -125,12 +127,90 @@ class PaymentController extends Controller
         
     }
     
+    //Redirect to stripe checkout
+    public function stripeInit(Request $request){
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        $subamount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getSubTotal();
+        $amount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal();
+        $order = $request->session()->get('order');
+        $method = 'stripe';
+        $checkout_session = \Stripe\Checkout\Session::create([
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => 'Order from 2611 AUR',
+                    ],
+                    'unit_amount' => $amount * 100,
+                ],
+                'quantity' => 1,
+            ]],
+            'payment_intent_data' => [
+                'metadata' => [
+                    'order' => $order,
+                    'subamount' => $subamount,
+                    'user_id' => auth()->id() ?? rand(0000,9999),
+                    'order_items' => \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent(),
+                    'method' => 'stripe',
+                ],
+            ],
+            'mode' => 'payment',
+            'success_url' => route('payment.success'),
+            'cancel_url' => route('payment.failure'),
+        ]);
+        return redirect()->away($checkout_session->url);
+    }
+    
+        //Handle Stripe Webhook
+        public function webhook(Request $request)
+        {
+            try {
+                $data = $request->all();
+                $metadata = $data['data']['object']['metadata'];
+                $user_id = $metadata['user_id'];
+                switch ($data['type']) {
+                    case 'charge.succeeded':
+                        $subamount = $metadata['subamount'];
+                        $amount = $data['data']['object']['amount'] / 100;
+                        $payment_id = $data['data']['object']['id'];
+                        $order_items = $metadata['order_items'];
+                        $res = (new StoreOrder())->run(json_decode($metadata['order']), $amount, $subamount, $user_id, $method, json_decode($metadata['order_items'], true) );
+                        $newOrder = (new OrderQueries())->findByRef($res);
+                        if ($newOrder) {
+                            DB::beginTransaction();
+                                if(PaymentRecord::where('payment_id', $payment_id)->first()){
+                                    throw new Exception('Payment Already made!');
+                                }
+                                $payment = new PaymentRecord();
+                                $payment->user_id = auth()->id();
+                                $payment->order_id = $newOrder->id;
+                                $payment->amount = $amount;
+                                $payment->description = 'Payment for Order '.$newOrder->order_number;
+                                $payment->payment_ref = $payment_id;
+                                $payment->save();
+                            DB::commit();
+                            $admin = User::where('is_admin', 1)->get();
+                            \Cart::session(auth()->check() ? auth()->id() : 'guest')->clear();
+                            $request->session()->forget('order');
+                            
+                            NotifyAdminOrder::dispatch($newOrder, $admin);
+                        }
+                        break;
+                    default:
+                        return 'webhook event not found';
+                }
+            } catch (Exception $e) {
+                return $e;
+            }
+        }
+    
+    
     public function stripeHandlePayment(Request $request){
         $user = $request->user() ?? new User();
-        $order = $request->session()->get('order');     
-        $email = $user->email ?? $order->shipping_email;
-        $paymentMethod = $request->paymentMethod;
-        $amount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal();
+        // $order = $request->session()->get('order');     
+        // $email = $user->email ?? $order->shipping_email;
+        // $paymentMethod = $request->paymentMethod;
+        // $amount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal();
         
         $method = 'stripe';
         try {

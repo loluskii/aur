@@ -21,8 +21,6 @@ class CreatePaymentRecordsTable extends Migration
             $table->longText('description');
             $table->string('payment_ref');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
             $table->timestamps();
         });
     }

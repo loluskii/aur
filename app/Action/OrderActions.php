@@ -12,7 +12,7 @@ use DB;
 
 class OrderActions{
 
-    public function store($order, $amount, $subamount, $method){
+    public function store($order, $amount, $subamount, $method, $user_id = null, $orderItems = null){
         // DB::beginTransaction();
             $newOrder = new Order();
             $ref = Str::random(20);
@@ -24,13 +24,13 @@ class OrderActions{
             $newOrder->shipping_state = $order->shipping_state;
             $newOrder->shipping_phone = $order->shipping_phone;
             $newOrder->shipping_zipcode = $order->shipping_zipcode;
-            $newOrder->shipping_landmark = $order->shipping_landmark;
+            $newOrder->shipping_landmark = $order->shipping_landmark ?? 'none';
             $newOrder->shipping_country = $order->shipping_country;
             $newOrder->shipping_email = $order->shipping_email;
             $newOrder->subtotal = $subamount;
             $newOrder->grand_total = $amount;
-            $newOrder->item_count = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent()->count();
-            $newOrder->user_id = auth()->id();
+            $newOrder->item_count = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent()->count() ?? count($orderItems);
+            $newOrder->user_id = auth()->id() ?? $user_id;
             // $newOrder->plan = $order->plan;
             $newOrder->payment_method = $method;
             // $newOrder->delivery_total = $delivery_fee;
@@ -39,10 +39,19 @@ class OrderActions{
             $newOrder->order_reference = $ref;
     
             $newOrder->save();
-            $cartItems =  \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent();
-            foreach($cartItems as $item){
-                $newOrder->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
+            
+            if($method === "stripe"){
+                $cartItems = auth()->check() ? \Cart::session(auth()->id())->getContent() : $orderItems;
+                foreach($cartItems as $item){
+                    $newOrder->items()->attach($item['id'], ['price'=> $item['price'], 'quantity'=> $item['quantity'], 'size'=>$item['attributes']['size']]);
+                }
+            }else{
+                $cartItems =  \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent();
+                foreach($cartItems as $item){
+                    $newOrder->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity, 'size'=>$item->attributes->size]);
+                }
             }
+            
             return $ref;
         // DB::commit();
     }
