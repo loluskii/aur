@@ -33,8 +33,8 @@
 
         .cat label {
             float: left;
-            width: 32px;
-            height: 32px;
+            width: 33px;
+            height: 33px;
         }
 
         .cat label span {
