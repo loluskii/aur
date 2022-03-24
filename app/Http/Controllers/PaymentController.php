@@ -156,7 +156,6 @@ class PaymentController extends Controller
                     'subamount' => $subamount,
                     'user_id' => auth()->id() ?? rand(0000,9999),
                     'order_items' => json_encode($x),
-                    'method' => 'stripe',
                 ],
             ],
             'mode' => 'payment',
@@ -171,6 +170,7 @@ class PaymentController extends Controller
         {
             try {
                 $data = $request->all();
+                $method = "stripe";
                 $metadata = $data['data']['object']['metadata'];
                 $user_id = $metadata['user_id'];
                 switch ($data['type']) {
