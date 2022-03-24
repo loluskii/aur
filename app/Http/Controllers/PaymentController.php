@@ -200,6 +200,7 @@ class PaymentController extends Controller
                             
                             NotifyAdminOrder::dispatch($newOrder, $admin);
                         }
+                        return 'webhook captured!';
                         break;
                     default:
                         return 'webhook event not found';
