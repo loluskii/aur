@@ -129,6 +129,12 @@ class PaymentController extends Controller
     
     //Redirect to stripe checkout
     public function stripeInit(Request $request){
+        $cart = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent();
+        $x = [];
+        foreach($cart as $key => $value){
+            $x[] = array($value['id'],$value['price'], $value['quantity'],$value['attributes']['size']);
+        }
+
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $subamount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getSubTotal();
         $amount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal();
@@ -150,7 +156,7 @@ class PaymentController extends Controller
                     'order' => $order,
                     'subamount' => $subamount,
                     'user_id' => auth()->id() ?? rand(0000,9999),
-                    'order_items' => \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent(),
+                    'order_items' => $x,
                     'method' => 'stripe',
                 ],
             ],

@@ -29,6 +29,7 @@ class CartController extends Controller
             'attributes' => array(
                 'size' => $request->size, 
             ),
+            'associatedModel' => $product
         ));
         return redirect()->route('product.show',['tag' => $product->tag_number]);
     }

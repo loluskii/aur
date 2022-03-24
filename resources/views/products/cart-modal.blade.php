@@ -16,7 +16,7 @@
                             <img src="{{ $item->associatedModel->images()->first()->image_url ?? '' }}"
                                 class="img-fluid" style="height: 130px;" alt="" srcset="">
                             <div class="ms-3 d-flex flex-column">
-                                <small class="mb-auto" style="line-height: 1.2">CHENILLE VARSITY JACKET L / TAN/GREEN</small>
+                                <small class="mb-auto" style="line-height: 1.2">{{ $item->name }}</small>
                                 <small class="bg-light mb-2"><a class="ps-1" style="font-size: 13px" href="{{ route('cart.destroy', $item->id) }}">DELETE</a></small>
                                 <div class="d-flex justify-content-between">
                                     <form action="{{ route('cart.update', $item->id) }}" method="POST">

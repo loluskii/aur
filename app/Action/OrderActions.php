@@ -43,7 +43,7 @@ class OrderActions{
             if($method === "stripe"){
                 $cartItems = auth()->check() ? \Cart::session(auth()->id())->getContent() : $orderItems;
                 foreach($cartItems as $item){
-                    $newOrder->items()->attach($item['id'], ['price'=> $item['price'], 'quantity'=> $item['quantity'], 'size'=>$item['attributes']['size']]);
+                    $newOrder->items()->attach($item[0], ['price'=> $item[1], 'quantity'=> $item[2], 'size'=>$item[3]]);
                 }
             }else{
                 $cartItems =  \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent();
