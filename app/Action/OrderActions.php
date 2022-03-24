@@ -29,7 +29,11 @@ class OrderActions{
             $newOrder->shipping_email = $order->shipping_email;
             $newOrder->subtotal = $subamount;
             $newOrder->grand_total = $amount;
-            $newOrder->item_count = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent()->count() ?? count($orderItems);
+            if($method === "stripe"){
+                $newOrder->item_count = count($orderItems);
+            }else{
+                $newOrder->item_count = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent()->count();
+            }
             $newOrder->user_id = auth()->id() ?? $user_id;
             // $newOrder->plan = $order->plan;
             $newOrder->payment_method = $method;

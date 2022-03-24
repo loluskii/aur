@@ -183,7 +183,7 @@ class PaymentController extends Controller
                         $newOrder = (new OrderQueries())->findByRef($res);
                         if ($newOrder) {
                             DB::beginTransaction();
-                                if(PaymentRecord::where('payment_id', $payment_id)->first()){
+                                if(PaymentRecord::where('payment_ref', $payment_id)->first()){
                                     throw new Exception('Payment Already made!');
                                 }
                                 $payment = new PaymentRecord();
