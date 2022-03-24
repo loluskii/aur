@@ -12,7 +12,7 @@ use DB;
 
 class OrderActions{
 
-    public function store($order, $amount, $subamount, $method, $user_id = null, $orderItems = null){
+    public function store($order, $amount, $subamount, $user_id = null, $method, $orderItems = null){
         // DB::beginTransaction();
             $newOrder = new Order();
             $ref = Str::random(20);
@@ -41,7 +41,7 @@ class OrderActions{
             $newOrder->save();
             
             if($method === "stripe"){
-                $cartItems = auth()->check() ? \Cart::session(auth()->id())->getContent() : $orderItems;
+                $cartItems = $orderItems;
                 foreach($cartItems as $item){
                     $newOrder->items()->attach($item[0], ['price'=> $item[1], 'quantity'=> $item[2], 'size'=>$item[3]]);
                 }

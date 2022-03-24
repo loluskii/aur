@@ -48,7 +48,7 @@ class PagesController extends Controller
             $x[] = array($value['id'],$value['price'], $value['quantity'],$value['attributes']['size']);
         }
         
-        dd(jsonSerialize()($x));
+        dd(json_encode([[2,83,1,"M"]]));
         // $array = array(12, 10, 0, 18, 27, 0, 46);
         // print_r(array_filter($array));
         
