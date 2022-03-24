@@ -187,7 +187,7 @@ class PaymentController extends Controller
                                     throw new Exception('Payment Already made!');
                                 }
                                 $payment = new PaymentRecord();
-                                $payment->user_id = auth()->id();
+                                $payment->user_id = auth()->id() ?? $newOrder->user_id;
                                 $payment->order_id = $newOrder->id;
                                 $payment->amount = $amount;
                                 $payment->description = 'Payment for Order '.$newOrder->order_number;
