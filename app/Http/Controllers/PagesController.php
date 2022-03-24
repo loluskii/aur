@@ -42,13 +42,13 @@ class PagesController extends Controller
     }
     
     public function aboutUs(){
-        // $cart = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent();
-        // $x = [];
-        // foreach($cart as $key => $value){
-        //     $x[] = array($value['id'],$value['price'], $value['quantity'],$value['attributes']['size']);
-        // }
+        $cart = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent();
+        $x = [];
+        foreach($cart as $key => $value){
+            $x[] = array($value['id'],$value['price'], $value['quantity'],$value['attributes']['size']);
+        }
         
-        // dd($x);
+        dd(jsonSerialize()($x));
         // $array = array(12, 10, 0, 18, 27, 0, 46);
         // print_r(array_filter($array));
         

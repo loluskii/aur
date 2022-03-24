@@ -134,7 +134,6 @@ class PaymentController extends Controller
         foreach($cart as $key => $value){
             $x[] = array($value['id'],$value['price'], $value['quantity'],$value['attributes']['size']);
         }
-
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $subamount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getSubTotal();
         $amount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal();
@@ -156,7 +155,7 @@ class PaymentController extends Controller
                     'order' => $order,
                     'subamount' => $subamount,
                     'user_id' => auth()->id() ?? rand(0000,9999),
-                    'order_items' => $x,
+                    'order_items' => json_encode($x),
                     'method' => 'stripe',
                 ],
             ],
