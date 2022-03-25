@@ -18,11 +18,11 @@ class UserQueries{
         
         $data = [
             'x' => [
+                Carbon::now()->format('Y-m'),
                 Carbon::now()->subWeeks(4)->format('Y-m-d'),
                 Carbon::now()->subWeeks(3)->format('Y-m-d'),
                 Carbon::now()->subWeeks(2)->format('Y-m-d'),
                 Carbon::now()->subWeeks()->format('Y-m-d'),
-                Carbon::now()->format('Y-m')
             ],
             'y' => [
                 $anothermonth3->sum('grand_total'),
@@ -45,11 +45,11 @@ class UserQueries{
         
         $data = [
             'x' => [
+                Carbon::now()->format('Y-m'),
                 Carbon::now()->subWeeks(4)->format('Y-m-d'),
                 Carbon::now()->subWeeks(3)->format('Y-m-d'),
                 Carbon::now()->subWeeks(2)->format('Y-m-d'),
-                Carbon::now()->subWeek()->format('Y-m-d'),
-                Carbon::now()->format('Y-m-d')
+                Carbon::now()->subWeeks()->format('Y-m-d'),
             ],
             'y' => [
                 $currentTime5->count(),

@@ -59,8 +59,13 @@ class ProductActions
             $product->description = $request->description ?? $product->description;
             $product->price = $request->unit_price ?? $product->price;
             $product->units = $request->units ?? $product->units;
+            // if($request->has('is_featured')){
+            //     $product->is_featured = true;
+            // }else{
+            //     $product->is_featured = false;
+            // }
             if($request->has('image')){
-                $path = $request->file('image')->storeOnCloudinary('products');
+                $path = $request->file('image')->storeOnCloudinary($product->tag_number);
                 $imageUrl =  $path->getSecurePath();
                 $product->image = $imageUrl;
             }else{
