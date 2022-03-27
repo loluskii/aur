@@ -515,10 +515,7 @@
                                                                             {{ $item->name }}
                                                                         </span>
                                                                     </td>
-                                                                    <td class="align-right" width="20%"
-                                                                        class="purchase_item"><span
-                                                                            class="f-fallback">${{                                                                             class="f-fallback">$$item->pivot->price }}
-                                                                            each</span></td>
+                                                                    <td class="align-right" width="20%" class="purchase_item"><span class="f-fallback">${{$item->pivot->price }} each</span></td>
                                                                 </tr>
                                                             @endforeach
 
@@ -531,7 +528,7 @@
                                                                 </td>
                                                                 <td width="20%" class="purchase_footer" valign="middle">
                                                                     <p class="f-fallback purchase_total">
-                                                                        ${{                                                                         $number_format($newOrder->subtotal, 2) }}
+                                                                        ${{number_format($newOrder->subtotal, 2) }}
                                                                     </p>
                                                                 </td>
                                                             </tr>
@@ -558,7 +555,7 @@
                                                                 <td width="20%" class="purchase_footer"
                                                                     style="border: none;" valign="middle">
                                                                     <p class="f-fallback purchase_total">
-                                                                        ${{                                                                         $number_format($newOrder->grand_total, 2) }}
+                                                                        ${{number_format($newOrder->grand_total, 2) }}                                     
                                                                     </p>
                                                                 </td>
                                                             </tr>
