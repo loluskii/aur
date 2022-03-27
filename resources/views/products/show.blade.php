@@ -112,7 +112,7 @@
                                 <p>{{ $product->description }}</p>
                             </dd>
                         </dl>
-                        <form class="pt-4" action="{{ route('cart.add',$product->id) }}" method="post">
+                        <form class="pt-2 pt-md-4 pt-lg-4 pt-xl-4" action="{{ route('cart.add',$product->id) }}" method="post">
                             @csrf
                             <div class="d-flex justify-content-md-start justify-content-lg-start justify-content-xl-start justify-content-center mb-3">
                                 <div class="cat action">
