@@ -106,7 +106,7 @@
                                 </span>
                             </p>
                         </header>
-                        <dl class="item-property mb-4" style="max-width: 500px">
+                        <dl class="item-property mb-4 text-center text-lg-start text-md-start text-xl-start" style="max-width: 500px">
                             {{-- <dt>Description</dt> --}}
                             <dd>
                                 <p>{{ $product->description }}</p>
