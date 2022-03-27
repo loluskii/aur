@@ -97,7 +97,7 @@
                 <aside class="col-md-5">
                     <article class="card-body p-lg-5 p-md-5 p-sm-2 py-0">
                         <header class="pt-4 mb-4 d-flex flex-lg-column flex-md-column flex-column align-items-lg-start align-items-center align-items-md-start">
-                            <h4 class="text-uppercase me-auto fw-bold">{{ $product->name }}</h4>
+                            <h4 class="text-uppercase me-md-auto me-lg-auto me-xl-auto fw-bold">{{ $product->name }}</h4>
 
                             <p class="price-detail-wrap">
                                 <span class="price h6" style="font-weight: 500">
