@@ -108,6 +108,8 @@ class PaymentController extends Controller
                 request()->session()->forget('order');
                 
                 NotifyAdminOrder::dispatch($newOrder, $admin);
+                SendOrderInvoice::dispatch($newOrder, $user)->delay(now()->addMinutes(3));                
+
                 
                 return redirect()->route('payment.success');
             }
@@ -162,6 +164,8 @@ class PaymentController extends Controller
             'success_url' => route('payment.success'),
             'cancel_url' => route('payment.failure'),
         ]);
+        \Cart::session(auth()->check() ? auth()->id() : 'guest')->clear();
+        $request->session()->forget('order');
         return redirect()->away($checkout_session->url);
     }
     
@@ -194,12 +198,11 @@ class PaymentController extends Controller
                                 $payment->payment_ref = $payment_id;
                                 $payment->save();
                             DB::commit();
-                            $admin = User::where('is_admin', 1)->get();
-                            \Cart::session(auth()->check() ? auth()->id() : 'guest')->clear();
-                            $request->session()->forget('order');
-                            
-                            NotifyAdminOrder::dispatch($newOrder, $admin);
                         }
+                        $user = $newOrder->shipping_email;
+                        $admin = User::where('is_admin', 1)->get();
+                        NotifyAdminOrder::dispatch($newOrder, $admin);
+                        SendOrderInvoice::dispatch($newOrder, $user)->delay(now()->addMinutes(3));                
                         return 'webhook captured!';
                         break;
                     default:

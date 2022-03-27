@@ -162,6 +162,7 @@
                                 <form action="{{ route('checkout.step_one') }}" method="post" class="pb-5">
                                     @csrf
                                     @if (Auth::check())
+                                        <input type="hidden" name="shipping_email" value="{{ Auth::user()->email }}">
                                         <div class="card-body mb-3 ps-0">
                                             <h6>{{ Auth::user()->fname }} {{ Auth::user()->lname }}
                                                 ({{ Auth::user()->email }})
@@ -441,13 +442,13 @@
                                                 <!-- <small class="text-muted">First Name</small> -->
                                                 <input type="text" style="padding: 12px 10px" name="shipping_fname"
                                                     class="form-control " required placeholder="First name"
-                                                    value="{{ $order->shipping_fname ?? '' }}" aria-label="First name">
+                                                    value="{{ auth()->check() ? auth()->user()->fname : '' }}" aria-label="First name">
                                             </div>
                                             <div class="col">
                                                 <!-- <small class="text-muted">Last Name</small> -->
                                                 <input type="text" style="padding: 12px 10px" name="shipping_lname"
                                                     class="form-control " required placeholder="Last name"
-                                                    value="{{ $order->shipping_lname ?? '' }}" aria-label="Last name">
+                                                    value="{{ auth()->check() ? auth()->user()->lname : '' }}" aria-label="Last name">
                                             </div>
                                         </div>
                                         <div class="mb-3">

@@ -88,7 +88,7 @@ class OrderController extends Controller
             
             if($request->status == 2){
                 $newOrder = Order::findOrFail($id);
-                $user = $newOrder->user->email;
+                $user = $newOrder->shipping_email;
                 $res = OrderActions::update($request, $id);
                 if($res){
                     SendOrderInvoice::dispatch($newOrder, $user)->delay(now()->addSecond());
@@ -97,7 +97,7 @@ class OrderController extends Controller
                 }
             }else if($request->status == 4){
                 $order = Order::findOrFail($id);
-                $user = $order->user->email;
+                $user = $order->shipping_email;
                 $res = OrderActions::update($request, $id);
                 if($res){
                     UserOrderShipped::dispatch($order, $user)->delay(now()->addSecond());
@@ -107,7 +107,7 @@ class OrderController extends Controller
                 
             }else if($request->status == 5){
                 $order = Order::findOrFail($id);
-                $user = $order->user->email;
+                $user = $order->shipping_email;
                 $res = OrderActions::update($request, $id);
                 if($res){
                     try {

@@ -480,7 +480,7 @@
                                 <tr>
                                     <td class="content-cell">
                                         <div class="f-fallback">
-                                            <h1>Hi {{ $order->user->fname }},</h1>
+                                            <h1>Hi {{ $order->shipping_fname }},</h1>
                                             <p>Thank you for shopping on AUR2611!</p>
                                             <p>We're glad to inform you that your order has successfully been delivered
                                                 to you. Thank you for shopping with AUR2611. We hope to see you soon but
