@@ -12,7 +12,7 @@
 
 </style>
 @guest
-    <div class="header mb-5">
+    <div class="header mb-3 mb-md-2 mb-lg-2">
         <nav class="navbar navbar-expand-lg navbar-light bg- py-4">
             <div class="container-fluid px-md-5 px-lg-5 px-0">
                 <div class="collapse navbar-collapse" id="">
@@ -73,7 +73,7 @@
 
 @auth
 
-    <header class="mb-5">
+    <header class="mb-3 mb-md-2 mb-lg-2">
         <nav class="navbar navbar-expand-lg navbar-light bg- py-4">
             <div class="container-fluid px-lg-5 px-md-5 px-sm-0 px-xs-0">
                 <div class="collapse navbar-collapse" id="">

@@ -33,13 +33,13 @@
 
         .cat label {
             float: left;
-            width: 33px;
-            height: 33px;
+            width: 34px;
+            height: 34px;
         }
 
         .cat label span {
             text-align: center;
-            padding: 3px 0;
+            padding: 5px 0;
             display: block;
         }
 
@@ -59,6 +59,12 @@
         .action input:checked+span {
             background-color: #000;
         }
+        @media(min-width: 992px){
+            #product-image{
+                height: 650px;
+            }
+            
+        }
 
     </style>
 @endsection
@@ -69,13 +75,12 @@
     <div class="container mb-5" style="min-height: 70vh">
         <div class="border-0 mb-5">
             <div class="row">
-                <aside class="col-md-7 text-center border-end pb-5">
+                <aside class="col-md-7 text-center border-end pb-3 pb-md-3 pb-lg-3 pb-xl-3">
                     <div class="row">
                         <div class="col-lg-1 col-md-1 col-sm-12 order-lg-first order-md-first order-last">
-                            <div
-                                class="img-small-wrap d-flex justify-content-center flex-lg-column flex-md-column flex-sm-row order-lg-1">
+                            <div class="img-small-wrap d-flex justify-content-center align-items-center flex-lg-column flex-md-column flex-sm-row order-lg-1">
                                 @foreach ($product->images->take(4) as $image)
-                                    <div class="item-gallery">
+                                    <div class="item-gallery d-flex align-items-center ">
                                         <a href="#" class="thumbnail" data-big="{{ $image->image_url ?? '' }}">
                                             <img src="{{ $image->image_url ?? '' }}">
                                         </a>
@@ -84,16 +89,15 @@
                             </div>
                         </div>
                         <div class="col-lg-11 col-md-11 col-sm-12 order-lg-last order-md-last order-first">
-                            <img src="{{ $product->images()->first()->image_url ?? '' }}" style="height: 650px"
+                            <img src="{{ $product->images()->first()->image_url ?? '' }}" id="product-image" style=""
                                 class="primary img-fluid">
                         </div>
                     </div>
                 </aside>
                 <aside class="col-md-5">
-                    <article class="card-body p-lg-5 p-md-5 p-sm-2">
-                        <header
-                            class="pt-4 mb-4 d-flex flex-lg-column flex-md-column flex-sm-row justify-contentr-between align-items-lg-start align-items-md-start">
-                            <h4 class="text-uppercase font-weigh mb-1 me-auto fw-bold">{{ $product->name }}</h4>
+                    <article class="card-body p-lg-5 p-md-5 p-sm-2 py-0">
+                        <header class="pt-4 mb-4 d-flex flex-lg-column flex-md-column flex-column align-items-lg-start align-items-md-start">
+                            <h4 class="text-uppercase me-auto fw-bold">{{ $product->name }}</h4>
 
                             <p class="price-detail-wrap">
                                 <span class="price h6" style="font-weight: 500">
