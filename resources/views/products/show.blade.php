@@ -114,7 +114,7 @@
                         </dl>
                         <form class="pt-4" action="{{ route('cart.add',$product->id) }}" method="post">
                             @csrf
-                            <div class="d-flex justify-content-start mb-3">
+                            <div class="d-flex justify-content-md-start justify-content-lg-start justify-content-xl-start justify-content-center mb-3">
                                 <div class="cat action">
                                     <label>
                                         <input type="radio" name="size" value="XS"><span>XS</span>
