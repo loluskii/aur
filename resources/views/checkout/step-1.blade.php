@@ -99,7 +99,7 @@
                                                     aria-controls="flush-collapseOne">
                                                     <i class="bi bi-cart4 me-2" style="font-size: 25px"></i> Show Order
                                                     Summary
-                                                    $4055
+                                                    ${{ number_format(\Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal(), 2) }}
                                                 </button>
                                             </h2>
                                             <div id="flush-collapseOne" class="accordion-collapse collapse"
@@ -109,13 +109,13 @@
                                                         <table class="table table-borderless">
                                                             <tbody>
                                                                 @foreach ($cartItems as $item)
-                                                                    <tr class="d-flex align-items-center">
-                                                                        <td scope="row" style="width: 20%;">
+                                                                    <tr class="d-flex justify-content-between align-items-center">
+                                                                        {{-- <td scope="row" style="width: 20%;">
                                                                             <img class="img-fluid img-thumbnail"
                                                                                 style="height: 60px;"
                                                                                 src="{{ $item->associatedModel->image }}"
                                                                                 alt="">
-                                                                        </td>
+                                                                        </td> --}}
                                                                         <td style="width: 60%;">
                                                                             <span
                                                                                 class="product__description__variant order-summary__small-text text-uppercase"

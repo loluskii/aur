@@ -216,7 +216,7 @@
                                                     aria-controls="flush-collapseOne">
                                                     <i class="bi bi-cart4 me-2" style="font-size: 25px"></i> Show Order
                                                     Summary
-                                                    $4055
+                                                    ${{ number_format(\Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal(), 2) }}
                                                 </button>
                                             </h2>
                                             <div id="flush-collapseOne" class="accordion-collapse collapse"

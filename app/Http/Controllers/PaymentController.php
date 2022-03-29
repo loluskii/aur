@@ -189,7 +189,7 @@ class PaymentController extends Controller
                             DB::beginTransaction();
                                 if(PaymentRecord::where('payment_ref', $payment_id)->first()){
                                     throw new Exception('Payment Already made!');
-                                }
+                                } 
                                 $payment = new PaymentRecord();
                                 $payment->user_id = auth()->id() ?? $newOrder->user_id;
                                 $payment->order_id = $newOrder->id;
