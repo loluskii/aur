@@ -26,11 +26,11 @@
                         </li>
                     </ul>
                 </div> --}}
-                <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="modal"
+                {{-- <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="modal"
                     data-bs-target="#mobileSideNav" aria-controls="collapsibleNavId" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> --}}
                 {{-- <a class="navbar-brand mx-auto" href="/"><img src="{{ secure_asset('images/2611.png') }}"
                     style="height: 40px" class="img-fluid" alt="" srcset=""></a> --}}
                 {{-- <div class="d-flex justify-content-center">
@@ -66,8 +66,8 @@
 
     </div>
 
-    @include('products.cart-modal')
-    @include('layouts.partials.mobile-nav')
+    {{-- @include('products.cart-modal') --}}
+    {{-- @include('layouts.partials.mobile-nav') --}}
 @endguest
 
 @auth
@@ -134,6 +134,6 @@
     <!-- Button trigger modal -->
 
     <!-- Modal -->
-    @include('products.cart-modal')
-    @include('layouts.partials.mobile-nav')
+    {{-- @include('products.cart-modal') --}}
+    {{-- @include('layouts.partials.mobile-nav') --}}
 @endauth
