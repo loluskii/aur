@@ -1,140 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+@section('styles')
+    <link rel="stylesheet" href="{{ secure_asset('video/css/video.css') }}">
+    <style>
+        .subscribe {
+            background-image: url("{{ secure_asset('images/backgorund-2.jpg') }}");
+            background-position: center;
+            background-size: cover;
 
-    <title>2611 AUR</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+        }
 
-    {{-- <link href="asset/img/favicon.png" rel="icon"> --}}
-    {{-- <link href="asset/img/apple-touch-icon.png" rel="apple-touch-icon"> --}}
+        .subscribe h2,
+        .subscribe p {
+            text-shadow: 2px 2px #000000;
+        }
 
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i"
-        rel="stylesheet">
+        .subscribe button {
+            font-size: 14px;
+            font-weight: bold;
+        }
 
-    <link href="{{ asset('asset/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('asset/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('asset/css/style.css') }}" rel="stylesheet">
-</head>
+    </style>
+@endsection
 
-<body>
+@section('content')
+    <div class="container mb-5">
+        <div class="iframe-container placeholder-glow" id="atlanticlight">
+            
+            <video width="1220" height="500" loop autoplay="true" muted="muted" webkit-playsinline="true"
+                playsinline="true">
+                <source
+                    src="{{ secure_asset('cm-chat-media-video-1:06e9ceca-d11c-55fc-be4f-4c344b1fafb9:1008:0:0.MOV') }}"
+                    type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            {{-- <button>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" id="playpause"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>Play</title>
+                <polygon points="12,0 25,11.5 25,39 12,50" id="leftbar" />
+                <polygon points="25,11.5 39.7,24.5 41.5,26 39.7,27.4 25,39" id="rightbar" />
+                <animate to="7,3 19,3 19,47 7,47" id="lefttopause" xlink:href="#leftbar" attributeName="points"
+                    dur=".3s" begin="indefinite" fill="freeze" />
+                <animate to="12,0 25,11.5 25,39 12,50" id="lefttoplay" xlink:href="#leftbar" attributeName="points"
+                    dur=".3s" begin="indefinite" fill="freeze" />
+                <animate to="31,3 43,3 43,26 43,47 31,47" id="righttopause" xlink:href="#rightbar"
+                    attributeName="points" dur=".3s" begin="indefinite" fill="freeze" />
+                <animate to="25,11.5 39.7,24.5 41.5,26 39.7,27.4 25,39" id="righttoplay" xlink:href="#rightbar"
+                    attributeName="points" dur=".3s" begin="indefinite" fill="freeze" />
+            </svg>
+        </button> --}}
+            {{-- <script>
+        
+            var atlanticlight = document.querySelector("#atlanticlight video");
+            // atlanticlight.play();
+            // playpause = document.getElementById("playpause"),
+            //   lefttoplay = document.getElementById("lefttoplay"),
+            //   righttoplay = document.getElementById("righttoplay"),
+            //   lefttopause = document.getElementById("lefttopause"),
+            //   righttopause = document.getElementById("righttopause");
+            //   atlanticlight.removeAttribute("controls");
+            //   playpause.style.display = "block";
+            //   atlanticlight.play();
+            //   playpause.addEventListener('click',function(){
+            //     if (atlanticlight.paused) {
+            //       atlanticlight.play();
+            //       playpause.classList.add("playing");
+            //       lefttopause.beginElement();
+            //       righttopause.beginElement();
+            //     } else {
+            //       atlanticlight.pause();
+            //       lefttoplay.beginElement();
+            //       righttoplay.beginElement();
+            //       playpause.classList.remove("playing");
+            // }
 
-    <!-- ======= Header ======= -->
-    <header id="header">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-
-            <div class="logo">
-                {{-- <h1 class="text-light"><a href="index.html"><span>WeBuild</span></a></h1> --}}
-                <!-- Uncomment below if you prefer to use an image logo -->
-                {{-- <a href="#"><img src="{{ asset('images/2611.png') }}" alt="" class="img-fluid"></a> --}}
-            </div>
-
-            <div class="contact-link float-right">
-                {{-- <a href="#contact" class="scrollto">Contact Us</a> --}}
-            </div>
-
+            // },false);
+        </script> --}}
         </div>
-    </header><!-- End #header -->
-
-    <!-- ======= Hero Section ======= -->
-    <section id="hero">
-        <div class="hero-container">
-            <img src="{{ asset('images/2611.png') }}" alt="" class="img-fluid mb-5">
-            <h2 class="text-dark">COUNTDOWN TO LAUNCH</h2>
-            <div class="countdown text-dark" data-count="2022/4/31" data-template="%d days %h:%m:%s"></div>
-
-            <form action="{{ route('subscribe') }}" method="post" class="php-email-form">
-                @csrf
-                <div class="row no-gutters">
-                    <div class="col-md-12 form-group pr-md-1">
-                        <input type="text" name="email" class="form-control mb-3" id="name" placeholder="Your Email" required>
-                    </div>
-                </div>
-                <button class="btn btn-dark btn-block" type="submit">Get notified!</button>
-            </form>
-        </div>
-    </section><!-- End Hero -->
-
-    {{-- <main id="main">
-
-        <!-- ======= Contact Us Section ======= -->
-        <section id="contact" class="contact">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2>Contact Us</h2>
-                </div>
-
-                <div class="row contact-info">
-
-                    <div class="col-md-4">
-                        <div class="contact-address">
-                            <i class="bi bi-geo-alt"></i>
-                            <h3>Address</h3>
-                            <address>A108 Adam Street, NY 535022, USA</address>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="contact-phone">
-                            <i class="bi bi-phone"></i>
-                            <h3>Phone Number</h3>
-                            <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="contact-email">
-                            <i class="bi bi-envelope"></i>
-                            <h3>Email</h3>
-                            <p><a href="mailto:info@example.com">info@example.com</a></p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="form">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                        <div class="row">
-                            <div class="col-md form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
-                                    required>
+    </div>
+    <div class="container">
+        <div class="row g-4">
+            @foreach ($products as $product)
+                <div class="col-md-4 col-12 mb-5 pe-2">
+                    <a href="{{ route('product.show', $product->tag_number) }}">
+                        <div class="border-0 p-2">
+                            <div class="card-img-header">
+                                <img class="card-img-top img-fluid"
+                                    src="{{ $product->images()->first()->image_url ?? '' }}"
+                                    style="width: 100%; height: 400px; object-fit: cover; object-position: top;" alt="">
                             </div>
-                            <div class="col-md form-group mt-3 mt-md-0">
-                                <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="Your Email" required>
+                            <div class="card-body px-0 d-flex justify-content-between align-items-center">
+                                <h4 class="mb-0 card-title product-name">{{ $product->name }}</h4>
+                                <p class="card-text">${{ $product->price }}</p>
                             </div>
                         </div>
-                        <div class="form-group mt-3">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
-                                required>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    <div class="subscribe">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12 col-md-10">
+                    <h2 class="h5 text-white text-start fw-bold mb-3">SIGN UP FOR THE UPDATES</h2>
+                    <p class="mb-3 text-white text-start" style="font-weight: 600">By clicking the subscribe
+                        button, you agree to the Privacy Policy and Terms & Condition</p>
+                    <form action="{{ route('subscribe') }}" method="post">
+                        @csrf
+                        <div class="row g-1 w-100">
+                            <div class="col-md-6">
+                                <div class="form-group pl-0">
+                                    <input type="text" name="email" id="" class="form-control form-control-lg rounded-0"
+                                        style="border: 1px solid black" placeholder="Your email" aria-describedby="helpId">
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn bg-white btn-lg rounded-0" style="border: 1px solid black">
+                                    <span class="d-md-none d-sm-block">&#8594;</span> <span
+                                        class="d-sm-none d-md-block">Subscribe</span> </button>
+                            </div>
                         </div>
-                        <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Message"
-                                required></textarea>
-                        </div>
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
                     </form>
                 </div>
-
             </div>
-        </section>
+        </div>
+    </div>
+@endsection
 
-    </main> --}}
-
-    <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('asset/js/main.js') }}"></script>
-    @include('layouts.footer-scripts')
-
-</body>
-
-</html>

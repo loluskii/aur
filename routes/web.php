@@ -35,6 +35,8 @@ Route::get('pages/shipping-and-returns', [PagesController::class,'shippingPolicy
 Route::get('pages/contact', [PagesController::class,'contact'])->name('contact');
 
 
+
+
 Route::group(['prefix' => 'shop'], function () {
     Route::get('/',[ProductController::class, 'index'])->name('shop');
     Route::get('{tag}', [ProductController::class, 'show'])->name('product.show');
@@ -55,6 +57,9 @@ Route::post('stripe-webhook',[PaymentController::class,'webhook']);
 //Flutterwave Checkout
 Route::post('/pay', [PaymentController::class, 'flutterInit'])->name('pay.flutter');
 Route::get('/rave/callback', [PaymentController::class,'flutterwaveCallback'])->name('flutter.callback');
+//Coinbase Checkout
+Route::post('/coinbase',[PaymentController::class,'coinbaseCheckout'])->name('coinbase');
+Route::post('/coinbase-webhook',[PaymentController::class, 'coinbaseWebhook'])->name('coinbase.webhook');
 
 Route::post('/checkout/step=payment', [PaymentController::class,'stripeHandlePayment'])->name('payment.create');
 Route::get('/checkout/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');

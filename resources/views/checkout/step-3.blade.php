@@ -325,13 +325,17 @@
                                 <div class="col-12 pt-3">
                                     <nav>
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                            <button class="nav-link active w-50 text-decoration-none" id="nav-home-tab"
+                                            <button class="nav-link active w-25 text-decoration-none" id="nav-home-tab"
                                                 data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab"
                                                 aria-controls="nav-home" aria-selected="true">Pay with Stripe</button>
                                             <button class="nav-link w-50 text-decoration-none" id="nav-profile-tab"
                                                 data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab"
                                                 aria-controls="nav-profile" aria-selected="false">Pay with
                                                 Flutterwave</button>
+                                            <button class="nav-link w-25 text-decoration-none" id="nav-coin-tab"
+                                                data-bs-toggle="tab" data-bs-target="#nav-coin" type="button" role="tab"
+                                                aria-controls="nav-coin" aria-selected="false">Pay with
+                                                Coinbase</button>
                                         </div>
                                     </nav>
                                     <div class="tab-content" id="nav-tabContent">
@@ -409,6 +413,33 @@
                                             </div>
 
                                         </div>
+                                        <div class="tab-pane fade" id="nav-coin" role="tabpanel"
+                                        aria-labelledby="nav-coin-tab">
+                                        <div class="">
+                                            <div class="card-body px-0">
+                                                <p class="text-muted"> Note: After clicking on the button, you will
+                                                    be directed
+                                                    to a secure gateway for crypto payment. After completing the payment
+                                                    process, you will
+                                                    be redirected back to the website to view details of your order.
+                                                </p>
+                                                <form action="{{ route('coinbase') }}" method="post"
+                                                    class="pb-5" id="payment-form">
+                                                    @csrf
+                                                    <button id="card-button"
+                                                        class="payment-button btn btn-dark btn-lg px-3" type="submit">
+                                                        <div class="spinner hidden my-2" id="spinner"></div>
+                                                        <span id="button-text">Pay now</span>
+                                                    </button>
+                                                    <div class="col-12 text-center mt-3">
+                                                        <a href="{{ route('checkout.step_two.index') }}"
+                                                            class="">Back to
+                                                            Shipping</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                     </div>
 
                                 </div>
