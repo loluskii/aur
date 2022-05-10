@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'rave/callback',
-        'stripe-webhook'
+        'stripe-webhook',
+        'coinbase-webhook'
     ];
 }

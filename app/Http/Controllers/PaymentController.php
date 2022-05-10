@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use Exception;
-use Carbon\Carbon;
-use App\Models\User;
 use App\Action\OrderActions;
-use Illuminate\Http\Request;
-use App\Models\PaymentRecord;
 use App\Jobs\NotifyAdminOrder;
 use App\Jobs\SendOrderInvoice;
+use App\Models\PaymentRecord;
+use App\Models\User;
 use App\Services\OrderQueries;
-use CoinbaseCommerce\ApiClient;
+use Carbon\Carbon;
+use DB;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use CoinbaseCommerce\Resources\Charge;
 use KingFlamez\Rave\Facades\Rave as Flutterwave;
 
 class PaymentController extends Controller
@@ -214,8 +212,9 @@ class PaymentController extends Controller
             return $e;
         }
     }
-    
-    public function coinbaseCheckout(Request $request){   
+
+    public function coinbaseCheckout(Request $request)
+    {
         $cart = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent();
         $x = [];
         foreach ($cart as $key => $value) {
@@ -226,7 +225,7 @@ class PaymentController extends Controller
         $order = $request->session()->get('order');
         $method = 'coinbase';
         $response = Http::withHeaders([
-            'Content-Type' =>  'application/json',
+            'Content-Type' => 'application/json',
             'X-CC-Api-Key' => env('API_KEY'),
             'X-CC-Version' => '2018-03-22',
         ])->post('https://api.commerce.coinbase.com/charges', [
@@ -234,24 +233,59 @@ class PaymentController extends Controller
             "description" => $order->order_ref,
             "local_price" => [
                 "amount" => $amount,
-                "currency" => "USD"
+                "currency" => "USD",
             ],
+            'logo_url' => asset('assets/img/logo.png'),
             "pricing_type" => "fixed_price",
             "metadata" => [
                 'order' => $order,
                 'subamount' => $subamount,
+                'amount' => $amount,
                 'user_id' => auth()->id() ?? rand(0000, 9999),
                 'order_items' => json_encode($x),
             ],
             "redirect_url" => route('payment.success'),
             "cancel_url" => route('payment.failure'),
         ]);
-        
-        return redirect()->away($response['hosted_url']);
+
+        return $response;
     }
-    
-    public function coinbaseWebhook(Request $request){
-    
+
+    public function coinbaseWebhook(Request $request)
+    {
+        $data = $request->all();
+        $method = "coinbase";
+        $event_type = $data['event']['type'];
+        $metadata = $data['event']['data']['metadata'];
+        $user_id = $metadata['user_id'];
+
+        if ($event_type === "charge:confirmed") {
+            $subamount = $metadata['subamount'];
+            $amount = $metadata['amount'];
+            $payment_id = $data['event']['id'];
+            $order_items = $metadata['order_items'];
+            $res = (new OrderActions())->store(json_decode($metadata['order']), $amount, $subamount, $user_id, $method, json_decode($metadata['order_items']));
+            $newOrder = (new OrderQueries())->findByRef($res);
+            if ($newOrder) {
+                DB::beginTransaction();
+                if (PaymentRecord::where('payment_ref', $payment_id)->first()) {
+                    throw new Exception('Payment Already made!');
+                }
+                $payment = new PaymentRecord();
+                $payment->user_id = auth()->id() ?? $newOrder->user_id;
+                $payment->order_id = $newOrder->id;
+                $payment->amount = $amount;
+                $payment->description = 'Payment for Order ' . $newOrder->order_number;
+                $payment->payment_ref = $payment_id;
+                $payment->save();
+                DB::commit();
+            }
+            $user = $newOrder->shipping_email;
+            $admin = User::where('is_admin', 1)->get();
+            // NotifyAdminOrder::dispatch($newOrder, $admin);
+            // SendOrderInvoice::dispatch($newOrder, $user)->delay(now()->addMinutes(3));
+            return 'webhook captured!';
+        }
     }
 
     public function paymentSuccess(Request $request)

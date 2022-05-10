@@ -29,7 +29,7 @@ class OrderActions{
             $newOrder->shipping_email = $order->shipping_email;
             $newOrder->subtotal = $subamount;
             $newOrder->grand_total = $amount;
-            if($method === "stripe"){
+            if($method === "coinbase"){
                 $newOrder->item_count = count($orderItems);
             }else{
                 $newOrder->item_count = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent()->count();
@@ -44,7 +44,7 @@ class OrderActions{
     
             $newOrder->save();
             
-            if($method === "stripe"){
+            if($method === "coinbase"){
                 $cartItems = $orderItems;
                 foreach($cartItems as $item){
                     $newOrder->items()->attach($item[0], ['price'=> $item[1], 'quantity'=> $item[2], 'size'=>$item[3]]);

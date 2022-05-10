@@ -80,5 +80,10 @@ Route::get('/cart', function () {
     return view('checkout.show-cart');
 })->name('cart.show');
 
+Route::get('/fix', function(){
+    Schema::dropIfExists('orders');
+    
+});
+
 
 
