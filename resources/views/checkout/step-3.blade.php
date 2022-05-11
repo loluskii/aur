@@ -325,21 +325,21 @@
                                 <div class="col-12 pt-3">
                                     <nav>
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                            <button class="nav-link active w-25 text-decoration-none" id="nav-home-tab"
+                                            <button class="nav-link active w-25 text-decoration-none d-none" id="nav-home-tab"
                                                 data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab"
                                                 aria-controls="nav-home" aria-selected="true">Pay with Stripe</button>
                                             <button class="nav-link w-50 text-decoration-none" id="nav-profile-tab"
                                                 data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab"
                                                 aria-controls="nav-profile" aria-selected="false">Pay with
                                                 Flutterwave</button>
-                                            <button class="nav-link w-25 text-decoration-none" id="nav-coin-tab"
+                                            <button class="nav-link w-50 text-decoration-none" id="nav-coin-tab"
                                                 data-bs-toggle="tab" data-bs-target="#nav-coin" type="button" role="tab"
                                                 aria-controls="nav-coin" aria-selected="false">Pay with
                                                 Coinbase</button>
                                         </div>
                                     </nav>
                                     <div class="tab-content" id="nav-tabContent">
-                                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                        <div class="tab-pane fade d-none" id="nav-home" role="tabpanel"
                                             aria-labelledby="nav-home-tab">
                                             <div class="">
                                                 <div class="card-body px-0">
@@ -366,7 +366,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                        <div class="tab-pane fade  show active" id="nav-profile" role="tabpanel"
                                             aria-labelledby="nav-profile-tab">
                                             <div class="">
                                                 <div class="card-body px-0">

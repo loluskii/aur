@@ -129,89 +129,89 @@ class PaymentController extends Controller
     }
 
     //Redirect to stripe checkout
-    public function stripeInit(Request $request)
-    {
-        $cart = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent();
-        $x = [];
-        foreach ($cart as $key => $value) {
-            $x[] = array($value['id'], $value['price'], $value['quantity'], $value['attributes']['size']);
-        }
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        $subamount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getSubTotal();
-        $amount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal();
-        $order = $request->session()->get('order');
-        $method = 'stripe';
-        $checkout_session = \Stripe\Checkout\Session::create([
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'usd',
-                    'product_data' => [
-                        'name' => 'Order from 2611 AUR',
-                    ],
-                    'unit_amount' => $amount * 100,
-                ],
-                'quantity' => 1,
-            ]],
-            'payment_intent_data' => [
-                'metadata' => [
-                    'order' => $order,
-                    'subamount' => $subamount,
-                    'user_id' => auth()->id() ?? rand(0000, 9999),
-                    'order_items' => json_encode($x),
-                ],
-            ],
-            'mode' => 'payment',
-            'success_url' => route('payment.success'),
-            'cancel_url' => route('payment.failure'),
-        ]);
-        \Cart::session(auth()->check() ? auth()->id() : 'guest')->clear();
-        $request->session()->forget('order');
-        return redirect()->away($checkout_session->url);
-    }
+    // public function stripeInit(Request $request)
+    // {
+    //     $cart = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent();
+    //     $x = [];
+    //     foreach ($cart as $key => $value) {
+    //         $x[] = array($value['id'], $value['price'], $value['quantity'], $value['attributes']['size']);
+    //     }
+    //     \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+    //     $subamount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getSubTotal();
+    //     $amount = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getTotal();
+    //     $order = $request->session()->get('order');
+    //     $method = 'stripe';
+    //     $checkout_session = \Stripe\Checkout\Session::create([
+    //         'line_items' => [[
+    //             'price_data' => [
+    //                 'currency' => 'usd',
+    //                 'product_data' => [
+    //                     'name' => 'Order from 2611 AUR',
+    //                 ],
+    //                 'unit_amount' => $amount * 100,
+    //             ],
+    //             'quantity' => 1,
+    //         ]],
+    //         'payment_intent_data' => [
+    //             'metadata' => [
+    //                 'order' => $order,
+    //                 'subamount' => $subamount,
+    //                 'user_id' => auth()->id() ?? rand(0000, 9999),
+    //                 'order_items' => json_encode($x),
+    //             ],
+    //         ],
+    //         'mode' => 'payment',
+    //         'success_url' => route('payment.success'),
+    //         'cancel_url' => route('payment.failure'),
+    //     ]);
+    //     \Cart::session(auth()->check() ? auth()->id() : 'guest')->clear();
+    //     $request->session()->forget('order');
+    //     return redirect()->away($checkout_session->url);
+    // }
 
-    //Handle Stripe Webhook
-    public function webhook(Request $request)
-    {
-        try {
-            $data = $request->all();
-            $method = "stripe";
-            $metadata = $data['data']['object']['metadata'];
-            $user_id = $metadata['user_id'];
-            switch ($data['type']) {
-                case 'charge.succeeded':
-                    $subamount = $metadata['subamount'];
-                    $amount = $data['data']['object']['amount'] / 100;
-                    $payment_id = $data['data']['object']['id'];
-                    $order_items = $metadata['order_items'];
-                    $res = (new OrderActions())->store(json_decode($metadata['order']), $amount, $subamount, $user_id, $method, json_decode($metadata['order_items']));
-                    $newOrder = (new OrderQueries())->findByRef($res);
-                    if ($newOrder) {
-                        DB::beginTransaction();
-                        if (PaymentRecord::where('payment_ref', $payment_id)->first()) {
-                            throw new Exception('Payment Already made!');
-                        }
-                        $payment = new PaymentRecord();
-                        $payment->user_id = auth()->id() ?? $newOrder->user_id;
-                        $payment->order_id = $newOrder->id;
-                        $payment->amount = $amount;
-                        $payment->description = 'Payment for Order ' . $newOrder->order_number;
-                        $payment->payment_ref = $payment_id;
-                        $payment->save();
-                        DB::commit();
-                    }
-                    $user = $newOrder->shipping_email;
-                    $admin = User::where('is_admin', 1)->get();
-                    NotifyAdminOrder::dispatch($newOrder, $admin);
-                    SendOrderInvoice::dispatch($newOrder, $user)->delay(now()->addMinutes(3));
-                    return 'webhook captured!';
-                    break;
-                default:
-                    return 'webhook event not found';
-            }
-        } catch (Exception $e) {
-            return $e;
-        }
-    }
+    // //Handle Stripe Webhook
+    // public function webhook(Request $request)
+    // {
+    //     try {
+    //         $data = $request->all();
+    //         $method = "stripe";
+    //         $metadata = $data['data']['object']['metadata'];
+    //         $user_id = $metadata['user_id'];
+    //         switch ($data['type']) {
+    //             case 'charge.succeeded':
+    //                 $subamount = $metadata['subamount'];
+    //                 $amount = $data['data']['object']['amount'] / 100;
+    //                 $payment_id = $data['data']['object']['id'];
+    //                 $order_items = $metadata['order_items'];
+    //                 $res = (new OrderActions())->store(json_decode($metadata['order']), $amount, $subamount, $user_id, $method, json_decode($metadata['order_items']));
+    //                 $newOrder = (new OrderQueries())->findByRef($res);
+    //                 if ($newOrder) {
+    //                     DB::beginTransaction();
+    //                     if (PaymentRecord::where('payment_ref', $payment_id)->first()) {
+    //                         throw new Exception('Payment Already made!');
+    //                     }
+    //                     $payment = new PaymentRecord();
+    //                     $payment->user_id = auth()->id() ?? $newOrder->user_id;
+    //                     $payment->order_id = $newOrder->id;
+    //                     $payment->amount = $amount;
+    //                     $payment->description = 'Payment for Order ' . $newOrder->order_number;
+    //                     $payment->payment_ref = $payment_id;
+    //                     $payment->save();
+    //                     DB::commit();
+    //                 }
+    //                 $user = $newOrder->shipping_email;
+    //                 $admin = User::where('is_admin', 1)->get();
+    //                 NotifyAdminOrder::dispatch($newOrder, $admin);
+    //                 SendOrderInvoice::dispatch($newOrder, $user)->delay(now()->addMinutes(3));
+    //                 return 'webhook captured!';
+    //                 break;
+    //             default:
+    //                 return 'webhook event not found';
+    //         }
+    //     } catch (Exception $e) {
+    //         return $e;
+    //     }
+    // }
 
     public function coinbaseCheckout(Request $request)
     {
@@ -235,7 +235,7 @@ class PaymentController extends Controller
                 "amount" => $amount,
                 "currency" => "USD",
             ],
-            'logo_url' => asset('assets/img/logo.png'),
+            'logo_url' => 'https://res.cloudinary.com/hndhvnqyq/image/upload/v1652190872/2611_bfrape.png',
             "pricing_type" => "fixed_price",
             "metadata" => [
                 'order' => $order,
@@ -247,8 +247,8 @@ class PaymentController extends Controller
             "redirect_url" => route('payment.success'),
             "cancel_url" => route('payment.failure'),
         ]);
-
-        return $response;
+        $data = json_decode($response, true);
+        return redirect()->away($data['data']['hosted_url']);
     }
 
     public function coinbaseWebhook(Request $request)
