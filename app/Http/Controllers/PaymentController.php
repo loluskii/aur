@@ -18,11 +18,6 @@ use KingFlamez\Rave\Facades\Rave as Flutterwave;
 
 class PaymentController extends Controller
 {
-    public function __construct()
-    {
-        $this->stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-    }
-
     public function getSessionID()
     {
         if (!Auth::check()) {
