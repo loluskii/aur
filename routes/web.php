@@ -59,7 +59,7 @@ Route::post('/pay', [PaymentController::class, 'flutterInit'])->name('pay.flutte
 Route::get('/rave/callback', [PaymentController::class,'flutterwaveCallback'])->name('flutter.callback');
 //Coinbase Checkout
 Route::post('/coinbase',[PaymentController::class,'coinbaseCheckout'])->name('coinbase');
-Route::post('/coinbase-webhook',[PaymentController::class, 'coinbaseWebhook'])->name('coinbase.webhook');
+Route::post('/cwebhook',[PaymentController::class, 'coinbaseWebhook'])->name('coinbase.webhook');
 
 Route::post('/checkout/step=payment', [PaymentController::class,'stripeHandlePayment'])->name('payment.create');
 Route::get('/checkout/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
