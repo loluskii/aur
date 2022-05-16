@@ -34,6 +34,10 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Bottoms',
                 'slug' => 'bottoms',
+            ],
+            [
+                'name' => 'Women',
+                'slug' => 'women',
             ]
         ];
         DB::table('categories')->insert($category);
