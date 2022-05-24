@@ -1,24 +1,17 @@
-<div class="px-lg-5 mx-lg-5 px-2 mx-2">
-    <div id="shopify-section-footer" class="shopify-section border-top">
-        <footer class="site-footer" role="contentinfo">
-            <div class="container">
-                <div class="d-flex flex-lg-row flex-column align-items-center justify-content-around  py-3">
-                    {{-- <div class="col-auto"> --}}
-                        <a class="py-3" href="{{ route('about-us') }}">About</a>
-                        <a class="py-3" href="{{ route('contact') }}">Contact</a>
-                        <a class="py-3" href="{{ route('shipping') }}">Shipping and Returns</a>
-                        
-                        <a class="py-3" href="https://www.instagram.com/2611aur/">Socials</a>
-                        {{-- <a class="px-3" href="">FAQ</a> --}}
-                        
-                    {{-- </div> --}}
-                    {{-- <div class="col-auto">
-                        <p>© 2022, <a href="/" title="">2611 online store</a><br><a target="_blank" rel="nofollow"
-                                href="https://www.shopify.com?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore">
-                            </a></p>
-                    </div> --}}
-                </div>
-            </div>
-        </footer>
-    </div>
-</div>
+
+
+<footer class="d-flex flex-wrap justify-content-between px-lg-5 mx-lg-5 px-2 mx-2 align-items-center  py-3 ">
+    <p class="col-md-4 mb-0 text-muted">&copy; 2022 AUR, Inc</p>
+
+    {{-- <a href="{{ route('home') }}" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        <img src="{{ secure_asset('images/2611.png') }}" style="height: 20px" class="img-fluid" alt="" srcset="">
+    </a> --}}
+
+    <ul class="nav col-md-4 justify-content-end">
+        {{-- <li class="nav-item"><a href="{{ route('home') }}" class="nav-link px-2 text-muted">Home</a></li> --}}
+        <li class="nav-item"><a href="{{ route('about-us') }}" class="nav-link px-2 text-muted">About</a></li>
+        <li class="nav-item"><a href="{{ route('shipping') }}" class="nav-link px-2 text-muted">Shipping and returns</a></li>
+        <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link px-2 text-muted">contact</a></li>
+        <li class="nav-item"><a href="https://www.instagram.com/2611aur/" class="nav-link px-2 text-muted">Socials</a></li>
+    </ul>
+</footer>
