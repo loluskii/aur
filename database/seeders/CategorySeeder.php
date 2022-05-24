@@ -20,8 +20,8 @@ class CategorySeeder extends Seeder
                 'slug' => 'sweatshirts',
             ],
             [
-                'name' => 'T-Shirts',
-                'slug' => 'tshirts',
+                'name' => 'Tops',
+                'slug' => 'tops',
             ],
             [
                 'name' => 'Accessories',
@@ -38,7 +38,8 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Women',
                 'slug' => 'women',
-            ]
+            ],
+            
         ];
         DB::table('categories')->insert($category);
     }

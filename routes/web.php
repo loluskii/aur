@@ -83,8 +83,8 @@ Route::get('/cart', function () {
 Route::get('/fix', function(){
     DB::statement('SET FOREIGN_KEY_CHECKS=0;');
     DB::table('categories')->truncate();
-    DB::statement('ALTER TABLE products DROP COLUMN units');
-    DB::statement('ALTER TABLE products DROP COLUMN alert_quantity');
+    // DB::statement('ALTER TABLE products DROP COLUMN units');
+    // DB::statement('ALTER TABLE products DROP COLUMN alert_quantity');
     DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
     
