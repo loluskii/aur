@@ -1,4 +1,3 @@
-
 @extends('admin.layouts.app')
 
 @section('page-title')
@@ -15,38 +14,39 @@
     </div>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modelId">
-      Delete
+        Delete
     </button>
-    
+
     <!-- Modal -->
     <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Create a new category</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.category.add') }}" method="POST" class="form" enctype="multipart/form-data">
+                <form action="{{ route('admin.category.add') }}" method="POST" class="form"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group mb-3">
-                          <label for="recipient-name" class="form-label">Name:</label>
-                          <input type="text" name="name" class="form-control" id="recipient-name">
+                            <label for="recipient-name" class="form-label">Name:</label>
+                            <input type="text" name="name" class="form-control" id="recipient-name">
                         </div>
                         <div class="form-group mb-3">
-                          <label for="message-text" class="form-label">Description:</label>
-                          <textarea class="form-control" name="desc" id="message-text"></textarea>
+                            <label for="message-text" class="form-label">Description:</label>
+                            <textarea class="form-control" name="desc" id="message-text"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
-                </form>    
+                </form>
             </div>
         </div>
     </div>
-    
+
 </div><!-- End Page Title -->
 
 @endsection
@@ -58,7 +58,9 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         {{-- <h1 clas s="h3 mb-0 text-gray-800">Product Name</h1> --}}
-        {{-- <a href="{{ route('admin.category.delete', $category->id) }}" onclick="return confirm('Are you sure you want to delete this record?')" class="btn btn-sm btn-danger">Delete</a> --}}
+        {{-- <a href="{{ route('admin.category.delete', $category->id) }}"
+            onclick="return confirm('Are you sure you want to delete this record?')"
+            class="btn btn-sm btn-danger">Delete</a> --}}
 
     </div>
 
@@ -115,7 +117,7 @@
                             <td><img src="{{ $product->image }}" alt="" srcset="" style="height: 50px; "></td>
                             <td>{{ $product->tag_number }}</td>
                             <td>{{ $product->name }}</td>
-                            <td>£{{ number_format($product->price, 2) }}</td>
+                            <td>${{ number_format($product->price, 2) }}</td>
                             <td>
                                 @include('admin.products.product-action')
                             </td>
@@ -133,7 +135,7 @@
 
 @section('third_party_scripts')
 <script>
-$('#products').DataTable({
+    $('#products').DataTable({
     "paging": true,
     "lengthChange": true,
     "searching": true,
@@ -145,5 +147,3 @@ $('#products').DataTable({
 </script>
 
 @endsection
-
-
