@@ -41,17 +41,7 @@ class PagesController extends Controller
         return view('products.bottoms.index', compact('products'));
     }
     
-    public function aboutUs(){
-        $cart = \Cart::session(auth()->check() ? auth()->id() : 'guest')->getContent();
-        $x = [];
-        foreach($cart as $key => $value){
-            $x[] = array($value['id'],$value['price'], $value['quantity'],$value['attributes']['size']);
-        }
-        
-        dd(json_encode([[2,83,1,"M"]]));
-        // $array = array(12, 10, 0, 18, 27, 0, 46);
-        // print_r(array_filter($array));
-        
+    public function aboutUs(){        
         return view('about-us');
     }
     
