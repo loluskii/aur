@@ -65,7 +65,7 @@
 
     @media(min-width: 992px) {
         #product-image {
-            height: 650px;
+            height: 100%;
         }
 
     }
