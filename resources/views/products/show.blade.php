@@ -121,7 +121,7 @@
                     <form class="pt-2 pt-md-4 pt-lg-4 pt-xl-4" action="{{ route('cart.add',$product->id) }}"
                         method="post">
                         @csrf
-                        @if ($product->category->id == 3)
+                        @if ($product->category->name === "Accessories")
                         @else
                         <div class="d-flex justify-content-md-start justify-content-lg-start justify-content-xl-start justify-content-center mb-3">
                             {{-- <div class="cat action">
