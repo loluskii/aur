@@ -121,8 +121,9 @@
                     <form class="pt-2 pt-md-4 pt-lg-4 pt-xl-4" action="{{ route('cart.add',$product->id) }}"
                         method="post">
                         @csrf
-                        <div
-                            class="d-flex justify-content-md-start justify-content-lg-start justify-content-xl-start justify-content-center mb-3">
+                        @if ($product->category->id == 3)
+                        @else
+                        <div class="d-flex justify-content-md-start justify-content-lg-start justify-content-xl-start justify-content-center mb-3">
                             {{-- <div class="cat action">
                                 <label>
                                     <input type="radio" name="size" value="XS"><span>XS</span>
@@ -149,6 +150,7 @@
                                 </label>
                             </div>
                         </div>
+                        @endif
                         <button type="submit" class="btn  btn-outline-dark rounded-0 text-uppercase w-100 fw-bold"> Add
                             to Bag </button>
                     </form>
