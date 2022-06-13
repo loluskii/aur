@@ -33,7 +33,7 @@ class PaymentController extends Controller
             $reference = Flutterwave::generateReference();
             $data = [
                 'payment_options' => 'card,banktransfer',
-                'amount' => 500,
+                'amount' => $request->amount,
                 'email' => Auth::user()->email ?? $request->email,
                 'tx_ref' => $reference,
                 'currency' => "USD",
