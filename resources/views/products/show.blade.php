@@ -122,6 +122,19 @@
                         method="post">
                         @csrf
                         @if ($product->category->name === "Accessories")
+                        <div class="row g-3 align-items-center mb-3">
+                            <div class="col-auto">
+                              <label for="inputPassword6" class="col-form-label">Color</label>
+                            </div>
+                            <div class="col-auto">
+                                <select class="form-control form-select" name="size" id="">
+                                    <option>Red</option>
+                                    <option>Yellow</option>
+                                    <option>Blue</option>
+                                    <option>Purple</option>
+                                  </select>
+                            </div>
+                          </div>
                         @else
                         <div class="d-flex justify-content-md-start justify-content-lg-start justify-content-xl-start justify-content-center mb-3">
                             {{-- <div class="cat action">
