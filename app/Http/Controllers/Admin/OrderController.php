@@ -24,9 +24,9 @@ class OrderController extends Controller
         $orders = Order::all(); 
         $monthlyRevenue = OrderQueries::getMonthlyRevenue()->sum('subtotal');
         $monthlySalesCount = OrderQueries::getMonthlyRevenue()->count();
-        $pendingOrders = OrderQueries::getPendingOrders()->count();
+        // $pendingOrders = OrderQueries::getPendingOrders()->count();
         $sales = Order::where('is_paid',1)->sum('subtotal');
-        return view('admin.orders.index', compact('orders','sales', 'monthlyRevenue','monthlySalesCount','pendingOrders'));
+        return view('admin.orders.index', compact('orders','sales', 'monthlyRevenue','monthlySalesCount'));
 
     }
 
