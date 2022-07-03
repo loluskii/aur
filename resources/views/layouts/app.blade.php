@@ -9,7 +9,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href={{ secure_asset('css/app.css') }} crossorigin="anonymous">
-    {{-- <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}"> --}}
+    {{--
+    <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ secure_asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ secure_asset('css/bootstrap-side-modals.css') }}">
@@ -22,11 +23,24 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ secure_asset('favicon-16x16.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ secure_asset('favicon-32x32.png') }}">
     <link rel="manifest" href="/site.webmanifest">
-    <meta name="description" content="Shop the best fashion products on AUR2611. From T-Shirts to Sweatshirts to Accessories. Visit 2611-aur.com now!">
+    <meta name="description"
+        content="Shop the best fashion products on AUR2611. From T-Shirts to Sweatshirts to Accessories. Visit 2611-aur.com now!">
 
 
     <link rel="manifest" href="/site.webmanifest">
-    {{-- <link rel="stylesheet" href="{{ secure_asset('go') }}"> --}}
+    <!-- Hotjar Tracking Code for https://2611-aur.com -->
+    <script>
+        (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3049730,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    {{--
+    <link rel="stylesheet" href="{{ secure_asset('go') }}"> --}}
     <style>
         @font-face {
             font-family: 'Century Gothic';
@@ -58,7 +72,6 @@
         .container {
             max-width: 1124px;
         }
-
     </style>
     @yield('styles')
 
@@ -71,7 +84,7 @@
     <div id="wraps">
         @if (Route::is('checkout.*'))
         @else
-            @include('layouts.header')
+        @include('layouts.header')
         @endif
 
         @yield('content')
