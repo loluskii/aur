@@ -44,8 +44,8 @@
     <section id="hero">
         <div class="hero-container">
             <img src="{{ asset('images/2611.png') }}" alt="" class="img-fluid mb-5">
-            <h2 class="text-dark">COUNTDOWN TO LAUNCH</h2>
-            <div class="countdown text-dark" data-count="2022/7/31" data-template="%d days %h:%m:%s"></div>
+            {{-- <h2 class="text-dark">COUNTDOWN TO LAUNCH</h2> --}}
+            {{-- <div class="countdown text-dark" data-count="2022/7/31" data-template="%d days %h:%m:%s"></div> --}}
 
             <form action="{{ route('subscribe') }}" method="post" class="php-email-form">
                 @csrf
